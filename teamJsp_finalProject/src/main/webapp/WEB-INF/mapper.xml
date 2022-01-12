@@ -254,6 +254,37 @@
 							 WHERE player_backno = #{player_backno})
  	</select>
  	
+ 	<!-- 팀기록실 -->
+ 	<select id="teamRecord_selectAll" resultType="trdto">
+ 		SELECT teamno, sum(winteam) winteam, sum(loseteam) loseteam, sum(team_pts) team_pts, sum(team_reb) team_reb,
+			   sum(team_ast) team_ast,sum(team_stl) team_stl, sum(team_bs) team_bs, sum(team_to) team_to
+		FROM teamrecord
+		GROUP BY teamno
+		ORDER BY winteam DESC
+ 	</select>
+ 	
+ 	<!-- 팀번호로 팀이름 가져오기 -->
+ 	<select id="teamRecord_selectTeamName" parameterType="int" resultType="String">
+ 		SELECT team_name FROM team
+ 		WHERE teamno = #{teamno}
+ 	</select>
+ 	
+ 	<!-- 해당 값을 기준으로 정렬해서 선수 기록 가져오기 -->
+ 	<select id="playerRecord_selectAll" parameterType="String" resultType="prdto">
+ 		SELECT player_code, SUM(player_pts) player_pts, SUM(player_min) player_min, SUM(player_fg) player_fg, 
+ 			   SUM(player_three) player_three, SUM(player_ft) player_ft, SUM(player_reb) player_reb,
+ 			   SUM(player_ast) player_ast, SUM(player_stl) player_stl, SUM(player_bs) player_bs, SUM(player_to) player_to
+ 		FROM playerrecord 
+ 		GROUP BY player_code
+ 		ORDER BY ${base} DESC
+ 	</select>
+ 	
+ 	<!-- 선수코드로 선수이름 가져오기 -->
+ 	<select id="teamRecord_selectPlayerName" parameterType="int" resultType="String">
+ 		SELECT player_name FROM player
+ 		WHERE player_code = #{player_code}
+ 	</select>
+ 	
  	
  	<!-- 이름과 이메일을 대조해서 회원조회 -->
  	<select id="findId" parameterType="mdto" resultType="String">

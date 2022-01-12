@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+#recordingroom {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+#recordroom-tabmenu {
+	width: 100%;
+	padding-top: 45px;
+	padding-left: 40px;
+	font-size: 22px;
+	font-weight: bolder;
+	color: black;
+	cursor: pointer;
+}
+
+#recordroom-tabmenu span:hover {
+	font-weight: 800;
+}
+
+#recordroom-table-wrap {
+	width: 100%;
+	padding: 25px 0;
+	text-align: center;
+}
+
+#recordroom-table-wrap table {
+	width: 1100px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	border-radius: 20px;
+	background-color: rgb(248, 248, 248);
+	border-collapse: collapse;
+	overflow: hidden;
+	text-align: center;
+}
+
+#recordroom-table-wrap table tr:first-child th {
+	background-color: rgb(233, 61, 55);
+	color: white;
+}
+
+.team_recordroom-table tr {
+	height: 50px;
+	border-top: 1px solid #eee;
+}
+
+.player_recordroom-table {
+	font-size: 15px;
+}
+
+.player_recordroom-table tr {
+	height: 40px;
+	border-top: 1px solid #eee;
+}
+
+.sortMenu {
+	cursor: pointer;
+}
+
+.sortMenu:hover {
+	opacity: .8;
+}
+
+.sortMenu:active {
+	opacity: 1;
+}
