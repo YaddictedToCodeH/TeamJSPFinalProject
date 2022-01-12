@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+  <mapper namespace="kr.co.finalp">
+  	<select id="photoGallery_selectAll" parameterType="gallStartEnd" resultType="gdto">	
+		SELECT t2.*
+		   FROM (
+		      SELECT ROWNUM AS rnum
+		          , t1.*
+		         FROM (
+		            SELECT c1.gallery_category_no 								-- 갤러리 카테고리 번호         
+		               , c1.gallery_category 									-- 갤러리 카테고리
+		               , c2.galleryno 											-- 갤러리 번호 
+		               , c2.admin_no  											-- 관리자 번호 
+		               , c2.gallery_title 										-- 갤러리 제목
+		               , to_char(c2.gallery_date,'yyyy-mm-dd') as gallery_date  -- 갤러리 작성일
+		               , c2.gallery_hit 										-- 갤러리 조회수
+		               , c3.fileno 												-- 첨부파일 
+		               , c3.file_url 											-- 첨부파일 URL
+		               FROM gallery_category c1
+		               LEFT JOIN gallery c2
+		               ON ( c2.gallery_category_no = c1.gallery_category_no )
+		               LEFT JOIN files c3
+		               ON ( c3.galleryno = c2.galleryno )
+		               WHERE 1=1
+		               AND c1.gallery_category_no = #{galleryCategoryNo}
+		               <choose>		
+		               	<when test="sort_order != null and sort_order != '' and sort_order.equals('latest_order')">
+			               ORDER BY c2.galleryno desc
+		               	</when>	                      
+		               	<when test="sort_order != null and sort_order != '' and sort_order.equals('old_order')">
+			               ORDER BY c2.galleryno asc
+		               	</when>
+		               	<otherwise>
+		             	   ORDER BY c2.galleryno desc
+		               	</otherwise>
+		               </choose>
+		         ) t1
+	             WHERE ROWNUM &lt; = #{endNo}		            
+		    ) t2
+		    WHERE #{startNo} &lt; = rnum
+		    ORDER BY rnum    
+  	</select>
+  	
+  	<select id="photoGallery_getTotal" parameterType="gallStartEnd" resultType="int">
+  		SELECT COUNT(*) total  					
+            FROM gallery_category c1
+            LEFT JOIN gallery c2
+            ON ( c2.gallery_category_no = c1.gallery_category_no )
+            LEFT JOIN files c3
+            ON ( c3.galleryno = c2.galleryno )
+            WHERE c1.gallery_category_no = #{galleryCategoryNo}
+  	</select>
+  	
+
+  	<select id="photoGallery_selectOne" resultType="gdto" parameterType="int">
+  		SELECT t2.*
+		   FROM (
+		      SELECT ROWNUM AS rnum
+		          , t1.*
+		         FROM (
+		            SELECT c1.gallery_category_no 								-- 갤러리 카테고리 번호         
+		               , c1.gallery_category 									-- 갤러리 카테고리
+		               , c2.galleryno 											-- 갤러리 번호 
+		               , c2.admin_no  											-- 관리자 번호 
+		               , c2.gallery_title 										-- 갤러리 제목
+		               , to_char(c2.gallery_date,'yyyy-mm-dd') as gallery_date  -- 갤러리 작성일
+		               , c2.gallery_hit 										-- 갤러리 조회수
+		               , c3.fileno 												-- 첨부파일 
+		               , c3.file_url 											-- 첨부파일 URL
+		               FROM gallery_category c1
+		               LEFT JOIN gallery c2
+		               ON ( c2.gallery_category_no = c1.gallery_category_no )
+		               LEFT JOIN files c3
+		               ON ( c3.galleryno = c2.galleryno )
+		         ) t1
+		            WHERE galleryno = #{galleryno}
+		    ) t2 
+  	</select>
+  	
+  	<update id="gallery_hits" parameterType="int">
+  		UPDATE gallery
+  		SET gallery_hit = gallery_hit+1
+  		WHERE galleryno = #{galleryno}
+  	</update>
+  	
+  	<!-- 경기일정 list -->
+  	<select id="schedule_selectAll" resultType="schedto">
+  		   SELECT c1.gameno       
+  		 <choose>
+  		 <when test="gameno == 133">
+	         , to_char(c1.game_date, 'yy-mm-dd')game_date
+  		 </when>
+  		 <when test="gameno == 134">
+	         , to_char(c1.game_date, 'mm-dd')game_date
+  		 </when>
+  		 </choose>     
+         , c1.game_arena
+         , c1.game_status
+         , c1.game_result       
+         , c1.game_score
+         , c1.teamno
+         , c2.team_name
+         , c2.team_logo        
+         , c1.teamno2
+         , c3.team_name team_name2
+         , c3.team_logo team_logo2
+   	    FROM games c1
+        LEFT JOIN team c2
+        ON ( c2.teamno = c1.teamno )        
+        LEFT JOIN team c3
+        ON ( c3.teamno = c1.teamno2 )
+        <choose>
+        	<when test="gameno == 133">
+    	    	WHERE c1.gameno &lt;= 133  
+    	    	and EXTRACT(MONTH from c1.game_date) = #{select_month}      	
+        	</when>
+        	<when test="gameno == 134">
+    	    	WHERE c1.gameno &gt;= 134      	        	
+    	    	and EXTRACT(MONTH from c1.game_date) = #{select_month}
+        	</when>
+	        <otherwise>
+    	    	WHERE c1.gameno &lt; #{gameno}
+    	    	and EXTRACT(MONTH from c1.game_date) = #{select_month}
+        	</otherwise>
+        </choose>
+        ORDER BY c1.gameno asc
+  	</select>
+  	
+  	<!-- 팀 순위 리스트 -->
+  	<select id="teamRank_selectAll" resultType="rankdto">
+  		SELECT t.teamno, t.team_name, t.team_rank,
+        sum(r.winteam)win, sum(r.loseteam)lose, 
+        to_char(round(sum(r.winteam)/count(r.gameno),3),'FM90.000')winRate
+		FROM  team t
+		LEFT JOIN teamrecord r
+		ON(t.teamno = r.teamno) 
+		group by t.teamno, t.team_name, t.team_rank
+		ORDER BY t.team_rank asc
+  	</select>
+  	
+  	<select id="ptsRank_selectAll" resultType="playerRankdto">
+		SELECT p.player_code, p.player_name, p.player_img,
+		       to_char(ROUND(AVG(pc.player_pts),2),'FM00.00')player_pts
+		FROM player p
+		LEFT JOIN playerrecord pc
+		ON(p.player_code = pc.player_code)
+		GROUP BY p.player_code, p.player_name, p.player_img
+		ORDER BY player_pts desc
+  	</select>
+  	
+  	
+  	
+  	<!-- 공지사항 게시물 하나 선택  -->
+  	<select id="notice_selectOne" parameterType="int" resultType="ndto">
+ 		SELECT noticeno, notice_title, notice_contents, to_char(notice_date, 'YYYY/MM/DD HH24:MI') notice_date, notice_hit 
+ 		FROM notice
+ 		WHERE noticeno =#{noticeno}
+ 	</select>
+ 	
+ 	
+ 	<!-- 공지사항 전체선택  -->
+ 	<select id="notice_selectAll" parameterType="se" resultType="ndto">
+ 		SELECT noticeno, notice_title, notice_contents, notice_date, notice_hit
+ 		FROM ( SELECT ROWNUM rn, noticeno, notice_title, notice_contents, notice_date, notice_hit  
+ 			FROM( SELECT noticeno, notice_title, notice_contents, to_char(notice_date, 'YYYY/MM/DD') notice_date, notice_hit
+ 					FROM notice
+ 					ORDER BY noticeno desc )
+ 			WHERE ROWNUM &lt;=#{endNo} )
+ 		WHERE RN &gt;=#{startNo}
+ 	</select>
+ 	
+ 	<!-- 공지사항 총 게시물 수  -->
+ 	<select id="notice_getTotal" resultType="int">
+ 		SELECT COUNT(*) total
+ 		FROM notice
+ 	</select>
+ 	
+ 	<!-- 공지사항 게시물 작성  -->
+ 	<insert id="notcie_addOne" parameterType="ndto">
+	 	INSERT INTO notice
+	 	VALUES (notice_noticeno_seq.nextval, 1 , #{notice_title} , #{notice_contents}, #{notice_date}, #{notice_hit} )
+ 	</insert>
+ 	
+ 	<!-- 공지사항 게시물 수정  -->
+ 	<update id="notice_updateOne" parameterType="ndto">
+ 		UPDATE notice
+ 		SET notice_title = #{notice_title}, notice_contents = #{notice_contents}
+ 		WHERE notceno = #{noticeno}
+ 	</update>
+ 	
+ 	<!-- 공지사항 게시물 삭제  -->
+ 	<delete id="notice_deleteOne" parameterType="int">
+ 		DELETE FROM notice
+ 		WHERE noticeno = #{noticeno}
+ 	</delete>
+ 	
+ 	<!-- 공지사항 게시판 조회수  -->
+ 	<update id="notice_raiseHits" parameterType="int">
+ 		UPDATE notice
+ 		SET hits = hits+1
+ 		WHERE noticeno = #{noticeno}
+ 	</update>
+ 	
+ 	
+ 	
+ 	<!-- 전체 선수목록 -->
+ 	<select id="player_selectAll" resultType="pdto">
+ 		SELECT * FROM player
+ 	</select>
+ 	
+ 	<!-- 포지션별 선수목록 -->
+ 	<select id="player_selectPos" parameterType="String" resultType="pdto">
+ 		SELECT * FROM player WHERE player_pos = #{player_pos}
+ 	</select>
+ 		
+ 	<!-- 개인선수디테일 -->
+ 	<select id="player_selectOne" parameterType="int" resultType="pdto">
+ 		SELECT * FROM player WHERE player_backno = #{player_backno}
+ 	</select>
+ 	
+ 	<!-- 개인선수통산기록 -->
+ 	<select id="player_selectSumRecord" parameterType="int" resultType="prdto">
+ 		SELECT SUM(player_pts) player_pts, SUM(player_min) player_min, SUM(player_fg) player_fg, 
+ 			   SUM(player_three) player_three, SUM(player_ft) player_ft, SUM(player_reb) player_reb,
+ 			   SUM(player_ast) player_ast, SUM(player_stl) player_stl, SUM(player_bs) player_bs, SUM(player_to) player_to
+		FROM playerrecord
+		WHERE player_code = (SELECT player_code FROM player
+							 WHERE player_backno = #{player_backno})
+ 	</select>
+ 	
+ 	<!-- 개인선수평균기록 -->
+ 	<select id="player_selectAvgRecord" parameterType="int" resultType="prdto">
+ 		SELECT ROUND(AVG(player_pts),3) player_pts, ROUND(AVG(player_min),3) player_min, 
+ 			   ROUND(AVG(player_fg),3) player_fg, ROUND(AVG(player_three),3) player_three, 
+ 			   ROUND(AVG(player_ft),3) player_ft, ROUND(AVG(player_reb),3) player_reb, 
+ 			   ROUND(AVG(player_ast),3) player_ast, ROUND(AVG(player_stl),3) player_stl, 
+ 			   ROUND(AVG(player_bs),3) player_bs, ROUND(AVG(player_to),3) player_to
+		FROM playerrecord 
+		WHERE player_code = (SELECT player_code FROM player 
+							 WHERE player_backno = #{player_backno})
+ 	</select>
+ 	
+ 	<!-- 개인선수최고기록 -->
+ 	<select id="player_selectTopRecord" parameterType="int" resultType="prdto">
+ 		SELECT MAX(player_pts) player_pts, MAX(player_min) player_min, MAX(player_fg) player_fg, 
+ 			   MAX(player_three) player_three, MAX(player_ft) player_ft, MAX(player_reb) player_reb,
+ 			   MAX(player_ast) player_ast, MAX(player_stl) player_stl, MAX(player_bs) player_bs, MAX(player_to) player_to
+		FROM playerrecord
+		WHERE player_code = (SELECT player_code FROM player
+							 WHERE player_backno = #{player_backno})
+ 	</select>
+ 	
+ 	
+ 	<!-- 이름과 이메일을 대조해서 회원조회 -->
+ 	<select id="findId" parameterType="mdto" resultType="String">
+ 		SELECT id
+ 		FROM member
+ 		WHERE mem_name = #{mem_name} AND mail = #{mail}
+ 	</select>
+ 	
+ 	<!-- 아이디와 이메일을 대조해서 회원조회 -->
+ 	<select id="findPw" parameterType="mdto" resultType="String">
+ 		SELECT pwd
+ 		FROM member
+ 		WHERE id = #{id} AND mail = #{mail}
+ 	</select>
+ 	
+ 	<!-- 임시 비밀번호로 재설정 -->
+ 	<update id="changePw" parameterType="mdto">
+ 		UPDATE member
+ 		SET pwd = #{pwd}
+ 		WHERE mail = #{mail}
+ 	</update>
+ 	
+ 	<!-- 아이디 중복확인 -->
+ 	<select id="idDoubleCheck" parameterType="String" resultType="String">
+ 		SELECT id
+ 		FROM member
+ 		WHERE id = #{id}
+ 	</select>
+ 	
+ 	<!-- 메일 중복확인 -->
+ 	<select id="mailDoubleCheck" parameterType="String" resultType="String">
+ 		SELECT mail
+ 		FROM member
+ 		WHERE mail = #{mail}
+ 	</select>
+ 	
+ 	
+ 	
+</mapper>

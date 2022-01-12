@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+}
+
+#container {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+#menu {
+	width: 100%;
+	height: 105px;
+	text-align: center;
+	background-color: #111;
+	color: white;
+	margin-top: 120px;
+	border-radius: 10px;
+}
+
+#menu>h1 {
+	margin-bottom: 30px;
+}
+
+#menu>span>a {
+	margin-right: 15px;
+	font-size: 18px;
+	color: white;
+}
+
+#menu>span>a:hover {
+	color: #ec0a0b;
+	border-bottom: 3px solid #ec0a0b;
+}
+
+#menu>span>span {
+	margin-right: 15px;
+}
+
+#selectBox>form>select {
+	width: 100px;
+	padding: .4em .6em;
+	border: 1px solid #999;
+	border-radius: 5px;
+}
+
+#selectBox {
+	text-align: right;
+	margin-right: 30px;
+	margin-top: 50px;
+}
+
+#selectBox > form > input[type='submit'] {
+	width: 55px;
+	height: 28px;
+	border-radius: 5px;
+	background-color: black;
+	color:white;
+}
+
+.contents>div>img {
+	width: 300px;
+	height: 200px;
+}
+
+.photoZone {
+	width: 300px;
+	height: 300px;
+	background: #d3d3d3;
+	border-radius: 10px;
+	padding: 25px 25px;
+	margin: 0 24px;
+	margin-top: 20px;
+	float: left;
+}
+
+.photoZone>a {
+	color: black;
+}
+
+.contents {
+	width: 300px;
+	height: 300px;
+}
+
+.clearfixed::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.category {
+	display: inline-block;
+	font-size: 14px;
+	background: #ec0a0b;
+	color: white;
+	border-radius: 10px;
+	width: 73px;
+	height: 22px;
+	padding-top: 3px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.contents > div> .title {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 10px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.contents> div> .date {
+	display: block;
+	font-size: 14px;
+	margin-top: 20px;
+}
+
+.paging {
+	text-align: center;
+	margin-top: 60px;
+	padding-bottom: 70px;
+}
+
+.paging>ul>li {
+	display: inline;
+}
+
+.paging>ul>li>a {
+	display: inline-block;
+	font-size: 15px;
+	padding: 5px 14px;
+	color: white;
+	border: 1px solid white;
+	background-color: black;
+}
+
+.paging>ul>li>a:hover {
+	color: #ec0a0b;
+}
+

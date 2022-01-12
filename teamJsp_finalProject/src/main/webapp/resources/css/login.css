@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#loginPage{
+    width: 1200px;
+    margin: auto;
+}
+
+.loginWrap{
+    width: 800px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.loginHeader{
+    width: 100%;
+    height: 150px;
+}
+
+.loginHeaderLogo{
+    line-height: 150px;
+    text-align: center;
+}
+
+.loginHeaderLogo img{
+    width: 150px;
+    vertical-align: bottom;
+    margin-bottom: 20px;
+}
+
+.loginSec{
+    width: 100%;
+    margin: auto;
+    height: 300px;
+}
+
+.loginSec > .loginForm{
+    width: 400px;
+    margin: auto;
+}
+
+.loginSec > .loginForm p{
+    color: red;
+    font-size: 12px;
+}
+
+.loginSec > .loginForm .loginIdMsg, .loginPwMsg{
+	display: none;
+}
+
+.loginSec > .loginForm .loginMsg{
+    text-align: center;
+    background-color: rgb(255,96,96);
+    color: white;
+    margin: 10px 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+.loginSec > .loginForm input[type="text"], input[type="password"]{
+    width: 100%;
+    height: 45px;
+    margin: 5px 0;
+    font-size: 18px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.loginSec > .loginForm input[type="checkbox"]{
+    vertical-align: -3px;
+    zoom: 1.5;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.loginSec > .loginForm input[type="checkbox"]:checked{
+    background-color: rgb(255,96,96);
+    color: white;
+}
+
+.loginSec > .loginForm .saveIdText{
+    cursor: pointer;
+}
+
+.loginSec > .loginForm .login{
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    color: white;
+    background-color: rgb(23, 25, 30);
+    border: 0;
+    border-radius: 5px;
+}
+
+.loginSec > .loginForm .login:active{
+    opacity: 0.8;
+}
+.loginSec > .loginForm .login:hover{
+    background-color :rgb(225,41,47);
+}
+
+
+.loginSec > .loginMenu{
+    margin: auto;
+    width: 400px;
+    height: 50px;
+}
+
+.loginSec > .loginMenu a{
+    text-decoration: none;
+    color: #333;
+    font-size: 13px;
+}
+
+.loginSec > .loginMenu a:hover{
+    color: rgb(225,41,47);
+}
