@@ -13,4 +13,6 @@ public interface Fan_BoardDao {
 	public void deleteOne(int fanno);
 	public int getTotal();
 	public void raiseHits(int fanno);
+	
+	public List<Fan_BoardDTO> admin_board_selectAll(int startNo, int endNo);
 }

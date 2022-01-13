@@ -356,6 +356,33 @@
  		WHERE commentno = #{commentno}
  	</delete>
  	
+ 	<select id="comments_getTotal" resultType="int">
+  		SELECT COUNT(*) total
+  		FROM comments
+  	</select>
+ 	
+ 
+ 	<!-- 어드민 팬게시판 전체 -->
+ 	<select id="admin_board_selectAll" parameterType="se" resultType="fbdto">
+ 		SELECT fanno, fan_title, id, fan_date, fan_hit
+ 		FROM ( SELECT ROWNUM rn, fanno, fan_title, id, fan_date, fan_hit
+ 			FROM( SELECT fanno, fan_title, id, to_char(fan_date, 'YYYY/MM/DD') fan_date, fan_hit
+ 					FROM fan_board	
+		        	ORDER BY fanno desc)	
+	 			WHERE ROWNUM &lt;=#{endNo} )
+	 		WHERE RN &gt;=#{startNo}
+ 	</select>
+ 	
+ 	<select id="admin_board_commentSelectAll" parameterType="se" resultType="cdto">
+ 		SELECT commentno, id, comment_date, comment_contents, fanno
+ 		FROM ( SELECT ROWNUM rn, commentno, id, comment_date, comment_contents, fanno
+ 			FROM( SELECT commentno, id, to_char(comment_date, 'YYYY/MM/DD') comment_date, comment_contents, fanno
+ 					FROM comments	
+		        	ORDER BY commentno desc)	
+	 			WHERE ROWNUM &lt;=#{endNo} )
+	 		WHERE RN &gt;=#{startNo}
+ 	</select>
+ 	
  	
  	
  	
@@ -518,6 +545,5 @@
 		WHERE ROWNUM &lt; =3
   	</select>
  	
- 	
- 	
+
 </mapper>

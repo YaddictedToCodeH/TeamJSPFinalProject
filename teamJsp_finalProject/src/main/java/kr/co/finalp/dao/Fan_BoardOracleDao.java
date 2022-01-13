@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.finalp.dto.Fan_BoardDTO;
 import kr.co.finalp.dto.Fan_BoardStartEnd;
+import kr.co.finalp.dto.StartEnd;
 
 @Repository
 public class Fan_BoardOracleDao implements Fan_BoardDao {
@@ -56,6 +57,12 @@ public class Fan_BoardOracleDao implements Fan_BoardDao {
 	@Override
 	public void raiseHits(int fanno) {
 		ss.update("kr.co.finalp.fan_board_raiseHits");
+	}
+
+	@Override
+	public List<Fan_BoardDTO> admin_board_selectAll(int startNo, int endNo) {
+		StartEnd se = new StartEnd(startNo, endNo);
+		return ss.selectList("kr.co.finalp.admin_board_selectAll", se);
 	}
 
 }

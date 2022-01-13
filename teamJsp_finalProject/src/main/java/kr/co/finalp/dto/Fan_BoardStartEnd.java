@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Fan_BoardStartEnd {
-
 	// 시작번호 끝번호 전달용
 	private int startNo;
 	private int endNo;

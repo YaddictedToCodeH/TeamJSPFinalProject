@@ -7,6 +7,7 @@
         <div class="tabmenu">
             <ul class="menulist">
                 <a href=""><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt=""></a>
+                <li><a href="">갤러리관리</a></li>
                 <li><a href="">게시판관리</a></li>
                 <li><a href="">문의사항</a></li>
                 <li><a href="">선수 및 코치진</a></li>
