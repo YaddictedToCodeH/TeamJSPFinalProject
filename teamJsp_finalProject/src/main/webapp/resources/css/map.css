@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.sw-map {
+	margin: 0 auto;
+	height: 1900px;
+	width: 1200px;
+	border: solid 1px black;
+	text-align: center;
+	
+	background-color: #D3D3D3;
+}
+
+#map {
+	width: 1070px;
+	height: 400px;
+	position: relative;
+	top: 70px;
+}
+
+.img-stadium {
+	width: 700px;
+	height: 350px;
+}
+
+.img-seat {
+	width: 600px;
+	height: 400px;
+}
+
+.minilogo {
+	width: 40px;
+	height: 30px;
+}
+
+.place1 {
+	width: 1070px;
+	height: 80px;
+	position: relative;
+	left: 60px;
+	text-align: center;
+	border: solid 1px white;
+	border-radius: 15px;
+	background: white;
+	margin: 30px 0px 30px 0px;
+}
+
+.seat1 {
+	width: 1070px;
+	height: 80px;
+	position: relative;
+	left: 60px;
+	background: white;
+	text-align: center;
+	border: solid 1px white;
+	border-radius: 15px;
+	margin: 30px 0px 30px 0px;
+}
+
+.map1 {
+	width: 1070px;
+	height: 80px;
+	left: 60px;
+	position: relative;
+	background: white;
+	text-align: center;
+	border: solid 1px white;
+	border-radius: 15px;
+	margin: 30px 0px 30px 0px;
+}
+.movemap{
+	position: relative;
+	left: 60px;
+	height: 560px;
+	width: 1070px;
+	background: white;
+	border-radius: 15px;
+}
