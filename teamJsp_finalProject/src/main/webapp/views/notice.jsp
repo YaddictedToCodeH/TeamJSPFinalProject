@@ -15,7 +15,7 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
     <div class="container">
-        <div class="title">공지사항</div>
+        <div class="title"><h1>공지사항</h1></div>
         <table class="board">
             <tr>
                 <th class="nth">번호</th>

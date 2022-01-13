@@ -15,6 +15,10 @@
   		
   		<typeAlias type="kr.co.finalp.dto.StartEnd" alias="se"/>
 	 	<typeAlias type="kr.co.finalp.dto.NoticeDTO" alias="ndto"/>
+	 	<typeAlias type="kr.co.finalp.dto.Fan_BoardDTO" alias="fbdto"/>
+	 	<typeAlias type="kr.co.finalp.dto.Fan_BoardStartEnd" alias="fbStartEnd"/>
+	 	
+	 	<typeAlias type="kr.co.finalp.dto.CommentsDTO" alias="cdto"/>
 	 	
 	 	
 	 	<typeAlias type="kr.co.finalp.dto.PlayerDTO" alias="pdto"/>

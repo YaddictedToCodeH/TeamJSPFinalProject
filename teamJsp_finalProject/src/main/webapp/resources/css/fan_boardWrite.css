@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+*{
+		margin: 0;
+		padding: 0;
+		text-decoration: none;
+		margin: 0px auto;
+	}
+
+    .container{
+    	margin: 0 auto;
+        margin-top: 100px;
+        width: 1000px;
+        text-align:left;
+        margin-bottom: 100px;
+    }
+
+    .title{
+        width:100%;
+        height:105px;
+        margin-top: 120px;
+        text-align:center;
+        color:white;
+        background-color: black;
+        border-radius:10px;
+    }
+
+    .inputtop{
+        margin-top: 30px;
+        display: flex;
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+
+    .inputtitle{
+        margin-right: 230px;
+    }
+
+    label{
+        border: 1px solid rgb(109, 103, 103);
+        padding: 5px;
+        padding-top: 2px;    
+        padding-bottom: 7px;
+        background-color: red;
+        color: white;
+    }
+
+
+    #fan_title{
+        height: 20px;
+        width: 300px;
+        padding: 5px;
+    }
+
+    #id{
+        height: 20px;
+        width: 300px;
+        padding: 5px;
+    }
+
+
+    .titletext{
+        padding-top: 20px;
+    }
+    
+    .contents{
+    	width:100%
+    }
+
+    .contents > textarea{
+        margin-left: 10px;
+    }
+
+     .buttons{
+        float: right;
+        margin-top: 30px;
+    }
+    
+    .writebtn{
+    	border: 1px solid black;
+        padding: 10px;
+        background-color:black;
+        color:white;
+    }
+    
+    .writebtn:hover{
+        cursor: pointer;
+    }

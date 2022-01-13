@@ -54,7 +54,7 @@ public class NoticeOracleDAO implements NoticeDao {
 
 	@Override
 	public void raiseHits(int noticeno) {
-		ss.update("kr.co.finalp.raiseHits", noticeno);	
+		ss.update("kr.co.finalp.notice_raiseHits", noticeno);	
 	}
 	
 }
