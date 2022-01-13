@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.ci {
+	margin: 0 auto;
+	height: 1900px;
+	width: 1200px;
+	border: solid 1px black;
+	text-align: center;	
+	background-color: #D3D3D3;
+}
+
+.img-emblem{
+	width: 240px;
+	height: 190px;
+	padding: 80px;
+}
+
+.img-uniform{
+	width: 600px;
+	height: 400px;
+	padding: 80px;
+}
+
+.img-slogan{
+	width: 600px;
+	height: 400px;
+	padding: -10px;
+}
+.emblem1{
+	width: 1070px;
+	background: white;
+	border: solid 1px white;
+	border-radius: 15px;
+	text-align: center; 
+	position: relative;
+	left: 60px;
+	margin: 30px 0px 30px 0px;
+}
+
+.uniform1{
+	width: 1070px;
+	background: white;
+	border: solid 1px white;
+	border-radius: 15px;
+	text-align: center; 
+	position: relative;
+	left: 60px;
+	margin: 30px 0px 30px 0px;
+}
+
+.slogan1{
+	width: 1070px;
+	background: white;
+	border: solid 1px white;
+	border-radius: 15px;
+	text-align: center; 
+	position: relative;
+	left: 60px;
+	margin: 30px 0px 30px 0px;
+}
+.emblem2{
+	border-radius: 15px;
+	width: 1070px;
+	height: 380px;
+	background: white;
+	position: relative;
+	left: 60px;
+	margin: 30px 0px 30px 0px;
+}
+
+.uniform2{
+	border-radius: 15px;
+	width: 1070px;
+	height: 500px;
+	background: white;
+	position: relative;
+	left: 60px;
+	margin: 30px 0px 30px 0px;
+}
+
+.slogan2{
+	border-radius: 15px;
+	width: 1070px;
+	height: 450px;
+	background: white;
+	position: relative;
+	left: 60px;
+	margin: 30px 0px 30px 0px;
+}
+.minilogo{
+	width: 70px;
+	height: 60px;
+}

@@ -1,141 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-	$(document).ready(function() {
-	//ul -> tabs -> li에 있는 걸 클릭하면
-		$('ul.tabs li').click(function() {
-			var tab_id = $(this).attr('data-tab');
-	//현페이지가 사라지고
-			$('ul.tabs li').removeClass('current');
-			$('.tab-content').removeClass('current');
-	//클릭한 페이지가 생긴다. ? 
-			$(this).addClass('current');
-			$("#" + tab_id).addClass('current');
-		})
-
-	});
-</script>
-<style>
-/*메인크기*/
-.sw-introduce {
-	border: solid 1px black;
-	height: 1900px;
-	width: 1200px;
-	margin: 0 auto;
-}
-
-/*탭 사이즈*/
-ul.tabs {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-/*탭 버튼 설정*/
-ul.tabs li {
-	display: inline-block;
-	background: #898989;
-	color: white;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-/*누르는 색*/
-ul.tabs li.current {
-	color: #222;
-}
-/* 이거없으면 탭 기능상실 */
-.tab-content {
-	display: none;
-	padding: 12px;
-}
-
-/* 이거없으면 모든 게시글 사라짐 */
-.tab-content.current {
-	display: inherit;
-}
-/*  tab-1에 있는 글자 가운데로 모이게함*/
-#tab-1 {
-	text-align: center;
-}
-
-/* p에 있는 글자 설정*/
-#tab-1 p {
-	text-align: center;
-	font-size: 20px;
-	margin: 0 auto;
-	font-weight: 800;
-	width: 1100px;
-	height: 150px;
-	line-height: 38px;
-}
-
-/* h1빨갛게함 */
-h1 {
-	color: red;
-}
-
-/* 멤버사진 조정 */
-.imglogo {
-	width: 350px;
-	height: 250px;
-}
-
-.imgmem {
-	margin: 0 auto;
-	height: 400px;
-	width: 1100px;
-	height: 500px;
-	padding: 50px;
-}
-.logostory{
-	height: 300px;
-	width: 400px;
-	text-align: left;
-}
-
-.history div{
-	font-size: 20px;
-	margin: 0 auto;
-	font-weight: 800;
-	line-height: 38px;
-}
-.gamehistory p{
-	padding: 70px;
-	text-align: right;
-	font-size: 40px;
-	margin: 0 auto;
-	font-weight: 1000;
-	line-height: 78px;
-}
-.gamelogohistory{
-	position: absolute;
-	height: 550px;
-	width: 600px;
-	top: 1000px;
-	
-}
-.history p{
-	font-weight: 900;
-	font-size: 20px;
-}
-</style>
-</head>
-<body>
+<link rel="stylesheet" href="../resources/css/introduce.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../resources/js/introduce.js"></script>
+<jsp:include page="./header.jsp"></jsp:include>
 	<div class="sw-introduce">
 		<ul class="tabs">
 			<li class="tab-link current" data-tab="tab-1">구단소개</li>
 			<li class="tab-link" data-tab="tab-2">구단연혁</li>
 		</ul>
-
 		<div id="tab-1" class="tab-content current">
-			<img class="imglogo" src="../images/kt logo.png" />
+			<img class="imglogo" src="../resources/images/kt logo.png" />
 
 			<h1>신비롭고 강력한 힘, 상상의 농구 실현</h1>
 			<p>
@@ -165,22 +40,22 @@ h1 {
 				노하우로 그라운드 안팎에서 그 동안 없던 새로운 농구를 kt 소닉붐이 이루어 가겠습니다!<br>
 			</p>
 			<!-------------------------------------------------------------------------------------->
-			<img class="imgmem" src="../images/kt member.png">
+			<img class="imgmem" src="../resources/images/kt member.png">
 		</div>
 
 		<div id="tab-2" class="tab-content">
 				<table class="history" width="1400">
 					<tr>
-						<td><img class="logostory" src="../images/광주 나산 플라망스.gif"/></td>
-						<td><img class="logostory" src="../images/코리아텐더.png"/></td>
+						<td><img class="logostory" src="../resources/images/nasan-flymangs.gif"/></td>
+						<td><img class="logostory" src="../resources/images/korea-tender.png"/></td>
 					</tr>
 					<tr>
 						<td><p>&nbsp&nbsp&nbsp&nbsp&nbsp광주 나산 플라망스(1997년~2001년)</p></td>
 						<td><p>&nbsp&nbsp&nbsp&nbsp&nbsp부산 코리아텐더(2001년~2003년)</p></td>
 					</tr>
 					<tr>
-						<td><img class="logostory" src="../images/KTF.png"/></td> 
-						<td><img class="logostory" src="../images/부산 kt.jpg"/></td>		
+						<td><img class="logostory" src="../resources/images/KTF.png"/></td> 
+						<td><img class="logostory" src="../resources/images/busan-kt.jpg"/></td>		
 					</tr>	
 					<tr>
 						<td><p>&nbsp&nbsp&nbsp&nbsp&nbsp부산 KTF 매직윙스 (2003년~2009년)</p></td>
@@ -189,7 +64,7 @@ h1 {
 				</table>
 							
 			<div class="gamehistory">
-				<img class="gamelogohistory" src="../images/kt logo.png"/>
+				<img class="gamelogohistory" src="../resources/images/kt logo.png"/>
 				<p>
 				역대 순위&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
 				2009-10 시즌 준우승<br>
@@ -206,9 +81,6 @@ h1 {
 				2020-21 시즌 6위<br>
 				</p>
 			</div>
-
 		</div>
 	</div>
-	</div>
-</body>
-</html>
+<jsp:include page="./footer.jsp"></jsp:include>

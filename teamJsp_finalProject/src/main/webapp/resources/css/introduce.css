@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/*메인크기*/
+.sw-introduce {
+	border: solid 1px black;
+	height: 1900px;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+/*탭 사이즈*/
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+/*탭 버튼 설정*/
+ul.tabs li {
+	display: inline-block;
+	background: #898989;
+	color: white;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+/*누르는 색*/
+ul.tabs li.current {
+	color: #222;
+}
+/* 이거없으면 탭 기능상실 */
+.tab-content {
+	display: none;
+	padding: 12px;
+}
+
+/* 이거없으면 모든 게시글 사라짐 */
+.tab-content.current {
+	display: inherit;
+}
+/*  tab-1에 있는 글자 가운데로 모이게함*/
+#tab-1 {
+	text-align: center;
+}
+
+/* p에 있는 글자 설정*/
+#tab-1 p {
+	text-align: center;
+	font-size: 20px;
+	margin: 0 auto;
+	font-weight: 800;
+	width: 1100px;
+	height: 150px;
+	line-height: 38px;
+}
+
+/* h1빨갛게함 */
+h1 {
+	color: red;
+}
+
+/* 멤버사진 조정 */
+.imglogo {
+	width: 350px;
+	height: 250px;
+}
+
+.imgmem {
+	margin: 0 auto;
+	height: 400px;
+	width: 1100px;
+	height: 500px;
+	padding: 50px;
+}
+.logostory{
+	height: 300px;
+	width: 400px;
+	text-align: left;
+}
+
+.history div{
+	font-size: 20px;
+	margin: 0 auto;
+	font-weight: 800;
+	line-height: 38px;
+}
+.gamehistory p{
+	padding: 70px;
+	text-align: right;
+	font-size: 40px;
+	margin: 0 auto;
+	font-weight: 1000;
+	line-height: 78px;
+}
+.gamelogohistory{
+	position: absolute;
+	height: 550px;
+	width: 600px;
+	top: 1000px;
+	
+}
+.history p{
+	font-weight: 900;
+	font-size: 20px;
+}
