@@ -56,5 +56,10 @@ public class NoticeOracleDAO implements NoticeDao {
 	public void raiseHits(int noticeno) {
 		ss.update("kr.co.finalp.raiseHits", noticeno);	
 	}
+
+	@Override
+	public List<NoticeDTO> mainSelect() {
+		return ss.selectList("kr.co.finalp.main_notice_list");
+	}
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,12 +124,18 @@
             </div>
             
             <div class="like_div">
-            	<button class="btn_like">
-	            	<img src="./resources/images/like.png" alt="like" /><br />
-	            	<span>좋아요</span>       	
-            	</button>
+            	<c:if test="${id == null }">
+            		<span>좋아요 기능은 로그인 후 사용 가능합니다.</span>
+            	</c:if>
+            	<c:if test="${id != null }">
+	            	<button class="btn_like">
+		            	<img src="./resources/images/like.png" alt="like" /><br />
+		            	<span>좋아요</span>       	
+	            	</button>
+            	</c:if>
             </div>
-
+            
+            
             <div class="btn_div">
                 <a href="./gallery"><button class="btn_list">목록으로</button></a>
             </div>

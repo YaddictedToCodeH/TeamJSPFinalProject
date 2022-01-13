@@ -37,7 +37,8 @@
 	border: 1px solid black;
 	border-collapse: collapse;
 }
-.game-schedule-list {width: 1000px; margin-left: 100px;}
+.game-schedule-list {width: 1000px; margin-left: 100px; position: relative;}
+
 
 .game-schedule-list>thead>tr>th {
 	background: black;
@@ -45,16 +46,34 @@
 	font-size: 17px;
 }
 
-tbody>tr>td>img {
+tbody>tr>td>span>img {
 	width: 35px;
 	height: 35px;
 	position: relative;
 	top: 10px;
 }
 
-tbody>tr>td>b {
-	margin-left: 20px;
-	margin-right: 20px;
+.away-team {
+	position: absolute;
+	right: 350px;
+}
+.home-team {
+	position: absolute;
+	left: 350px;
+}
+
+.end-score {
+	position: absolute;
+	top: 55px;
+	left: 240px;
+	font-size: 19px;
+}
+
+.versus {
+	position: absolute;
+	top: 60px;
+	left: 270px;
+	font-size: 19px;
 }
 
 .schedule-controller {

@@ -132,24 +132,84 @@
   	
   	<!-- 팀 순위 리스트 -->
   	<select id="teamRank_selectAll" resultType="rankdto">
-  		SELECT t.teamno, t.team_name, t.team_rank,
+  		SELECT t.teamno, t.team_name, t.team_rank, count(r.gameno)gameCount, t.team_logo,
         sum(r.winteam)win, sum(r.loseteam)lose, 
         to_char(round(sum(r.winteam)/count(r.gameno),3),'FM90.000')winRate
 		FROM  team t
 		LEFT JOIN teamrecord r
 		ON(t.teamno = r.teamno) 
-		group by t.teamno, t.team_name, t.team_rank
+		group by t.teamno, t.team_name, t.team_rank, t.team_logo
 		ORDER BY t.team_rank asc
   	</select>
   	
+    <!-- 득점 순위 -->
   	<select id="ptsRank_selectAll" resultType="playerRankdto">
+  		SELECT ROWNUM rn, t1.*
+  		FROM(
 		SELECT p.player_code, p.player_name, p.player_img,
-		       to_char(ROUND(AVG(pc.player_pts),2),'FM00.00')player_pts
+		       to_char(ROUND(AVG(pc.player_pts),2),'FM00.00')player_pts, p.player_backno
 		FROM player p
 		LEFT JOIN playerrecord pc
 		ON(p.player_code = pc.player_code)
-		GROUP BY p.player_code, p.player_name, p.player_img
+		GROUP BY p.player_code, p.player_name, p.player_img, p.player_backno
 		ORDER BY player_pts desc
+		)t1
+		WHERE ROWNUM &lt;= 5
+  	</select>
+  	
+  	<!-- 리바운드 순위 -->
+  	<select id="rebRank_selectAll" resultType="playerRankdto">
+  		SELECT ROWNUM rn, t1.*
+  		FROM(
+		SELECT p.player_code, p.player_name, p.player_img,
+		       to_char(ROUND(AVG(pc.player_reb),2),'FM00.00')player_reb, p.player_backno
+		FROM player p
+		LEFT JOIN playerrecord pc
+		ON(p.player_code = pc.player_code)
+		GROUP BY p.player_code, p.player_name, p.player_img, p.player_backno
+		ORDER BY player_reb desc
+		)t1
+		WHERE ROWNUM &lt;= 5
+  	</select>
+  	
+  	<!-- 어시스트 순위 -->
+  	<select id="astRank_selectAll" resultType="playerRankdto">
+  		SELECT ROWNUM rn, t1.*
+  		FROM(
+		SELECT p.player_code, p.player_name, p.player_img,
+		       to_char(ROUND(AVG(pc.player_ast),2),'FM00.00')player_ast, p.player_backno
+		FROM player p
+		LEFT JOIN playerrecord pc
+		ON(p.player_code = pc.player_code)
+		GROUP BY p.player_code, p.player_name, p.player_img, p.player_backno
+		ORDER BY player_ast desc
+		)t1
+		WHERE ROWNUM &lt;= 5
+  	</select>
+  	
+  	<!-- 선수 순위 전체 -->	
+  	<select id="player_rankAll" resultType="rankAlldto">
+  		SELECT ROWNUM rn, t1.*
+			FROM(select p.player_name, count(gameno)gameCount,
+            to_char(ROUND(AVG(pc.player_min),2),'FM00.00')avg_min,
+            sum(pc.player_pts)sum_pts ,to_char(ROUND(AVG(pc.player_pts),2),'FM00.00')avg_pts,
+            sum(pc.player_reb)sum_reb ,to_char(ROUND(AVG(pc.player_reb),2),'FM00.00')avg_reb,
+            sum(pc.player_ast)sum_ast ,to_char(ROUND(AVG(pc.player_ast),2),'FM00.00')avg_ast
+			from playerrecord pc
+			LEFT JOIN player p
+			ON(pc.player_code = p.player_code)
+			group by p.player_name
+			<choose>
+				<when test="event != null and event != '' and event.equals('avg_pts')">
+				ORDER BY avg_pts desc)t1
+				</when>
+				<when test="event != null and event != '' and event.equals('avg_reb')">
+				ORDER BY avg_reb desc)t1
+				</when>
+				<when test="event != null and event != '' and event.equals('avg_ast')">
+				ORDER BY avg_ast desc)t1
+				</when>
+			</choose>
   	</select>
   	
   	
@@ -320,6 +380,44 @@
  		FROM member
  		WHERE mail = #{mail}
  	</select>
+ 	
+ 	
+ 	
+ 	<!-- main용 경기일정 list -->
+  	<select id="main_schedule_list" resultType="schedto">
+  		SELECT to_char(c1.game_date, 'yy-mm-dd')game_date, c1.game_arena, c1.game_score,
+        c2.team_logo,c2.team_name, c3.team_name,c3.team_logo team_logo2
+		FROM games c1
+		LEFT JOIN team c2
+		ON(c1.teamno = c2.teamno)
+		LEFT JOIN team c3
+		ON(c3.teamno = c1.teamno2)
+		WHERE (c2.teamno = 1 or c3.teamno = 1)
+		AND c1.game_date BETWEEN '21/12/23' AND '22/01/05'
+		ORDER BY c1.gameno asc
+  	</select>
+  	
+  	<!-- main용 공지사항 list -->
+  	<select id="main_notice_list" resultType="ndto">
+  		SELECT noticeno, notice_title, to_char(notice_date,'yyyy-mm-dd')notice_date
+		FROM notice
+		WHERE ROWNUM &lt;=4
+		ORDER BY noticeno desc
+  	</select>
+  	
+  	<!-- main용 갤러리 list -->
+  	<select id="main_gallery_list" resultType="gdto">
+  		SELECT ROWNUM, t1.*
+		FROM (SELECT gc.gallery_category, g.galleryno, g.gallery_title, to_char(g.gallery_date, 'yyyy-mm-dd')gallery_date, f.file_url
+		        FROM gallery_category gc
+		        LEFT JOIN gallery g
+		        ON(gc.gallery_category_no = g.gallery_category_no)
+		        LEFT JOIN files f
+		        ON(g.galleryno = f.galleryno)
+		        WHERE g.gallery_category_no = 1
+		        ORDER BY galleryno desc)t1
+		WHERE ROWNUM &lt; =3
+  	</select>
  	
  	
  	

@@ -8,35 +8,35 @@
 
 <header id="header">
 	<div class="logo">
-		<a href="#"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="로고" class="logoimg"></a>
+		<a href="main"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="로고" class="logoimg"></a>
 	</div>
 	<nav class="mainnav">
 		<div class="headermenu">
 			<!-- jsp: 로그인 시 로그아웃, 마이페이지로 변경 -->
-			<span><a href="">로그인</a></span> <span><a href="">회원가입</a></span>
+			<span><a href="login">로그인</a></span> <span><a href="">회원가입</a></span>
 		</div>
 		<ul class="mainmenu navall">
 			<div class="mainmenu-underline"></div>
 			<li><a href="">SONICBOOM</a></li>
 			<li><a href="">Team</a></li>
-			<li><a href="">Game</a></li>
+			<li><a href="schedule">Game</a></li>
 			<li><a href="">Ticket</a></li>
-			<li><a href="">KT Board</a></li>
-			<li><a href="">Store</a></li>
+			<li><a href="notice">KT Board</a></li>
+			<li><a href="store">Store</a></li>
 		</ul>
 	</nav>
 	<nav class="subnav navall">
 		<div class="subnavwrap">
 			<ul>
 				<li><a href="">구단소개</a></li>
-				<li><a href="">CI소개</a></li>
+				<li><a href="ci">CI소개</a></li>
 				<li><a href="">홈구장</a></li>
 			</ul>
 			<ul>
-				<li><a href="">코칭스태프</a></li>
-				<li><a href="">지원스태프</a></li>
-				<li><a href="">플레이어</a></li>
-				<li><a href="">응원단</a></li>
+				<li><a href="staff_c">코칭스태프</a></li>
+				<li><a href="staff_s">지원스태프</a></li>
+				<li><a href="playerList">플레이어</a></li>
+				<li><a href="cheerleader">응원단</a></li>
 			</ul>
 			<ul>
 				<li><a href="schedule">일정 및 결과</a></li>
@@ -45,11 +45,11 @@
 			</ul>
 			<ul>
 				<li><a href="">예매하기</a></li>
-				<li><a href="">티켓가격</a></li>
-				<li><a href="">예매 안내사항</a></li>
+				<li><a href="ticketPrice">티켓가격</a></li>
+				<li><a href="ticketNotice">예매 안내사항</a></li>
 			</ul>
 			<ul>
-				<li><a href="">공지사항</a></li>
+				<li><a href="notice">공지사항</a></li>
 				<li><a href="gallery">포토갤러리</a></li>
 				<li><a href="videoGallery">영상갤러리</a></li>
 				<li><a href="">팬게시판</a></li>

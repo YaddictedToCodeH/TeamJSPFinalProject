@@ -12,4 +12,6 @@ public interface GalleryDao {
 	public int getTotal(GalleryStartEnd galleryStartEnd);
 	public void hitsUp(int galleryno);
 	
+	public List<GalleryDTO> mainSelect();
+	
 }

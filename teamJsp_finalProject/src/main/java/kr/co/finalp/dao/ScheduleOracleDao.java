@@ -23,5 +23,9 @@ public class ScheduleOracleDao {
 	public List<ScheduleDTO> selectAll(ScheduleMonth month) {
 		return ss.selectList("kr.co.finalp.schedule_selectAll", month);
 	}
+	
+	public List<ScheduleDTO> mainSelectAll() {
+		return ss.selectList("kr.co.finalp.main_schedule_list");
+	}
 
 }

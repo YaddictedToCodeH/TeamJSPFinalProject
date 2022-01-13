@@ -40,4 +40,9 @@ public class GalleryOracleDAO implements GalleryDao {
 		
 	}
 
+	@Override
+	public List<GalleryDTO> mainSelect() {
+		return ss.selectList("kr.co.finalp.main_gallery_list");
+	}
+
 }

@@ -68,15 +68,15 @@
 					</td>
 					
 					
-					<td height="80px;" style="position: relative; bottom: 10px;">
-							${list.team_name2} <img src="${list.team_logo2}" alt="" />
+					<td height="80px;" style="position: relative; bottom: 30px;"> 
+							<span class="away-team">${list.team_name2} <img src="${list.team_logo2}" alt="" /></span>
 							<c:if test="${list.game_score ne null}">
-							 	<b>${list.game_score}</b>			
+							 	<span class="end-score"><b>${list.game_score}</b></span>			
 							</c:if>
 							<c:if test="${list.game_score eq null}">
-							 	<b>VS</b>			
+							 	<span class="versus"><b>VS</b></span>			
 							</c:if>							
-							<img src="${list.team_logo}" alt="" /> ${list.team_name} 
+							<span class="home-team"><img src="${list.team_logo}" alt="" /> ${list.team_name}</span> 
 					</td>
 					
 					

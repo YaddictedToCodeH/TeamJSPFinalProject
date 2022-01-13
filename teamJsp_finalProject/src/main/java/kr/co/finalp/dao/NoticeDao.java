@@ -13,4 +13,6 @@ public interface NoticeDao {
 	public int getTotal();
 	public void raiseHits(int noticeno);
 	
+	public List<NoticeDTO> mainSelect();
+	
 }

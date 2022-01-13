@@ -1,22 +1,24 @@
 @charset "UTF-8";
 
+
 #rank-container {
 	margin: auto;
 	width:1200px;
 	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-bottom: 100px;
 	
 }
 
 .tema {
 	width: 100%;
-	height: 80px;
+	height: 110px;
 	text-align: center;
 	background-color: #111;
 	color: white;
 	border-radius: 10px;
 	padding-top: 20px;
 }
+.tema>p {padding-top: 10px;}
 
 #tema_foot {
 	text-align: left;
@@ -59,15 +61,100 @@ td {
 	font-size: 20px;
 }
 
-.player-div-title>h3 {
-	display: inline;
-}
-
 .player-div {
-	margin-left: 50px;	
+	margin-left: 50px;
+	margin-right: 20px;
+	float: left;
 }
 
-.player-img {
-	width: 100px;
-	height: 110px;
+.player-div-title{
+	background-color: #f8f9fa;
+	width: 300px;
+	height: 30px;
+	padding: 10px;
+	border-radius: 10px;
+	
+}
+
+.player-div-title>h3 {display: inline;}
+.player-div-title>div>a {font-size: 11px; color: black;}
+.player-div-title>div>a:hover {font-size: 12px; color: red;}
+.player-div-title>div{
+	text-align: right;
+	position: relative;
+	bottom:18px;
+}
+.player-div-body {
+	background-color: #f8f9fa;
+	border-radius: 10px;
+	padding: 10px;
+	width: 300px;
+	margin-top: 20px;
+	position: relative;
+}
+
+.record-1st {
+	position: absolute;
+	top: 110px;
+	font-size: 20px;
+	font-weight: bold;
+	color: red;
+}
+.player-name>a {
+	position: absolute;
+	font-weight: bold;
+	top: 140px;
+	left: 175px;
+	font-size: 16px;	
+	color: black;
+}
+
+.team-name {
+	position: absolute;
+	top: 165px;
+	left: 175px;
+	font-size: 14px;		
+}
+.player-record {
+	position: absolute;
+	top: 185px;
+	left: 175px;
+	font-size: 14px;		
+}
+
+.player-div-footer {
+	padding-top: 15px;
+	height: 40px;
+	border-top: 1px solid lightgray;
+}
+
+.number-color {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	text-align: center;
+	border-radius: 20px;
+	background-color: #cd4a38;
+	color: white;
+	font-size: 16px;
+	margin-right: 10px;
+}
+
+.sub-player-name>a {
+	font-weight: bold;
+	font-size: 14px;
+	color: black;
+}
+
+.right-record {
+	font-size: 14px;
+	position: absolute;
+	right: 10px;
+}
+
+
+.clearfixed::after {
+	display: block;
+	content: "";
+	clear: both;
 }
