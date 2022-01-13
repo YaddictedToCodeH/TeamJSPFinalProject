@@ -52,7 +52,7 @@
 				<li><a href="notice">공지사항</a></li>
 				<li><a href="gallery">포토갤러리</a></li>
 				<li><a href="videoGallery">영상갤러리</a></li>
-				<li><a href="">팬게시판</a></li>
+				<li><a href="fan_board">팬게시판</a></li>
 			</ul>
 			<ul></ul>
 		</div>

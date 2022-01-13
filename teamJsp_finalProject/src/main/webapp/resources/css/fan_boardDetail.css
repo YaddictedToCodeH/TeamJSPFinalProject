@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+    *{
+		margin: 0;
+		padding: 0;
+		text-decoration: none;
+		margin: 0px auto;
+	}
+
+    .container{
+    	margin: 0 auto;
+        margin-top: 100px;
+        width: 1000px;
+        text-align:left;
+    }
+
+    .title{
+        font-weight: bold;
+        font-size: 20px;
+        border-top: 2px solid red;
+        padding: 10px;
+        background-color:#f5f5f5;
+        
+    }
+    
+    .contents{
+    	width:100%
+    }
+
+    .datehits{
+        padding: 10px;
+        width: 980px;
+        border: 1px solid #c1c1c1;
+        margin-top: 30px;
+        height: 30px;
+        text-align: end;
+    }
+
+    .fcontents{
+        border: 1px solid #c1c1c1;
+        width: 940px;  
+        padding: 30px;
+        padding-top:100px;
+    }
+
+    .like{
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+
+    .like >button>img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .likebtn {
+        width: 80px;
+        height: 80px;
+        background: white;
+        border-radius: 40px;
+        border: 1px solid black;
+    }
+
+    .buttons{
+        float: right;
+        margin-top: 30px;
+    }
+
+    .buttons>span{
+        border: 1px solid black;
+        padding: 10px;
+        background-color:black;
+        color:white;
+    }
+    
+    .buttons>span>a{
+       text-decoration:none;
+       color: inherit;
+    }
+
+    .comment{
+        margin-top: 200px;
+        border-top: 1px solid gray;
+        padding: 10px;
+        padding-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .commentbox{
+        border: 1px solid gray;
+    }
+
+    .commentbox > .cbtitle{
+         border-bottom: 1px solid gray;
+		 padding: 5px;
+		 background-color: black;
+		 color: white;
+    }
+    .commentbox > .cbtitle> span {
+        float: right;
+    }
+    
+    .commentbox > .commenttext{
+        padding: 5px;
+    }
+    
+    .writecomment{
+        padding: 10px;
+	    border-top: 1px solid red;
+	    background:  #f5f5f5;
+	    margin-bottom: 2px;
+    }
+
+    .writebox > input[type=text] {
+        width: 890px;
+        height: 50px;
+    }
+
+    .writebox > button {
+        width: 80px;
+        height: 55px;
+        background-color:black;
+        color:white;
+        cursor:pointer;
+    }
+    
+    .close{
+    	text-decoration:none;
+    	color:red;
+    }

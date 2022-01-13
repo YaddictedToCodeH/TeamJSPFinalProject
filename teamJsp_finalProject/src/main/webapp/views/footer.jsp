@@ -18,10 +18,10 @@
 			<span>개인정보처리방침</span> <span>이용약관</span>
 		</div>
 		<div class="footersns">
-			<a href="https://www.facebook.com/ktsonicboom" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-fb.png" alt="페이스북"></a> <a
-				href="https://www.instagram.com/kt_sonicboom_official/" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-insta.png" alt="인스타그램"></a> <a
-				href="https://m.post.naver.com/my.nhn?memberNo=30119152" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-naver.png" alt="네이버"></a> <a
-				href="https://www.youtube.com/channel/UC_nAQFbS0JylS__d1r8NS8Q/featured" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-yt.png" alt="유튜브"></a>
+			<a href="https://www.facebook.com/ktsonicboom" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-fb.png" alt="페이스북"></a> 
+			<a href="https://www.instagram.com/kt_sonicboom_official/" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-insta.png" alt="인스타그램"></a> 
+			<a href="https://m.post.naver.com/my.nhn?memberNo=30119152" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-naver.png" alt="네이버"></a> 
+			<a href="https://www.youtube.com/channel/UC_nAQFbS0JylS__d1r8NS8Q/featured" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/ico-yt.png" alt="유튜브"></a>
 		</div>
 	</div>
 </footer>

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+		* {
+		      margin: 0;
+		      padding: 0;
+		      text-decoration: none;
+		      list-style: none;
+		   }
+
+        #menu {
+            width: 230px;
+            height: 800px;
+            background-color: #000;
+        }
+
+        
+        .menulist {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            height: 700px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .menulist > li> a{
+            color: white;
+        }
+
+        .menulist > li > a:hover{
+            border-bottom: 2px solid rgb(225, 41, 47);
+        }
