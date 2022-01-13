@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="../resources/css/staff_c.css" />
+<link rel="stylesheet" href="./resources/css/staff_c.css" />
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../resources/js/staff_c.js"></script>
+<script src="./resources/js/staff_c.js"></script>
 
 
-<jsp:include page="./header.jsp" />
+<jsp:include page="header.jsp" />
 
 <div id="staff_c-container">
 	<div class="staff_c-title">
@@ -25,20 +25,20 @@
 		</div>
 		<div class="staff_c-list-wrap">
 			<div class="staff_c staff_c1">
-				<img src="../resources/images/kt_staff_04.png" alt="" class="staff_c-img"> <span>서동철
-					감독</span> <img src="../resources/images/blacklogo_sm.png" alt="" class="small-logo">
+				<img src="./resources/images/kt_staff_04.png" alt="" class="staff_c-img"> <span>서동철
+					감독</span> <img src="./resources/images/blacklogo_sm.png" alt="" class="small-logo">
 			</div>
 			<div class="staff_c staff_c2">
-				<img src="../resources/images/kt_staff_02.png" alt="" class="staff_c-img"> <span>배길태
-					수석코치</span> <img src="../resources/images/blacklogo_sm.png" alt="" class="small-logo">
+				<img src="./resources/images/kt_staff_02.png" alt="" class="staff_c-img"> <span>배길태
+					수석코치</span> <img src="./resources/images/blacklogo_sm.png" alt="" class="small-logo">
 			</div>
 			<div class="staff_c staff_c3">
-				<img src="../resources/images/kt_staff_01.png" alt="" class="staff_c-img"> <span>박세웅
-					코치</span> <img src="../resources/images/blacklogo_sm.png" alt="" class="small-logo">
+				<img src="./resources/images/kt_staff_01.png" alt="" class="staff_c-img"> <span>박세웅
+					코치</span> <img src="./resources/images/blacklogo_sm.png" alt="" class="small-logo">
 			</div>
 			<div class="staff_c staff_c4">
-				<img src="../resources/images/kt_staff_03.png" alt="" class="staff_c-img"> <span>박종천
-					코치</span> <img src="../resources/images/blacklogo_sm.png" alt="" class="small-logo">
+				<img src="./resources/images/kt_staff_03.png" alt="" class="staff_c-img"> <span>박종천
+					코치</span> <img src="./resources/images/blacklogo_sm.png" alt="" class="small-logo">
 			</div>
 		</div>
 	</div>
@@ -50,7 +50,7 @@
 					class="fas fa-times"></i></span>
 			</div>
 			<div class="staff_c-modal-info1">
-				<img src="../resources/images/kt_staff_04.png" alt="">
+				<img src="./resources/images/kt_staff_04.png" alt="">
 				<div>
 					<ul>
 						<li>생년월일</li>
@@ -91,7 +91,7 @@
 					class="fas fa-times"></i></span>
 			</div>
 			<div class="staff_c-modal-info1">
-				<img src="../resources/images/kt_staff_02.png" alt="">
+				<img src="./resources/images/kt_staff_02.png" alt="">
 				<div>
 					<ul>
 						<li>생년월일</li>
@@ -132,7 +132,7 @@
 					class="fas fa-times"></i></span>
 			</div>
 			<div class="staff_c-modal-info1">
-				<img src="../resources/images/kt_staff_01.png" alt="">
+				<img src="./resources/images/kt_staff_01.png" alt="">
 				<div>
 					<ul>
 						<li>생년월일</li>
@@ -167,7 +167,7 @@
 					class="fas fa-times"></i></span>
 			</div>
 			<div class="staff_c-modal-info1">
-				<img src="../resources/images/kt_staff_03.png" alt="">
+				<img src="./resources/images/kt_staff_03.png" alt="">
 				<div>
 					<ul>
 						<li>생년월일</li>
@@ -199,4 +199,4 @@
 	</div>
 </div>
 
-<jsp:include page="./footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>

@@ -72,7 +72,7 @@
         
         <div class="seat">
             <div class="seating">좌석배치도</div>
-            <div class="seatimg"><img src="../resources/images/kt_ticket.png" alt=""></div>
+            <div class="seatimg"><img src="./resources/images/kt_ticket.png" alt=""></div>
         </div>
 
         <div class="price">
