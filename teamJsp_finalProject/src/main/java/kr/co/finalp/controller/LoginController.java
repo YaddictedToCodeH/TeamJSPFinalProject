@@ -16,11 +16,6 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping("/login/loginOk")
-	public String loginOk() {
-		return "loginOk";
-	}
-	
 	@RequestMapping("/common/cLogout")
 	public String logout() {
 		return "common/cLogout";

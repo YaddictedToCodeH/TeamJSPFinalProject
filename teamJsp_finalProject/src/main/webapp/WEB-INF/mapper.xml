@@ -480,7 +480,16 @@
  		WHERE mail = #{mail}
  	</select>
  	
+ 	<!-- 회원가입 -->
+ 	<insert id="insertMember" parameterType="mdto">
+ 		INSERT INTO member(id, pwd, mem_name, mem_birth, gender, mp, mail, mailOk, mem_grade, enabled, mem_point, addrs, detail_addrs, amount)
+ 		VALUES(#{id}, #{pwd}, #{mem_name}, #{mem_birth}, #{gender}, #{mp}, #{mail}, #{mailOk}, '일반', 1, 100, #{addrs}, #{detail_addrs}, 0)
+ 	</insert>
  	
+ 	<insert id="insertMemberAuthority" parameterType="String">
+ 		INSERT INTO authorities(id, authority)
+ 		VALUES(#{id}, 'ROLE_USER')
+ 	</insert>
  	
  	<!-- main용 경기일정 list -->
   	<select id="main_schedule_list" resultType="schedto">

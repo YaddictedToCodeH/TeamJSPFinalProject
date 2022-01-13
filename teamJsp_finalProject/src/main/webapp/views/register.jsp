@@ -14,6 +14,7 @@
         <h2>회원 가입</h2>
     </div>
     <form name="registerOk" action="./registerOk" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <table>
             <tr>
                 <td>

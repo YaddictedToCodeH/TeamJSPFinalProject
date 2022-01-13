@@ -32,7 +32,7 @@ public class MainController {
 	@Autowired
 	GalleryDao galleryDao; // 갤러리 dao
 
-	@RequestMapping("/main")
+	@RequestMapping(value = {"/main", "/member/main"})
 	public ModelAndView main(Model model) {
 		
 		// 팀 순위 

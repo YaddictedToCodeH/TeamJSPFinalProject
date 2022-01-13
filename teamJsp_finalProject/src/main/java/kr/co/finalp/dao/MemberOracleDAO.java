@@ -40,6 +40,11 @@ public class MemberOracleDAO implements MemberDAO{
 	public String mailDoubleCheck(String mail) {
 		return ss.selectOne("kr.co.finalp.mailDoubleCheck", mail);
 	}
+
+	@Override
+	public void insertMember(MemberDTO dto) {
+		ss.insert("kr.co.finalp.insertMember", dto);
+	}
 	
 	
 	

@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./resources/css/main.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <title>[수원kt]폭발적인 2022! KT 소닉붐</title>
-<script src="./resources/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -16,7 +16,7 @@
 	<div id="main-container">
 		<!-- script 실행시 영상이 담길 div와 교체될 img태그-->
 		<div id="player"></div>
-		<img src="./resources/images/banner.jpg" id="imgTarget" style="width:1200px;height:500px;display:none;"/> 
+		<img src="${pageContext.request.contextPath}/resources/images/banner.jpg" id="imgTarget" style="width:1200px;height:500px;display:none;"/> 
 		
 		
 		<div id="container-boby">			
@@ -27,7 +27,7 @@
 						<c:forEach var="rank" items="${rank}">
 						   	<li>
 							 <span class="team-rank">${rank.team_rank}</span>
-							 <img src="${rank.team_logo}" alt="icon" />
+							 <img src="${pageContext.request.contextPath}${rank.team_logo}" alt="icon" />
 						     <span>${rank.team_name}</span>
 						     <span class="team-save">${rank.win}W | ${rank.lose}L | <fmt:formatNumber value="${rank.winRate}" pattern="0.000"></fmt:formatNumber></span>
 							</li>
@@ -46,14 +46,14 @@
 							<li>
 								<div><span class="date-arena">${sd.game_date} | ${sd.game_arena}</span></div>
 								<div class="game-box">
-									<span><img src="${sd.team_logo}" alt="" /></span>
+									<span><img src="${pageContext.request.contextPath}${sd.team_logo}" alt="" /></span>
 									<c:if test="${sd.game_score ne null }">
 									<span class="game-score">${sd.game_score}</span>
 									</c:if>
 									<c:if test="${sd.game_score eq null }">
 									<span class="game-score">&ensp; VS &ensp;</span>
 									</c:if>
-									<span class="logo2"><img src="${sd.team_logo2}" alt="" /></span>
+									<span class="logo2"><img src="${pageContext.request.contextPath}${sd.team_logo2}" alt="" /></span>
 								</div>
 							</li>
 						</c:forEach>
@@ -100,7 +100,7 @@
 			
 			<div id="player-div">
 				<a href="playerDetail?player_backno=2">
-					<img id="arena-img" src="./resources/images/main_arena.jpg"/>
+					<img id="arena-img" src="${pageContext.request.contextPath}/resources/images/main_arena.jpg"/>
 					<img id="player-img" src="https://kbl.or.kr/files/kbl/players-photo/291085.png"/>
 				<div id="player-info">
 					<span>KT Sonic Boom</span><br />
@@ -112,7 +112,7 @@
 				
 			<div id="store-div">
 				<a href="store">
-				<img src="./resources/images/main_store.jpg"/>
+				<img src="${pageContext.request.contextPath}/resources/images/main_store.jpg"/>
 				<span id="store-span">공식 온라인 스토어</span>
 				<div id="store-rink"><span>바로가기▶</span></div>
 				</a>
