@@ -41,9 +41,6 @@ public class RankOracleDao implements RankDao{
 		return ss.selectList("kr.co.finalp.astRank_selectAll");
 	}
 
-	@Override
-	public List<RankPlayerAllDTO> rankAll(String event) {
-		return ss.selectList("kr.co.finalp.player_rankAll", event);
-	}
+
 
 }

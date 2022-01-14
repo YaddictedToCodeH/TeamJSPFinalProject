@@ -42,18 +42,6 @@ public class RankController {
 	}
 	
 	
-	@RequestMapping("/rankPlayer")
-	public ModelAndView rankPlayer(Model model,
-									@RequestParam("event")String event) {
-		
-		List<RankPlayerAllDTO> list = dao.rankAll(event);
-		
-		model.addAttribute("list", list);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("rank_player");
-		
-		return mav;
-	}
+	
 	
 }

@@ -12,6 +12,5 @@ public interface RankDao {
 	public List<PlayerRankDTO> ptsRank();
 	public List<PlayerRankDTO> rebRank();
 	public List<PlayerRankDTO> astRank();
-	public List<RankPlayerAllDTO> rankAll(String event);
 
 }

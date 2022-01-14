@@ -11,6 +11,9 @@ public class RecommendDTO {
 
 	private int recomno;
 	private String id;
-	private int fanno; 
 	private int galleryno;
+	private int likeCheck;
+	
+	private int fanno; 
+		
 }

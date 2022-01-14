@@ -14,4 +14,8 @@ public interface GalleryDao {
 	
 	public List<GalleryDTO> mainSelect();
 	
+	public int countLike(int galleryno); // 좋아요 갯수
+	
+	
+	
 }

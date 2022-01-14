@@ -14,7 +14,7 @@ public class GalleryOracleDAO implements GalleryDao {
 
 	@Autowired
 	private SqlSession ss;
-	
+
 	public void setSs(SqlSession ss) {
 		this.ss = ss;
 	}
@@ -37,12 +37,18 @@ public class GalleryOracleDAO implements GalleryDao {
 	@Override
 	public void hitsUp(int galleryno) {
 		ss.update("kr.co.finalp.gallery_hits", galleryno);
-		
+
 	}
 
 	@Override
 	public List<GalleryDTO> mainSelect() {
 		return ss.selectList("kr.co.finalp.main_gallery_list");
+	}
+
+	// 추천 갯수
+	@Override
+	public int countLike(int galleryno) {
+		return ss.selectOne("kr.co.finalp.count_like", galleryno);
 	}
 
 }
