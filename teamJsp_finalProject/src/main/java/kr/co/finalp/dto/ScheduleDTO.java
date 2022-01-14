@@ -11,6 +11,7 @@ public class ScheduleDTO {
 
 	private int gameno; 
 	private String game_date;
+	private String game_date2;
 	private String game_arena;
 	private String game_status;
 	private String game_result;

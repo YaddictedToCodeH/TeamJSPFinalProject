@@ -34,9 +34,4 @@ public class ViewController {
 		return "ci";
 	}
 	
-//	@RequestMapping("member/main")
-//	public String memberMain() {
-//		return "main";
-//	}
-	
 }
