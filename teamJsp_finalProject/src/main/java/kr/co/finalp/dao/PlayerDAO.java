@@ -18,4 +18,9 @@ public interface PlayerDAO {
 	public PlayerRecordDTO selectAvgRecord(int player_backno);
 	public PlayerRecordDTO selectTopRecord(int player_backno);
 	
+	//admin 
+	public void updateOne(PlayerDTO dto);
+	public void InsertOne(PlayerDTO dto);
+	public void deleteOne(int player_code);
+	
 }

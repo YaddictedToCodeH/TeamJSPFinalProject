@@ -408,6 +408,27 @@
  		SELECT * FROM player WHERE player_backno = #{player_backno}
  	</select>
  	
+ 	<!-- 개인선수디테일 업데이트(수정)  -->
+ 	<update id="player_updateOne" parameterType="pdto">
+ 		UPDATE player
+ 		SET player_backno = #{player_backno}, player_name = #{player_name} ,  player_pos = #{player_pos}, 
+ 			player_birth = #{player_birth}, player_height = #{player_height}, player_weight =#{player_weight},
+ 			player_school = #{player_school}, player_sns = #{player_sns}
+ 		WHERE player_code = #{player_code}
+ 	</update>
+ 	
+ 	<!-- 개인선수디테일 추가  -->
+ 	<insert id="player_addOne" parameterType="pdto">
+ 		INSERT INTO player
+ 		VALUES ( #{player_code}, #{teamno}, #{player_backno}, #{player_pos}, #{player_name}, #{player_height}, #{player_weight} , 
+ 					#{player_school}, #{player_img}, #{player_sns}, #{player_birth} )
+ 	</insert>
+ 	
+ 	<delete id="player_deleteOne" parameterType="int">
+ 		DELETE FROM player
+ 		WHERE player_code = #{player_code}
+ 	</delete>
+ 	
  	<!-- 개인선수통산기록 -->
  	<select id="player_selectSumRecord" parameterType="int" resultType="prdto">
  		SELECT SUM(player_pts) player_pts, SUM(player_min) player_min, SUM(player_fg) player_fg, 
@@ -430,6 +451,7 @@
 							 WHERE player_backno = #{player_backno})
  	</select>
  	
+ 
  	<!-- 개인선수최고기록 -->
  	<select id="player_selectTopRecord" parameterType="int" resultType="prdto">
  		SELECT MAX(player_pts) player_pts, MAX(player_min) player_min, MAX(player_fg) player_fg, 
