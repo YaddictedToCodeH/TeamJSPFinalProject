@@ -451,7 +451,16 @@
  		WHERE mail = #{mail}
  	</select>
  	
+ 	<!-- 회원가입 -->
+ 	<insert id="insertMember" parameterType="mdto">
+ 		INSERT INTO member(id, pwd, mem_name, mem_birth, gender, mp, mail, mailOk, mem_grade, enabled, mem_point, addrs, detail_addrs, amount)
+ 		VALUES(#{id}, #{pwd}, #{mem_name}, #{mem_birth}, #{gender}, #{mp}, #{mail}, #{mailOk}, '일반', 1, 100, #{addrs}, #{detail_addrs}, 0)
+ 	</insert>
  	
+ 	<insert id="insertMemberAuthority" parameterType="String">
+ 		INSERT INTO authorities(id, authority)
+ 		VALUES(#{id}, 'ROLE_USER')
+ 	</insert>
  	
  	<!-- main용 경기일정 list -->
   	<select id="main_schedule_list" resultType="schedto">
@@ -553,5 +562,32 @@
   		FROM inquire
   	</select>
   	
+ 	
+ 	<!-- ticketing 홈경기 -->
+ 	<select id="selectHomeGames" resultType="schedto">
+ 		SELECT g.game_date game_date, t.team_logo team_logo, t.team_name team_name, t2.team_name team_name2, t2.team_logo team_logo2, g.game_arena game_arena, g.game_date2 game_date2
+		FROM (select ROWNUM rNUM, to_char(game_date, 'MM.DD(dy) HH:MI') game_date, teamno, teamno2, game_arena, to_char(game_date-2, 'MM.DD HH:MI') game_date2
+		FROM games
+		WHERE teamno = 1
+		AND game_score IS NULL
+		ORDER BY game_date) g, team t, team t2
+		WHERE t.teamno = g.teamno
+		AND t2.teamno = g.teamno2
+		AND ROWNUM <![CDATA[<=]]> 5
+		ORDER BY g.rnum
+ 	</select>
+ 	
+ 	<select id="selectAwayGames" resultType="schedto">
+ 		SELECT g.game_date game_date, t.team_logo team_logo, t.team_name team_name, t2.team_name team_name2, t2.team_logo team_logo2, g.game_arena game_arena, g.game_date2 game_date2
+		FROM (select ROWNUM rNUM, to_char(game_date, 'MM.DD(dy) HH:MI') game_date, teamno, teamno2, game_arena, to_char(game_date-2, 'MM.DD HH:MI') game_date2
+		FROM games
+		WHERE teamno2 = 1
+		AND game_score IS NULL
+		ORDER BY game_date) g, team t, team t2
+		WHERE t.teamno = g.teamno
+		AND t2.teamno = g.teamno2
+		AND ROWNUM <![CDATA[<=]]> 5
+		ORDER BY g.rnum
+ 	</select>
  	
 </mapper>

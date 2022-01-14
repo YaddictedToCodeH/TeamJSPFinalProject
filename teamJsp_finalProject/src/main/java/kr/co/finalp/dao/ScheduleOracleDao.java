@@ -10,7 +10,7 @@ import kr.co.finalp.dto.ScheduleDTO;
 import kr.co.finalp.dto.ScheduleMonth;
 
 @Repository
-public class ScheduleOracleDao {
+public class ScheduleOracleDao implements ScheduleDAO{
 	
 	@Autowired
 	private SqlSession ss;
@@ -19,13 +19,26 @@ public class ScheduleOracleDao {
 		this.ss = ss;
 	}
 
-
+	@Override
 	public List<ScheduleDTO> selectAll(ScheduleMonth month) {
 		return ss.selectList("kr.co.finalp.schedule_selectAll", month);
 	}
 	
+	@Override
 	public List<ScheduleDTO> mainSelectAll() {
 		return ss.selectList("kr.co.finalp.main_schedule_list");
 	}
+
+	@Override
+	public List<ScheduleDTO> selectHomeGames() {
+		return ss.selectList("kr.co.finalp.selectHomeGames");
+	}
+
+	@Override
+	public List<ScheduleDTO> selectAwayGames() {
+		return ss.selectList("kr.co.finalp.selectAwayGames");
+	}
+	
+	
 
 }

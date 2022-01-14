@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -13,7 +14,7 @@
 	<nav class="mainnav">
 		<div class="headermenu">
 			<!-- jsp: 로그인 시 로그아웃, 마이페이지로 변경 -->
-			<span><a href="login">로그인</a></span> <span><a href="">회원가입</a></span>
+			<span><a href='<c:url value="/member/main" />'>로그인</a></span> <span><a href="registerTerm">회원가입</a></span>
 		</div>
 		<ul class="mainmenu navall">
 			<div class="mainmenu-underline"></div>
