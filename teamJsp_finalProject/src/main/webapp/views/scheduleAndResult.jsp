@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="./resources/css/scheduleAndResult.css" />
 <title>일정 및 결과</title>
 
-
 <jsp:include page="./header.jsp" />
 
 <div id="schedule_container">
@@ -55,34 +54,33 @@
 				<th style="width: 200px;">결과</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="gameWrap">
 			<c:forEach var="list" items="${list}">
 				<tr>			
-					<td>
+					<th class="rowspanClass">
 					<c:if test="${list.gameno lt 134 }">
 						${list.game_date}
 					</c:if>
 					<c:if test="${list.gameno gt 133}">
 						22-${list.game_date}
 					</c:if>
-					</td>
+					</th>
 					
 					
 					<td height="80px;" style="position: relative; bottom: 30px;"> 
-							<span class="away-team">${list.team_name2} <img src="${list.team_logo2}" alt="" /></span>
+							<span class="away-team">${list.team_name2} <img src="${pageContext.request.contextPath}${list.team_logo2}" alt="logoImage" onerror="this.src='/teamJsp_finalProject/resources/images/logo.png';"/></span>
 							<c:if test="${list.game_score ne null}">
 							 	<span class="end-score"><b>${list.game_score}</b></span>			
 							</c:if>
 							<c:if test="${list.game_score eq null}">
 							 	<span class="versus"><b>VS</b></span>			
 							</c:if>							
-							<span class="home-team"><img src="${list.team_logo}" alt="" /> ${list.team_name}</span> 
+							<span class="home-team"><img src="${pageContext.request.contextPath}${list.team_logo}" alt="logoImage" onerror="this.src='/teamJsp_finalProject/resources/images/logo.png';" /> ${list.team_name}</span> 
 					</td>
 					
 					
 					<td>${list.game_arena}</td>
-					
-					
+										
 					<td>
 						<c:if test="${list.game_result eq 1 }">
 							${list.team_name} 승
@@ -96,8 +94,27 @@
 		</tbody>
 	</table>
 
-
-
 </div>
 
 <jsp:include page="./footer.jsp" />
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+	$(function() {
+		genRowspan("rowspanClass"); 
+		// : ROWSPAN 자동 생성
+
+	   	// ROWSPAN 자동 생성/
+	   	function genRowspan(className){
+	   	    $("." + className).each(function() {
+	   	        var rows = $("." + className + ":contains('" + $(this).text() + "')");
+	   	        if (rows.length > 1) {
+	   	            rows.eq(0).attr("rowspan", rows.length);
+	   	            rows.not(":eq(0)").remove();
+	   	        }
+	   	    });
+	   	}
+	});
+	
+</script>
+

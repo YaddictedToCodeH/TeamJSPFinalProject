@@ -2,14 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./resources/js/rank.js"></script>
 
 <link rel="stylesheet" href="./resources/css/rank.css" />
 
 <title>KT 팀/선수 순위</title>
 
 <jsp:include page="./header.jsp" />
+
 
 <div id="rank-container">
 	<div class="tema">
@@ -49,7 +50,7 @@
 	<div class="player-div">
 			<div class="player-div-title">
 				<h3>득점</h3>
-				<div><a href="rankPlayer?event=avg_pts">순위 더 보기 ></a></div>				
+				<div><a href="recordingroom">순위 더 보기 ></a></div>				
 			</div>
 			<div class="player-div-body">
 				<div>
@@ -73,7 +74,7 @@
 	<div class="player-div">
 			<div class="player-div-title">
 				<h3>리바운드</h3>
-				<div><a href="rankPlayer?event=avg_reb">순위 더 보기 ></a></div>				
+				<div><a href="recordingroom">순위 더 보기 ></a></div>
 			</div>
 			<div class="player-div-body">
 				<div>
@@ -97,7 +98,7 @@
 	<div class="player-div">
 			<div class="player-div-title">
 				<h3>어시스트</h3>
-				<div><a href="rankPlayer?event=avg_ast">순위 더 보기 ></a></div>				
+				<div><a href="recordingroom">순위 더 보기 ></a></div>
 			</div>
 			<div class="player-div-body">
 				<div>

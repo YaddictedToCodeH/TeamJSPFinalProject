@@ -57,7 +57,7 @@
   	
 
   	<select id="photoGallery_selectOne" resultType="gdto" parameterType="int">
-  		SELECT t2.*
+		SELECT t2.*
 		   FROM (
 		      SELECT ROWNUM AS rnum
 		          , t1.*
@@ -80,7 +80,7 @@
 		            WHERE galleryno = #{galleryno}
 		    ) t2 
   	</select>
-  	
+
   	<update id="gallery_hits" parameterType="int">
   		UPDATE gallery
   		SET gallery_hit = gallery_hit+1
@@ -187,37 +187,8 @@
 		WHERE ROWNUM &lt;= 5
   	</select>
   	
-  	<!-- 선수 순위 전체 -->	
-  	<select id="player_rankAll" resultType="rankAlldto">
-  		SELECT ROWNUM rn, t1.*
-			FROM(select p.player_name, count(gameno)gameCount,
-            to_char(ROUND(AVG(pc.player_min),2),'FM00.00')avg_min,
-            sum(pc.player_pts)sum_pts ,to_char(ROUND(AVG(pc.player_pts),2),'FM00.00')avg_pts,
-            sum(pc.player_reb)sum_reb ,to_char(ROUND(AVG(pc.player_reb),2),'FM00.00')avg_reb,
-            sum(pc.player_ast)sum_ast ,to_char(ROUND(AVG(pc.player_ast),2),'FM00.00')avg_ast
-			from playerrecord pc
-			LEFT JOIN player p
-			ON(pc.player_code = p.player_code)
-			group by p.player_name
-			<choose>
-				<when test="event != null and event != '' and event.equals('avg_pts')">
-				ORDER BY avg_pts desc)t1
-				</when>
-				<when test="event != null and event != '' and event.equals('avg_reb')">
-				ORDER BY avg_reb desc)t1
-				</when>
-				<when test="event != null and event != '' and event.equals('avg_ast')">
-				ORDER BY avg_ast desc)t1
-				</when>
-			</choose>
-  	</select>
   	
-  	
-  	
-  	
-  	
-  	
-  	
+  
   	<!-- 공지사항 게시물 하나 선택  -->
   	<select id="notice_selectOne" parameterType="int" resultType="ndto">
  		SELECT noticeno, notice_title, notice_contents, to_char(notice_date, 'YYYY/MM/DD HH24:MI') notice_date, notice_hit 
@@ -517,7 +488,40 @@
 		        ORDER BY galleryno desc)t1
 		WHERE ROWNUM &lt; =3
   	</select>
+   	
+ 	<!-- 게시글 추천시 recom테이블에 insert -->
+ 	<insert id="insert_like" parameterType="recomdto">
+ 		INSERT INTO recommend(recomno, id, galleryno, likecheck)
+ 		VALUES( RECOMMEND_RNO_SEQ.nextval, #{id}, #{galleryno}, 1)
+ 	</insert>
  	
- 	
+ 	<!-- 추천체크 컬럼인 likeCheck -->
+ 	<update id="update_like" parameterType="recomdto">
+ 		UPDATE recommend
+ 		SET likecheck = ${likeCheck} 
+ 		WHERE id = #{id} 	
+ 		AND galleryno = #{galleryno}
+ 	</update>
+
+    <!-- 추천 등록 여부 체크 -->
+  	<select id="selectRecomOne" parameterType="recomdto" resultType="recomdto" >
+  		SELECT id, likecheck, recomno, galleryno
+  			FROM recommend
+  			WHERE ID = #{id}
+  			AND galleryno = #{galleryno}  			
+  	</select>
+  	
+  	<!-- 좋아요 갯수 -->
+  	<select id="count_like" parameterType="gdto" resultType="int">
+  		SELECT count(*) FROM recommend 
+		WHERE galleryno = #{galleryno}
+		AND likecheck = 1
+  	</select>
+  	
+  	<!-- 추천취소시 1행 삭제 -->
+  	<delete id="delete_like" parameterType="int">
+  		DELETE recommend
+  		WHERE recomno = #{recomno}
+  	</delete>
  	
 </mapper>

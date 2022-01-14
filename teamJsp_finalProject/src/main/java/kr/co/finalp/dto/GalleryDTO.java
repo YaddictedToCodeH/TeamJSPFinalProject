@@ -20,4 +20,5 @@ public class GalleryDTO {
 	private int fileno;
 	private String file_url;
 	
+	
 }

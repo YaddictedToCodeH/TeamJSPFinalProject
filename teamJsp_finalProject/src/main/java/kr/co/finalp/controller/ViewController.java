@@ -33,5 +33,9 @@ public class ViewController {
 	public String ci() {
 		return "ci";
 	}
+	@RequestMapping("store")
+	public String store() {
+		return "store";
+	}
 	
 }
