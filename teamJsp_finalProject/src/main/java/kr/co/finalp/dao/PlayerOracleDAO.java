@@ -50,6 +50,22 @@ public class PlayerOracleDAO implements PlayerDAO{
 		return ss.selectOne("kr.co.finalp.player_selectTopRecord", player_backno);
 	}
 
+	@Override
+	public void updateOne(PlayerDTO dto) {
+		ss.update("kr.co.finalp.player_updateOne", dto);	
+	}
+
+	@Override
+	public void InsertOne(PlayerDTO dto) {
+		ss.insert("kr.co.finalp.player_insertOne", dto);
+	}
+
+	@Override
+	public void deleteOne(int player_code) {
+		ss.delete("kr.co.finalp.player_deleteOne",player_code);
+		
+	}
+
 
 
 }

@@ -62,4 +62,5 @@ public class NoticeOracleDAO implements NoticeDao {
 		return ss.selectList("kr.co.finalp.main_notice_list");
 	}
 	
+
 }

@@ -327,6 +327,33 @@
  		WHERE commentno = #{commentno}
  	</delete>
  	
+ 	<select id="comments_getTotal" resultType="int">
+  		SELECT COUNT(*) total
+  		FROM comments
+  	</select>
+ 	
+ 
+ 	<!-- 어드민 팬게시판 전체 -->
+ 	<select id="admin_board_selectAll" parameterType="se" resultType="fbdto">
+ 		SELECT fanno, fan_title, id, fan_date, fan_hit
+ 		FROM ( SELECT ROWNUM rn, fanno, fan_title, id, fan_date, fan_hit
+ 			FROM( SELECT fanno, fan_title, id, to_char(fan_date, 'YYYY/MM/DD') fan_date, fan_hit
+ 					FROM fan_board	
+		        	ORDER BY fanno desc)	
+	 			WHERE ROWNUM &lt;=#{endNo} )
+	 		WHERE RN &gt;=#{startNo}
+ 	</select>
+ 	
+ 	<select id="admin_board_commentSelectAll" parameterType="se" resultType="cdto">
+ 		SELECT commentno, id, comment_date, comment_contents, fanno
+ 		FROM ( SELECT ROWNUM rn, commentno, id, comment_date, comment_contents, fanno
+ 			FROM( SELECT commentno, id, to_char(comment_date, 'YYYY/MM/DD') comment_date, comment_contents, fanno
+ 					FROM comments	
+		        	ORDER BY commentno desc)	
+	 			WHERE ROWNUM &lt;=#{endNo} )
+	 		WHERE RN &gt;=#{startNo}
+ 	</select>
+ 	
  	
  	
  	
@@ -352,6 +379,27 @@
  		SELECT * FROM player WHERE player_backno = #{player_backno}
  	</select>
  	
+ 	<!-- 개인선수디테일 업데이트(수정)  -->
+ 	<update id="player_updateOne" parameterType="pdto">
+ 		UPDATE player
+ 		SET player_backno = #{player_backno}, player_name = #{player_name} ,  player_pos = #{player_pos}, 
+ 			player_birth = #{player_birth}, player_height = #{player_height}, player_weight =#{player_weight},
+ 			player_school = #{player_school}, player_sns = #{player_sns}
+ 		WHERE player_code = #{player_code}
+ 	</update>
+ 	
+ 	<!-- 개인선수디테일 추가  -->
+ 	<insert id="player_addOne" parameterType="pdto">
+ 		INSERT INTO player
+ 		VALUES ( #{player_code}, #{teamno}, #{player_backno}, #{player_pos}, #{player_name}, #{player_height}, #{player_weight} , 
+ 					#{player_school}, #{player_img}, #{player_sns}, #{player_birth} )
+ 	</insert>
+ 	
+ 	<delete id="player_deleteOne" parameterType="int">
+ 		DELETE FROM player
+ 		WHERE player_code = #{player_code}
+ 	</delete>
+ 	
  	<!-- 개인선수통산기록 -->
  	<select id="player_selectSumRecord" parameterType="int" resultType="prdto">
  		SELECT SUM(player_pts) player_pts, SUM(player_min) player_min, SUM(player_fg) player_fg, 
@@ -374,6 +422,7 @@
 							 WHERE player_backno = #{player_backno})
  	</select>
  	
+ 
  	<!-- 개인선수최고기록 -->
  	<select id="player_selectTopRecord" parameterType="int" resultType="prdto">
  		SELECT MAX(player_pts) player_pts, MAX(player_min) player_min, MAX(player_fg) player_fg, 
@@ -562,7 +611,6 @@
   		FROM inquire
   	</select>
   	
- 	
  	<!-- ticketing 홈경기 -->
  	<select id="selectHomeGames" resultType="schedto">
  		SELECT g.game_date game_date, t.team_logo team_logo, t.team_name team_name, t2.team_name team_name2, t2.team_logo team_logo2, g.game_arena game_arena, g.game_date2 game_date2
@@ -589,5 +637,5 @@
 		AND ROWNUM <![CDATA[<=]]> 5
 		ORDER BY g.rnum
  	</select>
- 	
+
 </mapper>
