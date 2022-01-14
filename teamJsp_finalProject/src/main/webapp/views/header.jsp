@@ -28,9 +28,9 @@
 	<nav class="subnav navall">
 		<div class="subnavwrap">
 			<ul>
-				<li><a href="">구단소개</a></li>
+				<li><a href="introduce">구단소개</a></li>
 				<li><a href="ci">CI소개</a></li>
-				<li><a href="">홈구장</a></li>
+				<li><a href="map">홈구장</a></li>
 			</ul>
 			<ul>
 				<li><a href="staff_c">코칭스태프</a></li>

@@ -33,6 +33,13 @@ public class ViewController {
 	public String ci() {
 		return "ci";
 	}
-	
+	@RequestMapping("introduce")
+	public String introduce() {
+		return "introduce";
+	}
+	@RequestMapping("map")
+	public String map() {
+		return "map";
+	}
 	
 }
