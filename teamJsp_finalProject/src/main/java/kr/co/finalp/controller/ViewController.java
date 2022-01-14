@@ -34,5 +34,4 @@ public class ViewController {
 		return "ci";
 	}
 	
-	
 }
