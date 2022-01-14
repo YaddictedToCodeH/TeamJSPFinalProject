@@ -494,7 +494,7 @@
  		INSERT INTO recommend(recomno, id, galleryno, likecheck)
  		VALUES( RECOMMEND_RNO_SEQ.nextval, #{id}, #{galleryno}, 1)
  	</insert>
- 	
+
  	<!-- 추천체크 컬럼인 likeCheck -->
  	<update id="update_like" parameterType="recomdto">
  		UPDATE recommend
@@ -523,5 +523,35 @@
   		DELETE recommend
   		WHERE recomno = #{recomno}
   	</delete>
+
+ 	<!-- 마이페이지 문의사항 조회 -->
+ 	<select id="inquire_selectAll" parameterType="se" resultType="idto">
+	SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
+	FROM(SELECT ROWNUM rn, inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
+    	FROM(SELECT inqno,id,inq_title, TO_CHAR(regdate, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
+       		 FROM inquire
+        	 ORDER BY inqno desc)
+    	WHERE ROWNUM &lt; #{endNo})
+	WHERE rn &gt; #{startNo}
+	</select>
+  
+  	<insert id="inquire_insertOne" parameterType="idto">
+  		INSERT INTO inquire
+  		VALUES(inquire_inqno_seq.nextval, #{id}, #{inq_title}, inq_date, #{inq_contents}, 0, null)
+  	</insert>
+  	
+ 	<!-- 마이페이지 문의사항 자세히보기-->
+  	<select id="inquire_selectOne" parameterType="int" resultType="idto">
+  		SELECT *
+  		FROM inquire
+  		WHERE inqno = #{inqno}
+  	</select>
+  	
+ 	<!-- 마이페이지 문의사항 가져오기-->
+  	<select id="inquire_getTotal" resultType="int">
+  		SELECT COUNT(*)
+  		FROM inquire
+  	</select>
+  	
  	
 </mapper>

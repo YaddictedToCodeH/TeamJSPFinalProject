@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<link rel="stylesheet" href="../resources/css/introduce.css" />
+<link rel="stylesheet" href="./resources/css/introduce.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../resources/js/introduce.js"></script>
+<script src="./resources/js/introduce.js"></script>
 <jsp:include page="./header.jsp"></jsp:include>
 	<div class="sw-introduce">
 		<ul class="tabs">
@@ -10,7 +10,7 @@
 			<li class="tab-link" data-tab="tab-2">구단연혁</li>
 		</ul>
 		<div id="tab-1" class="tab-content current">
-			<img class="imglogo" src="../resources/images/kt logo.png" />
+			<img class="imglogo" src="./resources/images/kt logo.png" />
 
 			<h1>신비롭고 강력한 힘, 상상의 농구 실현</h1>
 			<p>
@@ -40,22 +40,22 @@
 				노하우로 그라운드 안팎에서 그 동안 없던 새로운 농구를 kt 소닉붐이 이루어 가겠습니다!<br>
 			</p>
 			<!-------------------------------------------------------------------------------------->
-			<img class="imgmem" src="../resources/images/kt member.png">
+			<img class="imgmem" src="./resources/images/kt member.png">
 		</div>
 
 		<div id="tab-2" class="tab-content">
 				<table class="history" width="1400">
 					<tr>
-						<td><img class="logostory" src="../resources/images/nasan-flymangs.gif"/></td>
-						<td><img class="logostory" src="../resources/images/korea-tender.png"/></td>
+						<td><img class="logostory" src="./resources/images/nasan-flymangs.gif"/></td>
+						<td><img class="logostory" src="./resources/images/korea-tender.png"/></td>
 					</tr>
 					<tr>
 						<td><p>&nbsp&nbsp&nbsp&nbsp&nbsp광주 나산 플라망스(1997년~2001년)</p></td>
 						<td><p>&nbsp&nbsp&nbsp&nbsp&nbsp부산 코리아텐더(2001년~2003년)</p></td>
 					</tr>
 					<tr>
-						<td><img class="logostory" src="../resources/images/KTF.png"/></td> 
-						<td><img class="logostory" src="../resources/images/busan-kt.jpg"/></td>		
+						<td><img class="logostory" src="./resources/images/KTF.png"/></td> 
+						<td><img class="logostory" src="./resources/images/busan-kt.jpg"/></td>		
 					</tr>	
 					<tr>
 						<td><p>&nbsp&nbsp&nbsp&nbsp&nbsp부산 KTF 매직윙스 (2003년~2009년)</p></td>
@@ -64,7 +64,7 @@
 				</table>
 							
 			<div class="gamehistory">
-				<img class="gamelogohistory" src="../resources/images/kt logo.png"/>
+				<img class="gamelogohistory" src="./resources/images/kt logo.png"/>
 				<p>
 				역대 순위&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>
 				2009-10 시즌 준우승<br>
