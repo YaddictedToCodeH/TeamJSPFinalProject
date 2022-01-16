@@ -20,7 +20,7 @@ public class RankController {
 	@Autowired
 	RankDao dao;
 
-	@RequestMapping("/rank")
+	@RequestMapping(value = {"/rank", "/member/rank"})
 	public ModelAndView rank(Model model) {
 		
 		

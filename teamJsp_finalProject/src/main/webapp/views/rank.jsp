@@ -5,7 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="./resources/js/rank.js"></script>
 
-<link rel="stylesheet" href="./resources/css/rank.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/rank.css" />
 
 <title>KT 팀/선수 순위</title>
 
@@ -55,7 +55,7 @@
 			<div class="player-div-body">
 				<div>
 					<img width="165px;" height="200px;" src="${pst_list[0].player_img}" alt="player_img"/>
-					<img width="45px;" height="40px;" src="./resources/images/TeamLogo/teamLogo_KT.png" style="position: absolute; right: 10px;" />
+					<img width="45px;" height="40px;" src="${pageContext.request.contextPath}/resources/images/TeamLogo/teamLogo_KT.png" style="position: absolute; right: 10px;" />
 					<span class="record-1st">1st</span>
 					<span class="player-name"><a href="playerDetail?player_backno=${pst_list[0].player_backno}">${pst_list[0].player_name}</a></span>
 					<span class="team-name">${list[0].team_name}</span>
@@ -79,7 +79,7 @@
 			<div class="player-div-body">
 				<div>
 					<img width="165px;" height="200px;" src="${reb_list[0].player_img}" alt="player_img"/>
-					<img width="45px;" height="40px;" src="./resources/images/TeamLogo/teamLogo_KT.png" style="position: absolute; right: 10px;" />
+					<img width="45px;" height="40px;" src="${pageContext.request.contextPath}/resources/images/TeamLogo/teamLogo_KT.png" style="position: absolute; right: 10px;" />
 					<span class="record-1st">1st</span>
 					<span class="player-name"><a href="playerDetail?player_backno=${reb_list[0].player_backno}">${reb_list[0].player_name}</a></span>
 					<span class="team-name">${list[0].team_name}</span>
@@ -103,7 +103,7 @@
 			<div class="player-div-body">
 				<div>
 					<img width="165px;" height="200px;" src="${ast_list[0].player_img}" alt="player_img"/>
-					<img width="45px;" height="40px;" src="./resources/images/TeamLogo/teamLogo_KT.png" style="position: absolute; right: 10px;" />
+					<img width="45px;" height="40px;" src="${pageContext.request.contextPath}/resources/images/TeamLogo/teamLogo_KT.png" style="position: absolute; right: 10px;" />
 					<span class="record-1st">1st</span>
 					<span class="player-name"><a href="playerDetail?player_backno=${ast_list[0].player_backno}">${ast_list[0].player_name}</a></span>
 					<span class="team-name">${list[0].team_name}</span>

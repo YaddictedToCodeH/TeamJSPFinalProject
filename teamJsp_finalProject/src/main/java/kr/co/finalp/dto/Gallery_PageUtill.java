@@ -11,9 +11,9 @@ public class Gallery_PageUtill {
 		int totalPage = (totalNumber % countPerPage == 0) ? totalNumber / countPerPage : totalNumber / countPerPage + 1;
 
 		// 현재 페이지의 게시물 시작번호
-		int startNo = (currentPage - 1) * 9 + 1;
+		int startNo = (currentPage - 1) * countPerPage + 1;
 		// 끝번호
-		int endNo = (currentPage) * 9;
+		int endNo = (currentPage) * countPerPage;
 
 		// 시작 페이지번호
 		int startPageNo = currentPage - 5 <= 0 ? 1 : currentPage - 5;

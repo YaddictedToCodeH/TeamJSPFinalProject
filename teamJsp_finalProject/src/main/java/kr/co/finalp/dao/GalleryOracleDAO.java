@@ -45,10 +45,39 @@ public class GalleryOracleDAO implements GalleryDao {
 		return ss.selectList("kr.co.finalp.main_gallery_list");
 	}
 
-	// 추천 갯수
 	@Override
 	public int countLike(int galleryno) {
 		return ss.selectOne("kr.co.finalp.count_like", galleryno);
+	}
+
+	@Override
+	public void galleryInsert(GalleryDTO dto) {
+		ss.insert("kr.co.finalp.admin_gallery_insert",dto);
+	}
+
+	@Override
+	public void filesInsert(GalleryDTO dto) {
+		ss.insert("kr.co.finalp.admin_files_insert",dto);
+	}
+
+	@Override
+	public void galleryUpdate(GalleryDTO dto) {
+		ss.update("kr.co.finalp.admin_gallery_update", dto);
+	}
+
+	@Override
+	public void filesUpdate(GalleryDTO dto) {
+		ss.update("kr.co.finalp.admin_files_update", dto);
+	}
+
+	@Override
+	public void galleryDelete(int galleryno) {
+		ss.delete("kr.co.finalp.admin_gallery_delete", galleryno);
+	}
+
+	@Override
+	public void filesDelete(int galleryno) {
+		ss.delete("kr.co.finalp.admin_files_delete", galleryno);		
 	}
 
 }

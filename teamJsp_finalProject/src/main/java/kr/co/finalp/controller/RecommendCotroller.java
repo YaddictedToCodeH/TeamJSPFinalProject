@@ -1,5 +1,7 @@
 package kr.co.finalp.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +28,13 @@ public class RecommendCotroller {
 	
 	@ResponseBody
 	@RequestMapping(value = "/recommend", method = RequestMethod.POST)
-	public int recomControl(@RequestBody RecommendDTO reqDto , Model model) {									
-		String id= reqDto.getId();
+	public int recomControl(@RequestBody RecommendDTO reqDto , Model model, Principal principal) {									
+		String id= principal.getName();
 		int galleryno = reqDto.getGalleryno();
 		
 		RecommendDTO dto = new RecommendDTO();
 		dto.setId(id);
 		dto.setGalleryno(galleryno);
-				
 		// 추천체크
 		RecommendDTO recomDto = dao.selectRecomOne(dto);
 		
@@ -60,28 +61,7 @@ public class RecommendCotroller {
 	}
 }
 		
-		
-		
-//		if(null == resDto) {
-//			int res = dao.insertLike(dto);
-//			return res;
-//		} else {
-//			if(resDto.getLikeCheck() == 1) {
-//				dao.deleteLike(dto);
-//			} else {
-//				dto.setLikeCheck(1);
-//			}
-//			int res = dao.updateLike(dto);
-//			
-//			// 오류났을때
-//			if(res > 0) {
-//				return dto.getLikeCheck();
-//			} else {
-//				return 3;
-//			}
-//			
-//		}
-//		
+
 		
 		
 		

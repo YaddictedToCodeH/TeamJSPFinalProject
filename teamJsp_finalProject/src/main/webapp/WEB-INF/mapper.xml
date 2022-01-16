@@ -5,6 +5,7 @@
   
 
   <mapper namespace="kr.co.finalp">
+  	<!-- 갤러리 전체 출력 -->
   	<select id="photoGallery_selectAll" parameterType="gallStartEnd" resultType="gdto">	
 		SELECT t2.*
 		   FROM (
@@ -45,6 +46,7 @@
 		    ORDER BY rnum    
   	</select>
   	
+  	<!-- 카테고리별 갤러리 갯수 -->
   	<select id="photoGallery_getTotal" parameterType="gallStartEnd" resultType="int">
   		SELECT COUNT(*) total  					
             FROM gallery_category c1
@@ -56,6 +58,7 @@
   	</select>
   	
 
+  	<!-- 갤러리 1개 출력 -->
   	<select id="photoGallery_selectOne" resultType="gdto" parameterType="int">
 		SELECT t2.*
 		   FROM (
@@ -80,12 +83,46 @@
 		            WHERE galleryno = #{galleryno}
 		    ) t2 
   	</select>
-
+	
+	<!-- 갤러리 조회수 증가 -->
   	<update id="gallery_hits" parameterType="int">
   		UPDATE gallery
   		SET gallery_hit = gallery_hit+1
   		WHERE galleryno = #{galleryno}
   	</update>
+  	
+  	<!-- 관리자가 갤러리 추가  -->
+  	<insert id="admin_gallery_insert" parameterType="gdto">
+  		INSERT INTO gallery
+		VALUES ( #{galleryno}, #{gallery_category_no}, 1, #{gallery_title}, to_char(sysdate, 'yy/mm/dd'), 0)
+  	</insert>
+  	<insert id="admin_files_insert" parameterType="gdto">
+  		INSERT INTO files
+		VALUES (FILE_NO_SEQ.nextval, #{galleryno}, #{file_url} )
+  	</insert>
+  	
+  	<!-- 관리자 갤러리 수정 -->
+  	<update id="admin_gallery_update" parameterType="gdto">
+  		UPDATE gallery
+  		SET gallery_category_no = #{gallery_category_no},
+  			gallery_title = #{gallery_title}, admin_no = #{admin_no}
+  		WHERE galleryno = #{galleryno}
+  	</update>
+  	<update id="admin_files_update" parameterType="gdto">
+  		UPDATE files
+  		SET file_url = #{file_url}
+  		WHERE galleryno = #{galleryno}
+  	</update>
+  	
+  	<!-- 관리자 갤러리 삭제 -->
+  	<delete id="admin_gallery_delete">
+  		DELETE gallery
+  		WHERE galleryno = #{galleryno}
+  	</delete>
+  	<delete id="admin_files_delete">
+  		DELETE files
+  		WHERE galleryno = #{galleryno}
+  	</delete>
   	
   	<!-- 경기일정 list -->
   	<select id="schedule_selectAll" resultType="schedto">
@@ -521,7 +558,7 @@
 		LEFT JOIN team c3
 		ON(c3.teamno = c1.teamno2)
 		WHERE (c2.teamno = 1 or c3.teamno = 1)
-		AND c1.game_date BETWEEN '21/12/23' AND '22/01/05'
+		AND c1.game_date BETWEEN '22/01/05' AND '22/01/25'
 		ORDER BY c1.gameno asc
   	</select>
   	

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="./resources/css/scheduleAndResult.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/scheduleAndResult.css" />
 <title>일정 및 결과</title>
 
 <jsp:include page="./header.jsp" />
@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="schedule-controller">	
-		<a href="schedule?gameno=133">2021</a>&emsp;&emsp;
+		<a href="schedule?gameno=133&select_month=10">2021</a>&emsp;&emsp;
 		<a href="schedule?gameno=134&select_month=1">2022</a>
 		
 		<div>
