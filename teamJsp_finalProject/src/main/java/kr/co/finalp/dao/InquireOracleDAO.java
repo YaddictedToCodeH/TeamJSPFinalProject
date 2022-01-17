@@ -23,7 +23,7 @@ public class InquireOracleDAO implements InquireDAO{
 	public List<InquireDTO> inquire_selectAll(int startNo, int endNo) {
 //		System.out.println("ss: " + ss);
 		StartEnd se = new StartEnd(startNo, endNo);
-		return ss.selectList("kr.co.jhta.fianlp.inquire_selectAll", se);
+		return ss.selectList("kr.co.finalp.inquire_selectAll", se);
 	}
 
 
@@ -36,28 +36,28 @@ public class InquireOracleDAO implements InquireDAO{
 
 	@Override
 	public InquireDTO inquire_selectOne(int inqno) {
-		return ss.selectOne("kr.co.jhta.fianlp.inquire_selectOne", inqno);
+		return ss.selectOne("kr.co.finalp.inquire_selectOne", inqno);
 		
 	}
 
 
 	@Override
 	public void inquire_modify(InquireDTO dto) {
-		ss.update("kr.co.jhta.fianlp.inquire_modify", dto);
+		ss.update("kr.co.finalp.inquire_modify", dto);
 		
 	}
 
 
 	@Override
 	public void inquire_delete(int inqno) {
-		ss.delete("kr.co.jhta.fianlp.inquire_delete", inqno);
+		ss.delete("kr.co.finalp.inquire_delete", inqno);
 		
 	}
 
 
 	@Override
 	public int inquire_getTotal() {
-		return ss.selectOne("kr.co.jhta.fianlp.inquire_getTotal");
+		return ss.selectOne("kr.co.finalp.inquire_getTotal");
 	}
 
 
@@ -65,6 +65,12 @@ public class InquireOracleDAO implements InquireDAO{
 	public void inquire_raiseHits(int inqno) {
 		ss.update("kr.co.jhta.fianlp.inquire_raiseHits", inqno);
 		
+	}
+
+
+	@Override
+	public List<InquireDTO> admin_inquire_selectAll() {
+		return ss.selectList("kr.co.finalp.admin_main_inquire_list");
 	}
 	
 }

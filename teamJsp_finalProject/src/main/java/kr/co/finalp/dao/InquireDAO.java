@@ -12,4 +12,6 @@ public interface InquireDAO {
 	public void inquire_delete(int inqno);
 	public int inquire_getTotal();
 	public void inquire_raiseHits(int inqno);
+	
+	public List<InquireDTO> admin_inquire_selectAll();
 }

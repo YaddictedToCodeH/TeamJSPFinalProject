@@ -331,6 +331,28 @@
   		SELECT COUNT(*) total
   		FROM comments
   	</select>
+  	
+  	<!-- 어드민 메인 문의게시판  -->
+  	<select id="admin_main_inquire_list" resultType="idto">
+  		SELECT TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date, inq_title, inq_status
+		FROM inquire
+		WHERE ROWNUM &lt;=5
+		ORDER BY inqno desc
+  	</select>
+  	
+  	<!-- 어드민 메인 경기일정 -->
+  	<select id="admin_main_schedule_list" resultType="schedto">
+  		SELECT to_char(c1.game_date, 'yy-mm-dd')game_date, c1.game_arena, c2.team_logo,c2.team_name, c3.team_name,c3.team_logo team_logo2
+		FROM games c1
+		LEFT JOIN team c2
+		ON(c1.teamno = c2.teamno)
+		LEFT JOIN team c3
+		ON(c3.teamno = c1.teamno2)
+		WHERE (c2.teamno = 1 or c3.teamno = 1)
+		AND c1.game_date BETWEEN '21/12/23' AND '22/01/05'
+		AND ROWNUM &lt;=1
+		ORDER BY c1.gameno asc
+  	</select>
  	
  
  	<!-- 어드민 팬게시판 전체 -->
@@ -433,6 +455,13 @@
 							 WHERE player_backno = #{player_backno})
  	</select>
  	
+ 	 	
+ 	<!-- 선수코드로 개인선수기록 정보 가져오기 -->
+ 	<select id="PlayerRecord_selectOne" parameterType="int" resultType="prdto">
+ 		SELECT * FROM playerrecord
+ 		WHERE player_code = #{player_code}
+ 	</select>
+ 	
  	<!-- 팀기록실 -->
  	<select id="teamRecord_selectAll" resultType="trdto">
  		SELECT teamno, sum(winteam) winteam, sum(loseteam) loseteam, sum(team_pts) team_pts, sum(team_reb) team_reb,
@@ -463,7 +492,7 @@
  		SELECT player_name FROM player
  		WHERE player_code = #{player_code}
  	</select>
- 	
+
  	
  	<!-- 이름과 이메일을 대조해서 회원조회 -->
  	<select id="findId" parameterType="mdto" resultType="String">
@@ -586,7 +615,7 @@
  	<select id="inquire_selectAll" parameterType="se" resultType="idto">
 	SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
 	FROM(SELECT ROWNUM rn, inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
-    	FROM(SELECT inqno,id,inq_title, TO_CHAR(regdate, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
+    	FROM(SELECT inqno,id,inq_title, TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
        		 FROM inquire
         	 ORDER BY inqno desc)
     	WHERE ROWNUM &lt; #{endNo})
@@ -610,6 +639,17 @@
   		SELECT COUNT(*)
   		FROM inquire
   	</select>
+  	
+  	<update id="inquire_modify" parameterType="idto">
+  		UPDATE inquire
+  		SET inq_status= #{inq_status} , inq_ans = #{inq_ans}, id= #{id}
+ 		WHERE inqno = #{inqno}
+  	</update>
+  	
+  	<delete id="inquire_delete" parameterType="int">
+  		DELETE inquire
+  		WHERE inqno = #{inqno}
+  	</delete>
   	
  	<!-- ticketing 홈경기 -->
  	<select id="selectHomeGames" resultType="schedto">

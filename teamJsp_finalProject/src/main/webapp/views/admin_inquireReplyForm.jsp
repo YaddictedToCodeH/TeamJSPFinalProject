@@ -61,22 +61,23 @@
             <h1>문의사항관리</h1>    
         </div>
 
-        <form action="" method="post">
+        <form action="admin_inquireReply" method="post">
+        	<input type="hidden" name="inq_status" value="1" />
             <div class="replydiv">
                 <table class="relplytable">
                     <tr>
                         <th>제목</th>
-                        <td>홈페이지 업데이트 언제?</td>
+                        <td>${dto.inq_title}</td>
                         <th>등록일</th>
-                        <th>2021-12-24</th>
+                        <th>${dto.inq_date}</th>
                     </tr>
                     <tr>
                         <th>문의내용</th>
-                        <td colspan="3"><textarea cols="80" name="" rows="10">진행중인건가요?</textarea></td>
+                        <td colspan="3"><textarea cols="80" name="inq_contents" rows="10">${dto.inq_contents}</textarea></td>
                     </tr>
                     <tr>
                         <th>답변내용</th>
-                        <td colspan="3"><textarea cols="80" name="" rows="10">내용을 적어주세요</textarea></td>
+                        <td colspan="3"><textarea cols="80" name="inq_ans" rows="10">${dto.inq_ans}</textarea></td>
                     </tr>           
                 </table>
 

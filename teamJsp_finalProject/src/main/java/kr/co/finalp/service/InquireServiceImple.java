@@ -2,9 +2,12 @@ package kr.co.finalp.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import kr.co.finalp.dto.InquireDTO;
 import kr.co.finalp.dto.MemberDTO;
 
+@Repository
 public class InquireServiceImple implements InquireService{
 
 	@Override

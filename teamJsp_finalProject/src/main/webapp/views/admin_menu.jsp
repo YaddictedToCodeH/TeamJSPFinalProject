@@ -6,14 +6,14 @@
     <div id="menu">
         <div class="tabmenu">
             <ul class="menulist">
-                <a href=""><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt=""></a>
-                <li><a href="">갤러리관리</a></li>
+                <a href="admin_main"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt=""></a>
                 <li><a href="">게시판관리</a></li>
-                <li><a href="">문의사항</a></li>
-                <li><a href="">선수 및 코치진</a></li>
-                <li><a href="">경기 일정</a></li>
-                <li><a href="">기록실 정보</a></li>
-                <li><a href="">배너이미지</a></li>
+                <li><a href="admin_board">팬게시판</a></li>
+                <li><a href="admin_inquire">문의사항</a></li>
+                <li><a href="admin_teaminfo">선수 및 코치진</a></li>
+                <li><a href=" ">경기 일정</a></li>
+                <li><a href="admin_recordingroom">기록실 정보</a></li>
+                <li><a href="admin_banner">배너이미지</a></li>
             </ul>
         </div>
     </div>
