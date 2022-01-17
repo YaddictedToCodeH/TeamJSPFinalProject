@@ -650,27 +650,37 @@
  		INSERT INTO recommend(recomno, id, galleryno, likecheck)
  		VALUES( RECOMMEND_RNO_SEQ.nextval, #{id}, #{galleryno}, 1)
  	</insert>
+ 	<insert id="insert_like_fan" parameterType="recomdto">
+ 		INSERT INTO recommend(recomno, id, fanno, likecheck)
+ 		VALUES( RECOMMEND_RNO_SEQ.nextval, #{id}, #{fanno}, 1)
+ 	</insert>
 
- 	<!-- 추천체크 컬럼인 likeCheck -->
- 	<update id="update_like" parameterType="recomdto">
- 		UPDATE recommend
- 		SET likecheck = ${likeCheck} 
- 		WHERE id = #{id} 	
- 		AND galleryno = #{galleryno}
- 	</update>
-
-    <!-- 추천 등록 여부 체크 -->
+    <!--갤러리 추천 등록 여부 체크 -->
   	<select id="selectRecomOne" parameterType="recomdto" resultType="recomdto" >
   		SELECT id, likecheck, recomno, galleryno
   			FROM recommend
   			WHERE ID = #{id}
   			AND galleryno = #{galleryno}  			
   	</select>
+  	  <!--팬게시판 추천 등록 여부 체크 -->
+  	<select id="selectFanRecomOne" parameterType="recomdto" resultType="recomdto" >
+  		SELECT id, likecheck, recomno, fanno
+  			FROM recommend
+  			WHERE ID = #{id}
+  			AND fanno = #{fanno}  			
+  	</select>
   	
-  	<!-- 좋아요 갯수 -->
+  	<!--갤러리 좋아요 갯수 -->
   	<select id="count_like" parameterType="gdto" resultType="int">
   		SELECT count(*) FROM recommend 
 		WHERE galleryno = #{galleryno}
+		AND likecheck = 1
+  	</select>
+  	
+  	<!--팬게시판 좋아요 갯수 -->
+  	<select id="countFan_like" parameterType="fbdto" resultType="int">
+  		SELECT count(*) FROM recommend 
+		WHERE fanno = #{fanno}
 		AND likecheck = 1
   	</select>
   	

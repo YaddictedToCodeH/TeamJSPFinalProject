@@ -51,12 +51,38 @@ public class RecommendCotroller {
 			return res + 1;
 		}
 		
-		
+	
 		return res;
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/recommendFan", method = RequestMethod.POST)
+	public int recomControlFan(@RequestBody RecommendDTO reqDto , Model model, Principal principal) {									
+		String id= principal.getName();
+		int fanno = reqDto.getFanno();
 		
+		RecommendDTO dto = new RecommendDTO();
+		dto.setId(id);
+		dto.setFanno(fanno);
+		// 추천체크
+		RecommendDTO recomDto = dao.selectFanRecomOne(dto);
 		
+		// 임시값
+		int res = 2;
+		// dto가 비어 있으면 insert로 추천 추가 
+		if(recomDto == null) {
+			res = dao.insertLikeFan(dto);
+			return res;
 		
+		// 존재했을때 다시 클릭시 삭제
+		}else if(recomDto != null) {
+			res = dao.deleteLike(recomDto.getRecomno());
+			return res + 1;
+		}
+		
+	
+		return res;
 		
 	}
 }

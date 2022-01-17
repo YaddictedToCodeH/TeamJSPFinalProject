@@ -15,4 +15,9 @@ public interface Fan_BoardDao {
 	public void raiseHits(int fanno);
 	
 	public List<Fan_BoardDTO> admin_board_selectAll(int startNo, int endNo);
+	
+	
+	// 좋아요 갯수
+	public int countLike(int fanno);
+		
 }
