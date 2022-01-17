@@ -638,4 +638,43 @@
 		ORDER BY g.rnum
  	</select>
 
+
+	<!-- 좌석 구역 가져오기 -->
+	<select id="selectArea" parameterType="String" resultType="seataDTO">
+		SELECT seatano, seatgno, seat_area
+		FROM seatarea
+		WHERE seatgno = (SELECT seatgno
+        				FROM seatgrade
+                		WHERE seat_grade = #{seat_grade})
+	</select>
+	
+	<select id="selectSeat" parameterType="String" resultType="seatDTO">
+		SELECT seatno, seatano, detail_seat, seat_status
+		FROM seat
+		WHERE seatano = (SELECT seatano
+                		FROM seatarea
+                		WHERE seat_area = #{seat_area})
+	</select>
+	
+	<!-- 좌석 가격 가져오기 -->
+	<select id="getPrice" parameterType="String" resultType="int">
+		SELECT seat_price
+		FROM seatgrade
+		WHERE seat_grade = #{seat_grade}
+	</select>
+	
+	<!-- 사용자 포인트 가져오기 -->
+	<select id="getPoint" parameterType="String" resultType="int">
+		SELECT mem_point
+		FROM member
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 사용자의 모든 정보 가져오기 -->
+	<select id="selectMember" parameterType="String" resultType="mdto">
+		SELECT *
+		FROM member
+		WHERE id = #{id}
+	</select>
+	
 </mapper>

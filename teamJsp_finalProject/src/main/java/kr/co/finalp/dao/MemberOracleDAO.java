@@ -1,5 +1,7 @@
 package kr.co.finalp.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -44,6 +46,16 @@ public class MemberOracleDAO implements MemberDAO{
 	@Override
 	public void insertMember(MemberDTO dto) {
 		ss.insert("kr.co.finalp.insertMember", dto);
+	}
+
+	@Override
+	public int getPoint(String id) {
+		return ss.selectOne("kr.co.finalp.getPoint",id);
+	}
+
+	@Override
+	public MemberDTO selectMember(String id) {
+		return ss.selectOne("kr.co.finalp.selectMember", id);
 	}
 	
 	
