@@ -42,7 +42,7 @@ public class RecordOracleDAO implements RecordDAO {
 
 	@Override
 	public List<PlayerRecordDTO> selectList(int player_code) {
-		return ss.selectList("kr.co.finalp.admin_playerRecord_selectOne",player_code);
+		return ss.selectList("kr.co.finalp.playerRecord_selectOne",player_code);
 	}
 
 

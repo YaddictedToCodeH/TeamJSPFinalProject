@@ -72,7 +72,10 @@ public class RecordController{
 		for(PlayerRecordDTO dto : playerRecordlist) {
 			player_name.add(dao.selectPlayerName(dto.getPlayer_code()));
 		}
-
+	
+		List<PlayerRecordDTO> playerRecordlist2 = dao.selectSort(base);
+		ArrayList<Integer> player_code = new ArrayList<Integer>();
+		
 		
 		model.addAttribute("teamRecordlist", teamRecordlist);
 		model.addAttribute("team_name", team_name);

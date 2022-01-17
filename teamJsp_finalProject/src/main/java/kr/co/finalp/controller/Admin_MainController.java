@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.finalp.dao.InquireDAO;
+import kr.co.finalp.dao.Admin_InquireDAO;
 import kr.co.finalp.dao.ScheduleDAO;
 import kr.co.finalp.dto.InquireDTO;
 import kr.co.finalp.dto.ScheduleDTO;
@@ -20,7 +20,7 @@ public class Admin_MainController {
 	ScheduleDAO scheduleDao;
 	
 	@Autowired
-	InquireDAO inquireDao;
+	Admin_InquireDAO inquireDao;
 	
 	@RequestMapping("/admin_main")
 	public ModelAndView admin_main(Model model) {

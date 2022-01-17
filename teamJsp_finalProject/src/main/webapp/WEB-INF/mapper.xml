@@ -622,7 +622,7 @@
   	</delete>
 
  	<!-- 마이페이지 문의사항 조회 -->
- 	<select id="inquire_selectAll" parameterType="se" resultType="idto">
+ 	<select id="admin_inquire_selectAll" parameterType="se" resultType="idto">
 	SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
 	FROM(SELECT ROWNUM rn, inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
     	FROM(SELECT inqno,id,inq_title, TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
@@ -632,31 +632,31 @@
 	WHERE rn &gt; #{startNo}
 	</select>
   
-  	<insert id="inquire_insertOne" parameterType="idto">
+  	<insert id="admin_inquire_insertOne" parameterType="idto">
   		INSERT INTO inquire
   		VALUES(inquire_inqno_seq.nextval, #{id}, #{inq_title}, inq_date, #{inq_contents}, 0, null)
   	</insert>
   	
  	<!-- 마이페이지 문의사항 자세히보기-->
-  	<select id="inquire_selectOne" parameterType="int" resultType="idto">
+  	<select id="admin_inquire_selectOne" parameterType="int" resultType="idto">
   		SELECT *
   		FROM inquire
   		WHERE inqno = #{inqno}
   	</select>
   	
  	<!-- 마이페이지 문의사항 가져오기-->
-  	<select id="inquire_getTotal" resultType="int">
+  	<select id="admin_inquire_getTotal" resultType="int">
   		SELECT COUNT(*)
   		FROM inquire
   	</select>
   	
-  	<update id="inquire_modify" parameterType="idto">
+  	<update id="admin_inquire_modify" parameterType="idto">
   		UPDATE inquire
   		SET inq_status= #{inq_status, jdbcType=INTEGER} , inq_ans = #{inq_ans,jdbcType=VARCHAR}
  		WHERE inqno = #{inqno, jdbcType=INTEGER}
   	</update>
   	
-  	<delete id="inquire_delete" parameterType="int">
+  	<delete id="admin_inquire_delete" parameterType="int">
   		DELETE inquire
   		WHERE inqno = #{inqno}
   	</delete>
