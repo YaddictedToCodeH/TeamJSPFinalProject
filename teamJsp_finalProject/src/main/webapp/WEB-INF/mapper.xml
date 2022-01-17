@@ -457,18 +457,44 @@
  	
  	 	
  	<!-- 선수코드로 개인선수기록 정보 가져오기 -->
- 	<select id="PlayerRecord_selectOne" parameterType="int" resultType="prdto">
+ 	<select id="playerRecord_selectOne" parameterType="int" resultType="prdto">
  		SELECT * FROM playerrecord
  		WHERE player_code = #{player_code}
  	</select>
  	
- 	 <select id="admin_playerRecord_selectOne" parameterType="int" resultType="prdto">
+<!--  	 <select id="admin_playerRecord_selectOne" parameterType="int" resultType="prdto">
  		SELECT pr.player_code, pr.gameno, p.player_name pr.player_pts, pr.player_min, pr.player_fg, 
  			   pr.player_three, pr.player_ft, pr.player_reb, pr.player_ast, pr.player_stl, pr.player_bs, pr.player_to
 		FROM playerrecord pr , player p
 		WHERE pr.player_code = (SELECT player_code FROM player WHERE player_backno = 10)
-
+ 	</select> -->
+ 	
+ 	<update id="playerRecord_updateOne" parameterType="prdto">
+ 		UPDATE playerrecord
+ 		SET player_pts = #{player_pts}, player_min = #{player_min} ,  player_fg = #{player_fg}, 
+ 			player_three = #{player_three}, player_ft = #{player_ft}, player_reb =#{player_reb},
+ 			player_ast = #{player_ast}, player_stl = #{player_stl}, player_bs = #{player_bs}, player_to = #{player_to}
+ 		WHERE player_code = #{player_code}
+ 		AND gameno = #{gameno}
+ 	</update>
+ 	
+ 	
+ 	
+ 	
+ 	<!-- 팀기록   -->
+ 	<select id="teamRecord_selectOne" parameterType="int" resultType="trdto">
+ 		SELECT * FROM teamrecord
+ 		WHERE teamno = #{teamno}
  	</select>
+ 	
+ 	<update id="teamRecord_updateOne" parameterType="trdto">
+ 		UPDATE teamrecord
+ 		SET teamno = #{teamno}, winteam = #{winteam},loseteam = #{loseteam},
+ 			team_pts = #{team_pts}, team_reb = #{team_reb}, team_ast = #{team_ast}, 
+ 			team_stl = #{team_stl}, team_bs = #{team_bs}, team_to = #{team_to}   
+ 		WHERE team_recordno = #{team_recordno}
+ 		AND gameno = #{gameno}
+ 	</update>
  	
  	
  	<!-- 팀기록실 -->

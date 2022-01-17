@@ -11,7 +11,7 @@
     <jsp:include page="./admin_menu.jsp" />
     
     
-    <div id="recordingroom">
+    <div id="recordingroom" style="margin-top:50px;">
         <div id="recordroom-tabmenu">
             <span href="" rel="player_recordroom" class="">선수 기록실</span>
             &nbsp; | &nbsp;
@@ -50,18 +50,19 @@
                 			<td>${list.team_bs}</td>
                 			<td>${list.team_to}</td>
                 			<td>
-                				 <span class="btn"><a href="">수정</a></span>
+                				 <span class="btn"><a href="admin_recordingroomModify2?teamno=${list.teamno}&team_name=${team_name[i.index]}">수정</a></span>
             					 <span class="btn"><a href="">삭제</a></span>
                 			</td>
                 		</tr>
                 	</c:forEach>
                 </table>
             </div>
-
+			
             <div id="player_recordroom">
                 <table class="player_recordroom-table">
                     <tr>
                         <th>선택</th>
+                        <th>선수코드</th>
                         <th>순위</th>
                         <th>선수명</th>
                         <th class="sortMenu">득점</th>
@@ -80,6 +81,7 @@
                     <c:forEach var="list" varStatus="i" items="${playerRecordlist}">
 	                    <tr>
 	                    	<td><input type="checkbox" name="RowCheck" id=""></th>
+                    		<th>${list.player_code}</th>
                     		<th>${i.count}</th>
 	                        <td>${player_name[i.index]}</td>
 	                        <td>${list.player_pts}</td>
@@ -93,7 +95,8 @@
 	                        <td>${list.player_bs}</td>
 	                        <td>${list.player_to}</td>
 	                        <td>
-                				 <span class="btn"><a href="admin_recordingroomModify?player_code=10">수정</a></span>
+                				 <span class="btn"><a href="admin_recordingroomModify?player_code=${list.player_code}&player_name=${player_name[i.index]}">수정</a></span>
+            					
             					 <span class="btn"><a href="">삭제</a></span>
                 			</td>
 	                    </tr>

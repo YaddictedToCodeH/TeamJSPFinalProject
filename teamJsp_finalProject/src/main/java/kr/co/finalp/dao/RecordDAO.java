@@ -15,4 +15,8 @@ public interface RecordDAO {
 	
 	// admin_recording
 	public List<PlayerRecordDTO> selectList(int player_code);
+	public void updateOne(PlayerRecordDTO dto);
+	
+	public List<TeamRecordDTO> selectList2(int teamno);
+	public void updateTeam(TeamRecordDTO dto);
 }

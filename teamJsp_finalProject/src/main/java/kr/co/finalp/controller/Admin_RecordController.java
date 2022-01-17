@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -87,11 +89,44 @@ public class Admin_RecordController {
 	}
 	
 	@GetMapping("/admin_recordingroomModify")
-	public String update(@RequestParam("player_code")int player_code, Model model) {
+	public String updatePlayerRecord(@RequestParam("player_code")int player_code, 
+			@RequestParam("player_name")String player_name,Model model) {
 		List<PlayerRecordDTO> prcd = dao.selectList(player_code);
 		model.addAttribute("prcd", prcd);
 		
+		String pn = dao.selectPlayerName(player_code);
+		model.addAttribute("pn", pn);
+			
 		return "/admin_recordingroomModifyForm";
+	}
+	
+	@GetMapping("/admin_recordingroomModify2")
+	public String updateTeamRecord(@RequestParam("teamno")int teamno, 
+			@RequestParam("team_name")String team_name, Model model) {
+		
+		List<TeamRecordDTO> trcd = dao.selectList2(teamno);
+		model.addAttribute("trcd", trcd);
+		
+		String tn = dao.selectTeamName(teamno);
+		model.addAttribute("tn", tn);
+		
+
+			
+		return "/admin_recordingroomModifyForm";
+	}
+	
+	@PostMapping("/admin_recordingroomModify")
+	public String updatePlayerRecord2(@RequestParam("gameno")int gameno, 
+			@ModelAttribute("dto")PlayerRecordDTO dto) {
+		dao.updateOne(dto);
+		return "redirect:/admin_recordingroom";
+	}
+	
+	@PostMapping("/admin_recordingroomModify2")
+	public String updateTeamRecord2(@RequestParam("gameno")int gameno,
+			@ModelAttribute("dto")TeamRecordDTO dto) {
+		dao.updateTeam(dto);
+		return "redirect:/admin_recordingroom";
 	}
 
 }

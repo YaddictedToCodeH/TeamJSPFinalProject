@@ -23,8 +23,10 @@
             <div id="team_recordroom">
                 <table class="team_recordroom-table">
                     <tr>
-                        <th>순위</th>
-                        <th>팀</th>
+                        <th>팀번호</th>
+                        <th>팀기록</th>
+                        <th>팀명</th>
+                        <th>게임no</th>   
                         <th>승</th>
                         <th>패</th>
                         <th>득점</th>
@@ -33,20 +35,27 @@
                         <th>스틸</th>
                         <th>블록</th>
                         <th>턴오버</th>
+                        <th>기능</th>
                     </tr>
-                	<c:forEach var="list" varStatus="i" items="${teamRecordlist}">
-                		<tr>
-                			<th> <input type="text" name="count" value="${i.count}"></th>
-                			<td><input type="text" name="team" value="${team_name[i.index]}"></td>
-                			<td><input type="text" name="winteam" value="${list.winteam}"></td>
-                			<td><input type="text" name="loseteam" value="${list.loseteam}"></td>
-                			<td><input type="text" name="pts" value="${list.team_pts}"></td>
-                			<td><input type="text" name="reb" value="${list.team_reb}"></td>
-                			<td><input type="text" name="ast" value="${list.team_ast}"></td>
-                			<td><input type="text" name="stl" value=""${list.team_stl}></td>
-                			<td><input type="text" name="bs" value="${list.team_bs}"></td>
-                			<td><input type="text" name="to" value="${list.team_to}"></td>
-                		</tr>
+                	<c:forEach var="list" varStatus="i" items="${trcd}">
+                		<form action="admin_recordingroomModify2" method="post">
+                		  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	                		<tr>
+	                			<th><input type="text" name="teamno" value="${list.teamno}"></td>
+	                			<th><input type="text" name="team_recordno" value="${list.team_recordno}"></td>
+	                			<th><input type="text" name="" value="${tn}"></td>
+	                			<th><input type="text" name="gameno" value="${list.gameno}"></td>
+	                			<td><input type="text" name="winteam" value="${list.winteam}"></td>
+	                			<td><input type="text" name="loseteam" value="${list.loseteam}"></td>
+	                			<td><input type="text" name="team_pts" value="${list.team_pts}"></td>
+	                			<td><input type="text" name="team_reb" value="${list.team_reb}"></td>
+	                			<td><input type="text" name="team_ast" value="${list.team_ast}"></td>
+	                			<td><input type="text" name="team_stl" value="${list.team_stl}"></td>
+	                			<td><input type="text" name="team_bs" value="${list.team_bs}"></td>
+	                			<td><input type="text" name="team_to" value="${list.team_to}"></td>
+	                			<td><button type="submit">수정</button></td>
+	                		</tr>
+                		</form>
                 	</c:forEach>
                 </table>
             </div>
@@ -54,9 +63,9 @@
             <div id="player_recordroom">
                 <table class="player_recordroom-table">
                     <tr>
-                        <th>게임no</th>
-                        <th>순위</th>
                         <th>선수명</th>
+                        <th>선수코드</th>
+                        <th>게임no</th>
                         <th class="sortMenu">득점</th>
                         <th class="sortMenu">평균 출전시간</th>
                         <th class="sortMenu">필드골</th>
@@ -71,21 +80,25 @@
                     </tr>
                     
                     <c:forEach var="list" varStatus="i" items="${prcd}">
-	                    <tr>
-                    		<th><input type="text" name="" value="">${list.gameno}</th>
-                    		<th><input type="text" name="" value="">${i.count}</th>
-	                        <td><input type="text" name="" value="">${player_name[i.index]}</td>
-	                        <td><input type="text" name="" value="">${list.player_pts}</td>
-	                        <td><input type="text" name="" value="">${list.player_min}</td>
-	                        <td><input type="text" name="" value="">${list.player_fg}</td>
-	                        <td><input type="text" name="" value="">${list.player_three}</td>
-	                        <td><input type="text" name="" value="">${list.player_ft}</td>
-	                        <td><input type="text" name="" value="">${list.player_reb}</td>
-	                        <td><input type="text" name="" value="">${list.player_ast}</td>
-	                        <td><input type="text" name="" value="">${list.player_stl}</td>
-	                        <td><input type="text" name="" value="">${list.player_bs}</td>
-	                        <td><input type="text" name="" value="">${list.player_to}</td>
-	                    </tr>
+	                    <form action="admin_recordingroomModify" method="post">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		                    <tr>
+		                        <th><input type="text" name="" value="${pn}"></td>
+	                    		<th><input type="text" name="player_code" value="${list.player_code}"></th>
+	                    		<th><input type="text" name="gameno" value="${list.gameno}"></th>
+		                        <td><input type="text" name="player_pts" value="${list.player_pts}"></td>
+		                        <td><input type="text" name="player_min" value="${list.player_min}"></td>
+		                        <td><input type="text" name="player_fg" value="${list.player_fg}"></td>
+		                        <td><input type="text" name="player_three" value="${list.player_three}"></td>
+		                        <td><input type="text" name="player_ft" value="${list.player_ft}"></td>
+		                        <td><input type="text" name="player_reb" value="${list.player_reb}"></td>
+		                        <td><input type="text" name="player_ast" value="${list.player_ast}"></td>
+		                        <td><input type="text" name="player_stl" value="${list.player_stl}"></td>
+		                        <td><input type="text" name="player_bs" value="${list.player_bs}"></td>
+		                        <td><input type="text" name="player_to" value="${list.player_to}"></td>
+		                        <td><button type="submit">수정</button></td>
+		                    </tr>
+	                    </form>
                     </c:forEach>
                     
                 </table>

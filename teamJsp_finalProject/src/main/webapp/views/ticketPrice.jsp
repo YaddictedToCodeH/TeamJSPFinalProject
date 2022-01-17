@@ -6,64 +6,7 @@
 <meta charset="UTF-8">
 <title>티켓 가격</title>
 </head>
-<style>
-    *{
-        margin: 0;
-		padding: 0;
-		text-decoration: none;
-		margin: 0px auto;
-    }
-
-    .container{
-        width: 1000px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .title{
-        padding: 30px;
-    }
-
-    .seating{
-        border: 1px solid black;
-        padding: 10px;
-        width:580px;
-    }
-
-    body > div.container > div.seat > div.seatimg > img{
-        width: 600px;
-    }
-
-    .pricetitle{
-        border: 1px solid black;
-        padding: 10px;
-    }
-
-
-    .pricedata{
-        margin-top: 10px;
-        border-collapse: collapse;
-    }
-
-    .pricedata> tr, th, td{
-        border: 1px solid gray;
-        padding: 10px;
-    }
-
-    .notice{
-        margin-top: 30px;
-        margin-bottom: 30px;
-        width:610px; 
-    }
-
-    .noticetitle{
-        border: 1px solid black;
-        padding: 10px;
-    }
-
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ticketPrice.css" />
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -71,12 +14,12 @@
         <div class="title"><h1>티켓가격</h1></div>
         
         <div class="seat">
-            <div class="seating">좌석배치도</div>
-            <div class="seatimg"><img src="./resources/images/kt_ticket.png" alt=""></div>
+            <div class="seating"><img src="${pageContext.request.contextPath}/resources/images/blacklogo_sm.png" alt="" class="ktlogo">좌석배치도</div>
+            <div class="seatimg"><img src="${pageContext.request.contextPath}/resources/images/kt_ticket.png" alt=""></div>
         </div>
 
         <div class="price">
-            <div class="pricetitle">21-22 티켓가격&할인정책</div>
+            <div class="pricetitle"><img src="${pageContext.request.contextPath}/resources/images/blacklogo_sm.png" alt="" class="ktlogo">21-22 티켓가격&할인정책</div>
             <table class="pricedata">
                 <tr>
                     <th>구분</th>
@@ -110,7 +53,7 @@
         </div>
 
         <div class="notice">
-            <div class="noticetitle">안내사항&취소 환불정책</div>
+            <div class="noticetitle"><img src="${pageContext.request.contextPath}/resources/images/blacklogo_sm.png" alt="" class="ktlogo">안내사항&취소 환불정책</div>
             <div class="policy">
          
                     <li>거리두기 단계에 따라, 관중 수용률 조정 <br>(1단계 -50%, 2단계 -30%, 3단계-20%, 4단계 무관중</li>
