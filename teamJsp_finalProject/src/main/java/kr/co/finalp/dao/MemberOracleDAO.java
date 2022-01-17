@@ -45,6 +45,17 @@ public class MemberOracleDAO implements MemberDAO{
 	public void insertMember(MemberDTO dto) {
 		ss.insert("kr.co.finalp.insertMember", dto);
 	}
+
+	@Override
+	public MemberDTO imformation_id(String id) {
+		return ss.selectOne("kr.co.finalp.impormation_id",id);
+	}
+
+
+
+
+
+
 	
 	
 	

@@ -43,7 +43,7 @@
 /*메인크기*/
 .sw-introduce {
 	border: solid 1px black;
-	height: 1800px;
+	height: 1200px;
 	width: 1200px;
 	margin: 0 auto;
 	text-align: center;
@@ -111,8 +111,8 @@ ul.tabs2 li.current {
 <div class="sw-introduce">
 	<h1>마이페이지</h1>
 		<ul class="tabs1">
-			<li class="btn btn-secondary btn-lg" data-tab="tab-1"><sec:authentication property="name"/>님</li>
-			<li class="btn btn-secondary btn-lg" data-tab="tab-2">문의내역</li>
+			<li class="btn btn-secondary btn-lg" data-tab="tab-1"><sec:authentication property="name"/>님의 문의 내역</li>
+			<li class="btn btn-secondary btn-lg" data-tab="tab-2">전체 문의 내역</li>
 			<li class="btn btn-secondary btn-lg" data-tab="tab-3">포인트</li>
 		</ul>
 		<ul class="tabs2">	
@@ -133,12 +133,13 @@ ul.tabs2 li.current {
 				
 				<c:forEach var="dto" items="${list }">
 					<tr>
-						<th>${dto.bno }</th>
-						<th>${dto.writer }</th>
-						<th><a href="detail?bno=${dto.bno}">${dto.title }</a></th>
-						<th>${dto.regdate }</th>
+						<th>${dto.inqno }</th>
+						<th>${dto.id }</th>
+						<th><a href="detail?inqno=${dto.inqno}">${dto.inq_title }</a></th>
+						<th>${dto.inq_date }</th>
 					</tr>
 				</c:forEach>
+
 				<tr>
 					<td colspan="4">
 					<nav aria-label="Page navigation example">
@@ -176,10 +177,10 @@ ul.tabs2 li.current {
 				
 				<c:forEach var="dto" items="${list }">
 					<tr>
-						<th>${dto.bno }</th>
-						<th>${dto.writer }</th>
-						<th><a href="detail?bno=${dto.bno}">${dto.title }</a></th>
-						<th>${dto.regdate }</th>
+						<th>${dto.inqno }</th>
+						<th>${dto.id }</th>
+						<th>${dto.inq_title }</a></th>
+						<th>${dto.inq_date }</th>
 					</tr>
 				</c:forEach>
 				<tr>
@@ -204,49 +205,50 @@ ul.tabs2 li.current {
 		<!-- 사용자 포인트/쿠폰 화면 -->
 		<!------------------------------------------------------------------------------------------------------------------------------------->
 		<div id="tab-3" class="tab-content">
-			<h1>포인트 화면입니다.</h1>
+			<table class="table table-striped">
+			<h1>문의 내역 작성</h1>
+			<tr>
+				<th>사용자 아이디</th>
+				<td><sec:authentication property="name"/></td>
+				<th>이름</th>
+				<td>${dto.mem_name }</td>
+			</tr>
+			<tr>
+				<th>사용자 전화번호</th>
+				<td>${dto.mp }</td>
+				<th>사용자 포인트</th>
+				<td>${dto.point }</td>
+			</tr>
+			</table>
 		</div>
 		<!------------------------------------------------------------------------------------------------------------------------------------->
 		<!-- 사용자 개인정보관리 화면 -->
 		<div id="tab-4" class="tab-content">
-			<form action="modify" method="post">
-				<table class="table table-striped">
-					<input type="hidden" name="status" value=${dto.status } />
-					<input type="hidden" name="ip" value=${dto.ip } />
-					<input type="hidden" id="writer" name="${_csrf.parameterName}" value="${_csrf.token}" />
-				<tr>
-					<th>아이디(이메일 주소 형식)</th>
-					<td><input type="text" name="writer" id="" value="<sec:authentication property="name"/>" readonly/></td>
-				</tr>
-			
-				<tr>
-					<th>이름</th>
-					<td><input type="text" name="name" id="" value="오원준" readonly/></td>
-				</tr>
+			<table class="table table-striped">
+		<h1>문의 내역 작성</h1>
+		<tr>
+			<th>사용자 아이디</th>
+			<td><sec:authentication property="name"/></td>
+			<th>사용자 비번</th>
+			<td>${dto.pwd }</td>
+		</tr>
+		
+		<tr>
+			<th>이름</th>
+			<td>${dto.mem_name }</td>
+			<th>사용자 성별</th>
+			<td>${dto.gender }</td>
+		</tr>
+		<tr>
+			<th>사용자 전화번호</th>
+			<td>${dto.mp }</td>
+			<th>사용자 메일</th>
+			<td>${dto.mail }</td>
+		</tr>
 
-				<tr>	
-					<th>생년월일</th>
-					<td><input type="text" name="hiredate" id="" value="1999.10.13" readonly/></td>
-				</tr>
-
-				<tr>
-					<th>성별</th>
-					<td><input type="text" name="gender" id="" value="남자" readonly/></td>
-				</tr>
-
-				<tr>
-					<th>휴대전화 번호</th>
-					<td><input type="text" name="number" id="" value="010-1234-1234" readonly/></td>
-				</tr>
-			
-				<tr>
-					<td colspan="4">
-					<a href="#" class="btn btn-outline-primary">비밀번호 변경하러 가기</a>
-					</td>
-				</tr>
-				</table>
-			</form>
+	</table>
 		</div>
+		
 		<!-- 티켓 예매 내역 화면 -->
 		<!------------------------------------------------------------------------------------------------------------------------------------->
 		<div id="tab-5" class="tab-content">

@@ -591,6 +591,12 @@
  		WHERE id = #{id}
  	</select>
  	
+ 	  <select id="impormation_id" parameterType="mdto" resultType="String">
+ 		SELECT id, pwd, mem_name, mem_birth, gender, mp, mail, mailOk, mem_grade, enabled, mem_point, addrs, detail_addrs, amount
+ 		FROM member
+ 		WHERE id = #{id}
+ 	</select>
+ 	
  	<!-- 메일 중복확인 -->
  	<select id="mailDoubleCheck" parameterType="String" resultType="String">
  		SELECT mail
@@ -679,36 +685,40 @@
   		DELETE recommend
   		WHERE recomno = #{recomno}
   	</delete>
-
- 	<!-- 마이페이지 문의사항 조회 -->
- 	<select id="inquire_selectAll" parameterType="se" resultType="idto">
+  	
+  	
+	<!-- 마이페이지 문의사항 조회 -->
+ 	<select id="mypage_selectById" parameterType="se" resultType="idto">
 	SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
 	FROM(SELECT ROWNUM rn, inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
-    	FROM(SELECT inqno,id,inq_title, TO_CHAR(regdate, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
-       		 FROM inquire
+    	FROM(SELECT inqno,id,inq_title, TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
+       		 FROM inquire 
+       		 WHERE id = #{id}
         	 ORDER BY inqno desc)
     	WHERE ROWNUM &lt; #{endNo})
 	WHERE rn &gt; #{startNo}
 	</select>
+	
   
-  	<insert id="inquire_insertOne" parameterType="idto">
-  		INSERT INTO inquire
-  		VALUES(inquire_inqno_seq.nextval, #{id}, #{inq_title}, inq_date, #{inq_contents}, 0, null)
+  	<insert id="mypage_insertOne" parameterType="idto">
+  		INSERT INTO inquire 
+  		VALUES(INQUIRE_INO_SEQ.nextval, #{id}, #{inq_title}, sysdate, #{inq_contents},0,null)
   	</insert>
   	
  	<!-- 마이페이지 문의사항 자세히보기-->
-  	<select id="inquire_selectOne" parameterType="int" resultType="idto">
-  		SELECT *
+  	<select id="mypage_selectOne" parameterType="int" resultType="idto">
+  		SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
   		FROM inquire
   		WHERE inqno = #{inqno}
   	</select>
   	
  	<!-- 마이페이지 문의사항 가져오기-->
-  	<select id="inquire_getTotal" resultType="int">
+  	<select id="mypage_getTotal" resultType="int">
   		SELECT COUNT(*)
   		FROM inquire
   	</select>
-  	
+
+ 	
  	<!-- ticketing 홈경기 -->
  	<select id="selectHomeGames" resultType="schedto">
  		SELECT g.game_date game_date, t.team_logo team_logo, t.team_name team_name, t2.team_name team_name2, t2.team_logo team_logo2, g.game_arena game_arena, g.game_date2 game_date2
@@ -737,3 +747,4 @@
  	</select>
 
 </mapper>
+
