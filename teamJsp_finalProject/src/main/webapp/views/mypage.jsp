@@ -3,9 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="../resources/css/main.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,34 +64,15 @@ ul.tabs1 li {
 	cursor: pointer;
 	width:300px;
 	height: 100px;
+	background: #DE1313;
+	border-radius: 25px;
+	margin: 35px 0px 35px 35px;
 }
 /*누르는 색*/
 ul.tabs1 li.current {
 	color: #222;
 }
 
-/*탭 사이즈*/
-ul.tabs2 {
-	margin: 80px 0px 80px 0px;
-	padding: 0px;
-	list-style: none;
-	
-}
-
-/*탭 버튼 설정*/
-ul.tabs2 li {
-	border-radius: 25px;
-	display: inline-block;
-	color: white;
-	padding: 10px 15px;
-	cursor: pointer;
-	width:300px;
-	height: 100px;
-}
-/*누르는 색*/
-ul.tabs2 li.current {
-	color: #222;
-}
 /* 이거없으면 탭 기능상실 */
 .tab-content {
 	display: none;
@@ -104,39 +82,75 @@ ul.tabs2 li.current {
 .tab-content.current {
 	display: inherit;
 }
+.mypage_class{
+	width: 970px;
+	height: 100px;
+	background: white;
+	border: solid 1px white;
+	border-radius: 15px;
+	position: relative;
+	left: 115px;
+	margin: 30px 0px 30px 0px;
+}
+.minilogo{
+	width: 70px;
+	height: 60px;
+}
+.user_table{
+	width: 1180px;
+	height: 480px;
+	margin: 0 auto;
+	font-weight: bolder;
+	border-spacing: 14px;
+}
 
+
+.user_table th{
+	background: white;
+	border: solid 4px black;
+	border-radius: 15px;
+	margin: 25px 25px;
+	color: white;
+}
+
+a {
+	text-decoration: none;
+	color: #3066D4;
+}
 </style>
 </head>
 <body>
 <div class="sw-introduce">
-	<h1>마이페이지</h1>
+		<div class="mypage_class">
+			<h1>
+				<img class="minilogo" src="../resources/images/kt-emblem-img.png" />마이페이지
+			</h1>
+		</div>
 		<ul class="tabs1">
-			<li class="btn btn-secondary btn-lg" data-tab="tab-1"><sec:authentication property="name"/>님의 문의 내역</li>
-			<li class="btn btn-secondary btn-lg" data-tab="tab-2">전체 문의 내역</li>
-			<li class="btn btn-secondary btn-lg" data-tab="tab-3">포인트</li>
-		</ul>
-		<ul class="tabs2">	
-				<li class="btn btn-secondary btn-lg" data-tab="tab-4">개인정보관리</li>
-				<li class="btn btn-secondary btn-lg" data-tab="tab-5">티켓 예매내역</li>
+			<li data-tab="tab-1"><h1><sec:authentication property="name"/>님의 문의 내역</h1></li>
+			<li data-tab="tab-2"><h1>문의 내역 작성</h1></li>
+			<li data-tab="tab-3"><h1>포인트</h1></li>
+			<li data-tab="tab-4"><h1>개인정보관리</h1></li>
+			<li data-tab="tab-5"><h1>티켓 예매내역</h1></li>
 		</ul>
 
 		<!-- 사용자 첫화면 -->
 		<!------------------------------------------------------------------------------------------------------------------------------------->		
 		<div id="tab-1" class="tab-content current">
-			<table class="table table-striped">
+			<table class="user_table">
 				<tr>
-					<th>게시물번호</th>
-					<th>작성자</th>
-					<th>제목</th>
-					<th>작성일시</th>
+					<th style="background:black">게시물번호</th>
+					<th style="background:black">작성자</th>
+					<th style="background:black">제목</th>
+					<th style="background:black">작성일시</th>
 				</tr>
 				
 				<c:forEach var="dto" items="${list }">
 					<tr>
-						<th>${dto.inqno }</th>
-						<th>${dto.id }</th>
-						<th><a href="detail?inqno=${dto.inqno}">${dto.inq_title }</a></th>
-						<th>${dto.inq_date }</th>
+						<th style="color:black">${dto.inqno }</th>
+						<th style="color:black">${dto.id }</th>
+						<th><a href="detail?inqno=${dto.inqno}" style="text-decoration:none">${dto.inq_title }</a></th>
+						<th style="color:black">${dto.inq_date }</th>
 					</tr>
 				</c:forEach>
 
@@ -145,13 +159,13 @@ ul.tabs2 li.current {
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<c:if test="${map.prev}">
-								<li class="page-item"><a class="page-link" href="mypage?currentPage=${map.currentPage-5}">Previous</a></li>
+								<li><button><a href="mypage?currentPage=${map.currentPage-5}">Previous</a></button></li>
 							</c:if>
 							<c:forEach var="i" begin="${map.startPageNo }" end="${map.endPageNo }">
-								<li class="page-item"><a class="page-link" href="mypage?currentPage=${i}">${i}</a></li>
+								<li><button><a href="mypage?currentPage=${i}">${i}</a></button></li>
 							</c:forEach>
 							<c:if test="${map.next}">
-								<li class="page-item"><a class="page-link" href="mypage?currentPage=${map.currentPage+5}">Next</a></li>
+								<li><button><a href="mypage?currentPage=${map.currentPage+5}">Next</a></button></li>
 							</c:if>
 						</ul>
 					</nav>		  			
@@ -162,10 +176,10 @@ ul.tabs2 li.current {
 		<!-- 사용자 문의내역 화면 -->
 		<!------------------------------------------------------------------------------------------------------------------------------------->		
 		<div id="tab-2" class="tab-content">
-				<table class="table table-striped">
+				<table>
 				<tr>
 					<td colspan="4">
-						<a href="write" class="btn btn-outline-primary">문의 내역 작성하러 가기</a>
+						<button><a href="write">문의 내역 작성하러 가기</a></button>
 					</td>
 				</tr>
 				<tr>
@@ -179,7 +193,7 @@ ul.tabs2 li.current {
 					<tr>
 						<th>${dto.inqno }</th>
 						<th>${dto.id }</th>
-						<th>${dto.inq_title }</a></th>
+						<th>${dto.inq_title }</th>
 						<th>${dto.inq_date }</th>
 					</tr>
 				</c:forEach>
@@ -188,13 +202,13 @@ ul.tabs2 li.current {
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<c:if test="${map.prev}">
-								<li class="page-item"><a class="page-link" href="mypage?currentPage=${map.currentPage-5}">Previous</a></li>
+								<li><a href="mypage?currentPage=${map.currentPage-5}">Previous</a></li>
 							</c:if>
 							<c:forEach var="i" begin="${map.startPageNo }" end="${map.endPageNo }">
-								<li class="page-item"><a class="page-link" href="mypage?currentPage=${i}">${i}</a></li>
+								<li><a href="mypage?currentPage=${i}">${i}</a></li>
 							</c:forEach>
 							<c:if test="${map.next}">
-								<li class="page-item"><a class="page-link" href="mypage?currentPage=${map.currentPage+5}">Next</a></li>
+								<li><a href="mypage?currentPage=${map.currentPage+5}">Next</a></li>
 							</c:if>
 						</ul>
 					</nav>		  			
@@ -205,48 +219,16 @@ ul.tabs2 li.current {
 		<!-- 사용자 포인트/쿠폰 화면 -->
 		<!------------------------------------------------------------------------------------------------------------------------------------->
 		<div id="tab-3" class="tab-content">
-			<table class="table table-striped">
-			<h1>문의 내역 작성</h1>
-			<tr>
-				<th>사용자 아이디</th>
-				<td><sec:authentication property="name"/></td>
-				<th>이름</th>
-				<td>${dto.mem_name }</td>
-			</tr>
-			<tr>
-				<th>사용자 전화번호</th>
-				<td>${dto.mp }</td>
-				<th>사용자 포인트</th>
-				<td>${dto.point }</td>
-			</tr>
-			</table>
+			<h1>포인트를 확인하시겠습니까?</h1>
+			<button><a href="point?id=${dto.id}">개인정보 확인하러 가기</a></button>
 		</div>
 		<!------------------------------------------------------------------------------------------------------------------------------------->
 		<!-- 사용자 개인정보관리 화면 -->
 		<div id="tab-4" class="tab-content">
-			<table class="table table-striped">
-		<h1>문의 내역 작성</h1>
-		<tr>
-			<th>사용자 아이디</th>
-			<td><sec:authentication property="name"/></td>
-			<th>사용자 비번</th>
-			<td>${dto.pwd }</td>
-		</tr>
-		
-		<tr>
-			<th>이름</th>
-			<td>${dto.mem_name }</td>
-			<th>사용자 성별</th>
-			<td>${dto.gender }</td>
-		</tr>
-		<tr>
-			<th>사용자 전화번호</th>
-			<td>${dto.mp }</td>
-			<th>사용자 메일</th>
-			<td>${dto.mail }</td>
-		</tr>
-
-	</table>
+			<h1>개인정보를 확인하시겠습니까?</h1>
+			<button><a href="imformation?id=${dto.id}">개인정보 확인하러 가기</a></button>
+			<h1>개인정보를 수정하시겠습니까?</h1>
+			<button><a href="modifyForm?id=${dto.id}">개인정보 확인하러 가기</a></button>
 		</div>
 		
 		<!-- 티켓 예매 내역 화면 -->

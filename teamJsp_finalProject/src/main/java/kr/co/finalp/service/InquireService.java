@@ -10,6 +10,7 @@ public interface InquireService {
 	public void mypage_write(InquireDTO dto);
 	public InquireDTO mypage_readOne(int inqno);
 	public int mypage_getTotal();
-
+	public MemberDTO mypage_impormation(String id);
+	public void mypage_modifyOne(MemberDTO dto);
 
 }

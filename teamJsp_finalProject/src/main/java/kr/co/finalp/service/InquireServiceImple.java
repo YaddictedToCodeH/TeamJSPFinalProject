@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import kr.co.finalp.dao.InquireDAO;
+import kr.co.finalp.dao.MemberDAO;
 import kr.co.finalp.dto.InquireDTO;
+import kr.co.finalp.dto.MemberDTO;
 
 @Service
 @Repository
@@ -15,7 +17,9 @@ public class InquireServiceImple implements InquireService{
 
 	@Autowired
 	InquireDAO inqire_dao;
-
+	
+	@Autowired
+	MemberDAO member_dao;
 	
 	public void setDao(InquireDAO dao) {
 		this.inqire_dao = dao;
@@ -44,6 +48,19 @@ public class InquireServiceImple implements InquireService{
 	public int mypage_getTotal() {
 		return inqire_dao.inquire_getTotal();
 	}
+
+	@Override
+	public MemberDTO mypage_impormation(String id) {
+		MemberDTO dto = member_dao.mypage_id(id);
+		return dto;
+	}
+
+	@Override
+	public void mypage_modifyOne(MemberDTO dto) {
+		member_dao.modify(dto);
+	}
+
+
 
 
 
