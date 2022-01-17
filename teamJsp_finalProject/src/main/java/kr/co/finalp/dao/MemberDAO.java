@@ -16,4 +16,6 @@ public interface MemberDAO {
 	public String mailDoubleCheck(String mail); 
 	// 회원가입
 	public void insertMember(MemberDTO dto);
+
+	public MemberDTO imformation_id(String id);
 }

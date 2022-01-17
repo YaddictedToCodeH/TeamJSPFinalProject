@@ -3,9 +3,10 @@ package kr.co.finalp.dao;
 import java.util.List;
 
 import kr.co.finalp.dto.InquireDTO;
+import kr.co.finalp.dto.MemberDTO;
 
 public interface InquireDAO {
-	public List<InquireDTO> inquire_selectAll(int startNo, int endNo);
+	public List<InquireDTO> inquire_selectAll(int startNo, int endNo, String id);
 	public void inquire_insertOne(InquireDTO dto);
 	public InquireDTO inquire_selectOne(int inqno);
 	public void inquire_modify(InquireDTO dto);
