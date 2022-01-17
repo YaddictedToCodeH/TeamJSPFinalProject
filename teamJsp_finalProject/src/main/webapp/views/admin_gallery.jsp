@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/adimin_gallery.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin_gallery.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function() {
@@ -47,7 +47,6 @@
              <a class="tabActive2" href="gallery?currentPage=1&galleryCategoryNo=5">기획영상</a> <span>&emsp;|&emsp;</span>
              <a class="tabActive3" href="gallery?currentPage=1&galleryCategoryNo=6">기타영상</a>            
 		</div>
-		
 		<form action="deleteGallery" onsubmit="return confirm('정말 삭제하시겠습니까?')">
 		<table>
 			<tr>

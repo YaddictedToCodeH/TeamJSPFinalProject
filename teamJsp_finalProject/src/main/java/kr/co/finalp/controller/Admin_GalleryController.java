@@ -94,13 +94,11 @@ public class Admin_GalleryController {
 	@RequestMapping("/admin/deleteGallery")
 	public String deleteGallery(HttpServletRequest req) {
 		String[] gallerynoList = req.getParameterValues("galleryno");
-		
-		
+				
 		for(int i = 0; i < gallerynoList.length; i++) {
 			dao.galleryDelete(Integer.parseInt(gallerynoList[i]));
 			dao.filesDelete(Integer.parseInt(gallerynoList[i]));
-		}
-		
+		}		
 		return "redirect:/admin/gallery";
 	}
 	

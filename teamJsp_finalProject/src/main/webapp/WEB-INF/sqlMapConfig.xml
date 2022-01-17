@@ -9,6 +9,7 @@
   		<typeAlias type="kr.co.finalp.dto.GalleryDTO" alias="gdto"/>
   		<typeAlias type="kr.co.finalp.dto.GalleryStartEnd" alias="gallStartEnd"/>
   		<typeAlias type="kr.co.finalp.dto.ScheduleDTO" alias="schedto"/>
+  		<typeAlias type="kr.co.finalp.dto.ScheduleMonth" alias="sheduleMonth"/>
   		<typeAlias type="kr.co.finalp.dto.RankDTO" alias="rankdto"/>
   		<typeAlias type="kr.co.finalp.dto.PlayerRankDTO" alias="playerRankdto"/>
   		

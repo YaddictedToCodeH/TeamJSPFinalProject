@@ -38,6 +38,36 @@ public class ScheduleOracleDao implements ScheduleDAO{
 	public List<ScheduleDTO> selectAwayGames() {
 		return ss.selectList("kr.co.finalp.selectAwayGames");
 	}
+
+	@Override
+	public int getTotal(ScheduleMonth month) {
+		return ss.selectOne("kr.co.finalp.schedule_getTotl",month);
+	}
+
+	@Override
+	public List<ScheduleDTO> schedulePaging(ScheduleMonth month) {
+		return  ss.selectList("kr.co.finalp.schedule_paging", month);
+	}
+
+	@Override
+	public void insertSchedule(ScheduleDTO dto) {
+		ss.insert("kr.co.finalp.admin_schedule_insert", dto);
+	}
+
+	@Override
+	public void updateSchedule(ScheduleDTO dto) {
+		ss.update("kr.co.finalp.admin_schedule_update", dto);
+	}
+
+	@Override
+	public void deleteSchedule(int gameno) {
+		ss.delete("kr.co.finalp.admin_schedule_delete", gameno);
+	}
+
+	@Override
+	public ScheduleDTO selectOne(int gameno) {
+		return ss.selectOne("kr.co.finalp.scheduleSelectOne", gameno);
+	}
 	
 	
 

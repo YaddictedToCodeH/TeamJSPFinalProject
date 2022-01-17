@@ -58,12 +58,7 @@
 			<c:forEach var="list" items="${list}">
 				<tr>			
 					<th class="rowspanClass">
-					<c:if test="${list.gameno lt 134 }">
 						${list.game_date}
-					</c:if>
-					<c:if test="${list.gameno gt 133}">
-						22-${list.game_date}
-					</c:if>
 					</th>
 					
 					
@@ -91,9 +86,12 @@
 					</td>
 				</tr>
 			</c:forEach>
+				<tr>
+					<td colspan="4"><c:if test="${list[0].game_date eq null}"><h2>해당 날짜 경기가 없습니다.</h2></c:if></td>
+				</tr>
 		</tbody>
 	</table>
-
+	
 </div>
 
 <jsp:include page="./footer.jsp" />
