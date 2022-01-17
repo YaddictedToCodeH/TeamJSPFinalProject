@@ -9,5 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ScheduleMonth {
 	private int select_month;
+	private int startNo;
+	private int endNo;
 	private int gameno;
 }

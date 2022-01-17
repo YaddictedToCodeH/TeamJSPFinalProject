@@ -27,10 +27,10 @@ public class ScheduleController {
 		this.dao = dao;
 	}
 
-	@RequestMapping("/schedule")
+	@RequestMapping(value = {"/schedule", "/member/schedule"})
 	public ModelAndView schedule(Model model,
-								 @RequestParam(name="gameno", defaultValue = "133")int gameno,
-								 @RequestParam(name = "select_month", defaultValue = "12")int select_month) {			
+								 @RequestParam(name="gameno", defaultValue = "134")int gameno,
+								 @RequestParam(name = "select_month", defaultValue = "1")int select_month) {			
 		ScheduleMonth month = new ScheduleMonth();
 		month.setGameno(gameno);
 		month.setSelect_month(select_month);

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>수원 KT 소닉붐</title>
-<link rel="stylesheet" href="./resources/css/galleryDetail.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/galleryDetail.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script>
@@ -46,10 +46,8 @@
 					   alert('오류가 발생되었습니다. 잠시후 시도해주시기  바랍니다');
 				   }else if(response == 2){
 					   $('.btn_like').removeClass('btn_like_active');
-					   console.log("지우기:" + response);
 				   }else if(response == 1) {
 					    $('.btn_like').addClass('btn_like_active');
-					    console.log("색넣기: " + response);
 				   }
 				 	   			   
 			   }
@@ -95,14 +93,14 @@
             	<c:if test="${id != null }">
             		<c:if test="${recom.likeCheck eq null}">
             			<button class="btn_like">
-			            	<img src="./resources/images/like.png" alt="like" /><br />
+			            	<img src="${pageContext.request.contextPath}/resources/images/like.png" alt="like" /><br />
 			            	<span>좋아요</span>       	
 		            	</button>
             		</c:if>
             		
             		<c:if test="${recom.likeCheck == 1}">
             			<button class="btn_like">
-			            	<img src="./resources/images/like.png" alt="like" /><br />
+			            	<img src="${pageContext.request.contextPath}/resources/images/like.png" alt="like" /><br />
 			            	<span>좋아요</span>       	
 		            	</button>
             		</c:if>          	
@@ -111,7 +109,7 @@
 
             
             <div class="btn_div">
-                <a href="./gallery"><button class="btn_list">목록으로</button></a>
+                <a href="${pageContext.request.contextPath}/gallery"><button class="btn_list">목록으로</button></a>
             </div>
 
         </div>

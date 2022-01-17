@@ -6,14 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>수원 KT 소닉붐</title>
-<link rel="stylesheet" href="./resources/css/galleryDetail.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/galleryDetail.css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function() {
 		
-		$(".btn_like").on("click", function check() {
+$(".btn_like").on("click", function check() {
 			
-			var id = '<%=session.getAttribute("id")%>'
+			var id = '<%=(String)session.getAttribute("id")%>'
 			var galleryno = ${dto.galleryno}
 			
 				
@@ -67,6 +67,11 @@
 	<div id="container">
 	
 		<jsp:include page="header.jsp"></jsp:include>
+		
+		<form action="return false;">
+			<input type="hidden" name="_csrf_header" value="${_csrf.headerName}" />
+			<input type="hidden" name="_csrf" value="${_csrf.token}" />
+		</form>
 
         <div class="photo_title">${dto.gallery_title}</div>
 
@@ -90,14 +95,14 @@
             	<c:if test="${id != null }">
             		<c:if test="${recom.likeCheck eq null}">
             			<button class="btn_like">
-			            	<img src="./resources/images/like.png" alt="like" /><br />
+			            	<img src="${pageContext.request.contextPath}/resources/images/like.png" alt="like" /><br />
 			            	<span>좋아요</span>       	
 		            	</button>
             		</c:if>
             		
             		<c:if test="${recom.likeCheck == 1}">
             			<button class="btn_like">
-			            	<img src="./resources/images/like.png" alt="like" /><br />
+			            	<img src="${pageContext.request.contextPath}/resources/images/like.png" alt="like" /><br />
 			            	<span>좋아요</span>       	
 		            	</button>
             		</c:if>          	
@@ -106,7 +111,7 @@
             
 
             <div class="btn_div">
-                <a href="./videoGallery"><button class="btn_list">목록으로</button></a>
+                <a href="${pageContext.request.contextPath}/videoGallery"><button class="btn_list">목록으로</button></a>
             </div>
 
         </div>

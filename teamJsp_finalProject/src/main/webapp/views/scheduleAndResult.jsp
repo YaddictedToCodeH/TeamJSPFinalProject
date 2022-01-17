@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link rel="stylesheet" href="./resources/css/scheduleAndResult.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/scheduleAndResult.css" />
 <title>일정 및 결과</title>
 
 <jsp:include page="./header.jsp" />
@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="schedule-controller">	
-		<a href="schedule?gameno=133">2021</a>&emsp;&emsp;
+		<a href="schedule?gameno=133&select_month=10">2021</a>&emsp;&emsp;
 		<a href="schedule?gameno=134&select_month=1">2022</a>
 		
 		<div>
@@ -58,12 +58,7 @@
 			<c:forEach var="list" items="${list}">
 				<tr>			
 					<th class="rowspanClass">
-					<c:if test="${list.gameno lt 134 }">
 						${list.game_date}
-					</c:if>
-					<c:if test="${list.gameno gt 133}">
-						22-${list.game_date}
-					</c:if>
 					</th>
 					
 					
@@ -91,9 +86,12 @@
 					</td>
 				</tr>
 			</c:forEach>
+				<tr>
+					<td colspan="4"><c:if test="${list[0].game_date eq null}"><h2>해당 날짜 경기가 없습니다.</h2></c:if></td>
+				</tr>
 		</tbody>
 	</table>
-
+	
 </div>
 
 <jsp:include page="./footer.jsp" />

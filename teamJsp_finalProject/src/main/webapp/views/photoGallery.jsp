@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <!-- <meta http-equiv="Pragma" content="no-cache"> -->
 <title>수원 KT 소닉붐</title>
-<link rel="stylesheet" href="./resources/css/photoGallery.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/photoGallery.css" type="text/css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function () {

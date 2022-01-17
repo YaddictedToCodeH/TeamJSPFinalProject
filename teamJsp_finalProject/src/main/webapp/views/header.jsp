@@ -14,7 +14,12 @@
 	<nav class="mainnav">
 		<div class="headermenu">
 			<!-- jsp: 로그인 시 로그아웃, 마이페이지로 변경 -->
-			<span><a href='<c:url value="/member/main" />'>로그인</a></span> <span><a href="registerTerm">회원가입</a></span>
+			<c:if test="${id eq null}">
+				<span><a href='<c:url value="/member/main" />'>로그인</a></span> <span><a href="registerTerm">회원가입</a></span>
+			</c:if>
+			<c:if test="${id ne null}">
+				<span><a href="">로그아웃</a></span>
+			</c:if>
 		</div>
 		<ul class="mainmenu navall">
 			<div class="mainmenu-underline"></div>

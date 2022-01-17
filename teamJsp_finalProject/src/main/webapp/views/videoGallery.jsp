@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <!-- <meta http-equiv="Pragma" content="no-cache"> -->
 <title>수원 KT 소닉붐</title>
-<link rel="stylesheet" href="./resources/css/photoGallery.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/photoGallery.css" type="text/css" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 	$(function () {
@@ -81,7 +81,7 @@
 	        <div class="photoZone">
 	        	<a href="videoGalleryDetail?galleryno=${list.galleryno}"> 
 	                <div class="contents">	             
-	                    <div><img src="./resources/images/youtube-player.png" alt="" /></div>
+	                    <div><img src="${pageContext.request.contextPath}/resources/images/youtube-player.png" alt="" /></div>
 	                    <div><span class="category">${list.gallery_category}</span></div>            
 	                    <div><span class="title" title="${list.gallery_title}">${list.gallery_title}</span></div>
 	                    <div><span class="date">${list.gallery_date }</span></div>

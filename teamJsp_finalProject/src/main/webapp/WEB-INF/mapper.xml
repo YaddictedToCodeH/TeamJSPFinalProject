@@ -5,6 +5,7 @@
   
 
   <mapper namespace="kr.co.finalp">
+  	<!-- 갤러리 전체 출력 -->
   	<select id="photoGallery_selectAll" parameterType="gallStartEnd" resultType="gdto">	
 		SELECT t2.*
 		   FROM (
@@ -45,6 +46,7 @@
 		    ORDER BY rnum    
   	</select>
   	
+  	<!-- 카테고리별 갤러리 갯수 -->
   	<select id="photoGallery_getTotal" parameterType="gallStartEnd" resultType="int">
   		SELECT COUNT(*) total  					
             FROM gallery_category c1
@@ -56,6 +58,7 @@
   	</select>
   	
 
+  	<!-- 갤러리 1개 출력 -->
   	<select id="photoGallery_selectOne" resultType="gdto" parameterType="int">
 		SELECT t2.*
 		   FROM (
@@ -80,24 +83,51 @@
 		            WHERE galleryno = #{galleryno}
 		    ) t2 
   	</select>
-
+	
+	<!-- 갤러리 조회수 증가 -->
   	<update id="gallery_hits" parameterType="int">
   		UPDATE gallery
   		SET gallery_hit = gallery_hit+1
   		WHERE galleryno = #{galleryno}
   	</update>
   	
+  	<!-- 관리자가 갤러리 추가  -->
+  	<insert id="admin_gallery_insert" parameterType="gdto">
+  		INSERT INTO gallery
+		VALUES ( #{galleryno}, #{gallery_category_no}, 1, #{gallery_title}, to_char(sysdate, 'yy/mm/dd'), 0)
+  	</insert>
+  	<insert id="admin_files_insert" parameterType="gdto">
+  		INSERT INTO files
+		VALUES (FILE_NO_SEQ.nextval, #{galleryno}, #{file_url} )
+  	</insert>
+  	
+  	<!-- 관리자 갤러리 수정 -->
+  	<update id="admin_gallery_update" parameterType="gdto">
+  		UPDATE gallery
+  		SET gallery_category_no = #{gallery_category_no},
+  			gallery_title = #{gallery_title}, admin_no = #{admin_no}
+  		WHERE galleryno = #{galleryno}
+  	</update>
+  	<update id="admin_files_update" parameterType="gdto">
+  		UPDATE files
+  		SET file_url = #{file_url}
+  		WHERE galleryno = #{galleryno}
+  	</update>
+  	
+  	<!-- 관리자 갤러리 삭제 -->
+  	<delete id="admin_gallery_delete">
+  		DELETE gallery
+  		WHERE galleryno = #{galleryno}
+  	</delete>
+  	<delete id="admin_files_delete">
+  		DELETE files
+  		WHERE galleryno = #{galleryno}
+  	</delete>
+  	
   	<!-- 경기일정 list -->
-  	<select id="schedule_selectAll" resultType="schedto">
-  		   SELECT c1.gameno       
-  		 <choose>
-  		 <when test="gameno == 133">
-	         , to_char(c1.game_date, 'yy-mm-dd')game_date
-  		 </when>
-  		 <when test="gameno == 134">
-	         , to_char(c1.game_date, 'mm-dd')game_date
-  		 </when>
-  		 </choose>     
+  	<select id="schedule_selectAll" parameterType="sheduleMonth" resultType="schedto">
+    	  SELECT c1.gameno       
+	     , to_char(c1.game_date, 'yy-mm-dd')game_date 	
          , c1.game_arena
          , c1.game_status
          , c1.game_result       
@@ -116,19 +146,87 @@
         <choose>
         	<when test="gameno == 133">
     	    	WHERE c1.gameno &lt;= 133  
-    	    	and EXTRACT(MONTH from c1.game_date) = #{select_month}      	
+    	    	AND EXTRACT(MONTH from c1.game_date) = #{select_month}      	
         	</when>
         	<when test="gameno == 134">
     	    	WHERE c1.gameno &gt;= 134      	        	
-    	    	and EXTRACT(MONTH from c1.game_date) = #{select_month}
+    	    	AND EXTRACT(MONTH from c1.game_date) = #{select_month}
         	</when>
-	        <otherwise>
-    	    	WHERE c1.gameno &lt; #{gameno}
-    	    	and EXTRACT(MONTH from c1.game_date) = #{select_month}
-        	</otherwise>
         </choose>
         ORDER BY c1.gameno asc
   	</select>
+  	
+  	<!-- 관리자 경기일정 페이징 -->
+  	<select id="schedule_paging" parameterType="sheduleMonth" resultType="schedto">
+  		 select t2.*
+		  from(  
+		      SELECT ROWNUM AS rnum, t1.*   
+		      from(   SELECT c1.gameno      
+			     , to_char(c1.game_date, 'yy-mm-dd')game_date 	
+		         , c1.game_arena
+		         , c1.game_status
+		         , c1.game_result       
+		         , c1.game_score
+		         , c1.teamno
+		         , c2.team_name
+		         , c2.team_logo        
+		         , c1.teamno2
+		         , c3.team_name team_name2
+		         , c3.team_logo team_logo2
+		   	    FROM games c1
+		        LEFT JOIN team c2
+		        ON ( c2.teamno = c1.teamno )        
+		        LEFT JOIN team c3
+		        ON ( c3.teamno = c1.teamno2 )
+		       <choose>
+		        	<when test="gameno == 133">
+		    	    	WHERE c1.gameno &lt;= 133  
+		    	    	AND EXTRACT(MONTH from c1.game_date) = #{select_month}      	
+		        	</when>
+		        	<when test="gameno == 134">
+		    	    	WHERE c1.gameno &gt;= 134      	        	
+		    	    	AND EXTRACT(MONTH from c1.game_date) = #{select_month}
+		        	</when>
+		        </choose>
+		        ORDER BY c1.gameno asc)t1
+		        where ROWNUM &lt;= #{endNo} )t2
+		        where #{startNo} &lt;= rnum
+		        order by rnum
+  	</select>
+  	
+  	<!-- 경기일정 월별 갯수 -->
+  	<select id="schedule_getTotl" parameterType="sheduleMonth" resultType="int">
+  	     	SELECT COUNT(*) total
+		    FROM games      
+		    WHERE EXTRACT(MONTH from game_date) = #{select_month}
+  	</select>
+  	
+  	<!-- 경기일정 추가 -->
+  	<insert id="admin_schedule_insert" parameterType="schedto">
+  		INSERT INTO games
+  		VALUES ( gameno_seq.nextval, #{game_date}, #{game_arena}, #{game_status}, #{game_result}, #{teamno}, #{teamno2}, #{game_score} )
+  	</insert>
+  	
+  	<!-- 경기일정 1개 -->
+  	<select id="scheduleSelectOne" parameterType="int" resultType="schedto">
+  		SELECT gameno, to_char(game_date, 'yy/mm/dd')game_date,game_arena,game_status,game_result,teamno,teamno2,game_score
+  		FROM games WHERE gameno = #{gameno}
+  	</select>
+  	
+  	<!-- 경기일정 수정 -->
+  	<update id="admin_schedule_update" parameterType="schedto">
+		UPDATE games
+		SET game_date = #{game_date}, game_arena = #{game_arena}, game_status = #{game_status}, game_result = #{game_result},
+			teamno = #{teamno}, teamno2 = #{teamno2}, game_score = #{game_score}
+		WHERE gameno = #{gameno}  	
+  	</update>
+  	
+  	<!-- 일정 삭제 -->
+  	<delete id="admin_schedule_delete" parameterType="int">
+  		DELETE games
+  		WHERE gameno = #{gameno}
+  	</delete>
+
   	
   	<!-- 팀 순위 리스트 -->
   	<select id="teamRank_selectAll" resultType="rankdto">
@@ -521,7 +619,7 @@
 		LEFT JOIN team c3
 		ON(c3.teamno = c1.teamno2)
 		WHERE (c2.teamno = 1 or c3.teamno = 1)
-		AND c1.game_date BETWEEN '21/12/23' AND '22/01/05'
+		AND c1.game_date BETWEEN '22/01/05' AND '22/01/25'
 		ORDER BY c1.gameno asc
   	</select>
   	
