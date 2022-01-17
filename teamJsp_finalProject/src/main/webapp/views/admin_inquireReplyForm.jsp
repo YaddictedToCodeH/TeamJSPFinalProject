@@ -62,7 +62,10 @@
         </div>
 
         <form action="admin_inquireReply" method="post">
-        	<input type="hidden" name="inq_status" value="1" />
+        	<input type="hidden" name="inq_status" value= "1" />
+        	<input type="hidden" name="inqno" value= "${dto.inqno}" />
+        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        	
             <div class="replydiv">
                 <table class="relplytable">
                     <tr>

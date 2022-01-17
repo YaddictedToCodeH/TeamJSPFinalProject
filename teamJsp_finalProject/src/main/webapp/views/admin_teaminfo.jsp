@@ -64,7 +64,7 @@ div.title > h1 {
 
 
 .modifybtn{
-    border:1px solid black;
+    border-bottom:1px solid black;
     padding: 3px;
 }
 
@@ -74,9 +74,8 @@ div.title > h1 {
     margin-left: 550px;
 }
 
-.infobuttons>span{
-    border:1px solid black;
-    padding:10px;
+.infobuttons>button{
+    padding:20px;
 }
 
 
@@ -90,8 +89,58 @@ body > div.container > div > div.infobuttons > span:nth-child(1){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 	$(function(){
-	
-	
+		$("#delete").on('click',function(){
+    		console.log("test");	
+    		deleteValue();
+        })
+        
+		function deleteValue(){
+        	
+        	var rowData = new Array();
+			var player_code = new Array();
+			var checkbox = $("input[name='RowCheck']:checked");
+			
+			checkbox.each(function(i) {
+				
+				var tr = checkbox.parent().parent().eq(i);
+				var td = tr.children();
+				
+				// 체크된 row의 모든 값을 배열에 담는다.
+				rowData.push(tr.text());
+				
+				// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+				var no = td.eq(1).text();
+
+				player_code.push(no);
+			
+				console.log(player_code);
+			});
+			
+			if(player_code.length == 0){
+        		alert("선택한 글이 없습니다");
+        	}
+        	else{
+        		var chk = confirm("정말 삭제하시겠습니까?");
+        		$.ajax({
+        			url : "admin_teaminfoDelete", //전송 URL
+        			type : 'GET' , 
+        			traditional : true,
+        			data : {
+        				player_code:player_code // 보내고자 하는 data 변수
+        			},
+        			success:function(jdata){
+        				if(jdata){
+        					alert("삭제성공");
+        					location.replace("admin_teaminfo")
+        				}
+        				else{
+        					alert("삭제실패");
+        				}
+        			}
+        		});
+        	}
+			
+		}
 	})
 </script>
 </head>
@@ -126,8 +175,8 @@ body > div.container > div > div.infobuttons > span:nth-child(1){
         </div>
 
             <div class="infobuttons">
-                <span><a href="admin_teaminfoWrite">항목추가</a></span>
-                <span><a href="">선택항목 삭제</a></span>
+                <span><button><a href="admin_teaminfoWrite">항목추가</a></button></span>
+                <span><button value="선택항목 삭제" name="delete" id="delete">선택항목삭제</button></span>
             </div>
 
     

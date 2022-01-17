@@ -342,14 +342,14 @@
   	
   	<!-- 어드민 메인 경기일정 -->
   	<select id="admin_main_schedule_list" resultType="schedto">
-  		SELECT to_char(c1.game_date, 'yy-mm-dd')game_date, c1.game_arena, c2.team_logo,c2.team_name, c3.team_name,c3.team_logo team_logo2
+		SELECT to_char(c1.game_date, 'yy-mm-dd')game_date, c1.game_arena, c2.team_logo,c2.team_name, c3.team_name,c3.team_logo team_logo2
 		FROM games c1
 		LEFT JOIN team c2
 		ON(c1.teamno = c2.teamno)
 		LEFT JOIN team c3
 		ON(c3.teamno = c1.teamno2)
 		WHERE (c2.teamno = 1 or c3.teamno = 1)
-		AND c1.game_date BETWEEN '21/12/23' AND '22/01/05'
+		AND c1.game_date BETWEEN '22-01-17' AND '22-03-01'
 		AND ROWNUM &lt;=1
 		ORDER BY c1.gameno asc
   	</select>
@@ -411,7 +411,7 @@
  	</update>
  	
  	<!-- 개인선수디테일 추가  -->
- 	<insert id="player_addOne" parameterType="pdto">
+ 	<insert id="player_insertOne" parameterType="pdto">
  		INSERT INTO player
  		VALUES ( #{player_code}, #{teamno}, #{player_backno}, #{player_pos}, #{player_name}, #{player_height}, #{player_weight} , 
  					#{player_school}, #{player_img}, #{player_sns}, #{player_birth} )
@@ -462,6 +462,15 @@
  		WHERE player_code = #{player_code}
  	</select>
  	
+ 	 <select id="admin_playerRecord_selectOne" parameterType="int" resultType="prdto">
+ 		SELECT pr.player_code, pr.gameno, p.player_name pr.player_pts, pr.player_min, pr.player_fg, 
+ 			   pr.player_three, pr.player_ft, pr.player_reb, pr.player_ast, pr.player_stl, pr.player_bs, pr.player_to
+		FROM playerrecord pr , player p
+		WHERE pr.player_code = (SELECT player_code FROM player WHERE player_backno = 10)
+
+ 	</select>
+ 	
+ 	
  	<!-- 팀기록실 -->
  	<select id="teamRecord_selectAll" resultType="trdto">
  		SELECT teamno, sum(winteam) winteam, sum(loseteam) loseteam, sum(team_pts) team_pts, sum(team_reb) team_reb,
@@ -492,6 +501,7 @@
  		SELECT player_name FROM player
  		WHERE player_code = #{player_code}
  	</select>
+ 	
 
  	
  	<!-- 이름과 이메일을 대조해서 회원조회 -->
@@ -642,8 +652,8 @@
   	
   	<update id="inquire_modify" parameterType="idto">
   		UPDATE inquire
-  		SET inq_status= #{inq_status} , inq_ans = #{inq_ans}, id= #{id}
- 		WHERE inqno = #{inqno}
+  		SET inq_status= #{inq_status, jdbcType=INTEGER} , inq_ans = #{inq_ans,jdbcType=VARCHAR}
+ 		WHERE inqno = #{inqno, jdbcType=INTEGER}
   	</update>
   	
   	<delete id="inquire_delete" parameterType="int">

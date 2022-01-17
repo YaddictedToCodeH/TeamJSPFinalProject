@@ -41,9 +41,10 @@ public class RecordOracleDAO implements RecordDAO {
 	}
 
 	@Override
-	public PlayerRecordDTO selectOne(int player_code) {
-		return ss.selectOne("kr.co.finap.PlayerRecord_selectOne", player_code);
+	public List<PlayerRecordDTO> selectList(int player_code) {
+		return ss.selectList("kr.co.finalp.admin_playerRecord_selectOne",player_code);
 	}
+
 
 
 }

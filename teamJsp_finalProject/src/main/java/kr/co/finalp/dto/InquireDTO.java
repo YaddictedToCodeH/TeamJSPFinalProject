@@ -13,6 +13,6 @@ public class InquireDTO {
 	private String inq_title;
 	private String inq_date;
 	private String inq_contents;
-	private String inq_status;
+	private int inq_status;
 	private String inq_ans;
 }

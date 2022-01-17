@@ -93,7 +93,7 @@
 	                        <td>${list.player_bs}</td>
 	                        <td>${list.player_to}</td>
 	                        <td>
-                				 <span class="btn"><a href="">수정</a></span>
+                				 <span class="btn"><a href="admin_recordingroomModify?player_code=10">수정</a></span>
             					 <span class="btn"><a href="">삭제</a></span>
                 			</td>
 	                    </tr>

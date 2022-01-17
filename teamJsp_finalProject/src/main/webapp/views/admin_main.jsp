@@ -158,7 +158,7 @@ new Chart("myChart2", {
 				
 				<c:forEach var="sd" items="${schedule}">
                 <div id="schedule" class="sub">
-                    <div>예정 경기  &nbsp; | &nbsp; <a href="">수정▶</a></div>
+                    <div><a href="">예정 경기▶</a>  &nbsp; | &nbsp; <a href="">수정▶</a></div>
                     <div><h2>경기일정</h2></div>
                     <div>${sd.game_date}  | ${sd.game_arena}</div> 
                     <span><img class="logo" src="${pageContext.request.contextPath}${sd.team_logo}" alt="" />
@@ -194,7 +194,12 @@ new Chart("myChart2", {
                         <tr>
                           <td>${iq.inq_date}</td>
                           <td>${iq.inq_title}</td>
-                          <td>${inq_status}</td>
+                           <c:if test="${iq.inq_status eq 0 }">
+								<td>미응답</td>
+						  </c:if>
+						  <c:if test="${iq.inq_status eq 1 }">
+								<td>응답완료</td>
+						  </c:if>
                         </tr>
                         </c:forEach>
                     </table>

@@ -22,5 +22,5 @@ public interface PlayerDAO {
 	public void updateOne(PlayerDTO dto);
 	public void InsertOne(PlayerDTO dto);
 	public void deleteOne(int player_code);
-	
+	public List<PlayerRecordDTO> admin_selectList(int player_code);
 }

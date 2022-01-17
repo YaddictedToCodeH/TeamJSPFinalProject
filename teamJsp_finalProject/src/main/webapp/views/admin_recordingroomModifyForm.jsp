@@ -54,6 +54,7 @@
             <div id="player_recordroom">
                 <table class="player_recordroom-table">
                     <tr>
+                        <th>게임no</th>
                         <th>순위</th>
                         <th>선수명</th>
                         <th class="sortMenu">득점</th>
@@ -69,8 +70,9 @@
                         <th class="sortMenu">기능</th>
                     </tr>
                     
-                    <c:forEach var="prcd" varStatus="i" items="${prcd}">
+                    <c:forEach var="list" varStatus="i" items="${prcd}">
 	                    <tr>
+                    		<th><input type="text" name="" value="">${list.gameno}</th>
                     		<th><input type="text" name="" value="">${i.count}</th>
 	                        <td><input type="text" name="" value="">${player_name[i.index]}</td>
 	                        <td><input type="text" name="" value="">${list.player_pts}</td>

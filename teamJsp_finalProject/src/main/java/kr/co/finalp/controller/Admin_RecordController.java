@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.finalp.dao.RecordDAO;
+import kr.co.finalp.dto.PlayerDTO;
 import kr.co.finalp.dto.PlayerRecordDTO;
 import kr.co.finalp.dto.TeamRecordDTO;
 
@@ -73,7 +73,10 @@ public class Admin_RecordController {
 		for(PlayerRecordDTO dto : playerRecordlist) {
 			player_name.add(dao.selectPlayerName(dto.getPlayer_code()));
 		}
+		
 
+
+		
 		
 		model.addAttribute("teamRecordlist", teamRecordlist);
 		model.addAttribute("team_name", team_name);
@@ -84,10 +87,8 @@ public class Admin_RecordController {
 	}
 	
 	@GetMapping("/admin_recordingroomModify")
-	public String update(@RequestParam("player_backno")int player_backno, Model model) {
-		
-		PlayerRecordDTO prcd = dao.selectOne(player_backno);
-		
+	public String update(@RequestParam("player_code")int player_code, Model model) {
+		List<PlayerRecordDTO> prcd = dao.selectList(player_code);
 		model.addAttribute("prcd", prcd);
 		
 		return "/admin_recordingroomModifyForm";
