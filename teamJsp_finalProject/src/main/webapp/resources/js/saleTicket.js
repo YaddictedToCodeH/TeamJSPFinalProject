@@ -32,20 +32,10 @@ $(function(){
 
 
     $(".nextStep").click(function(){
-        var game_date = $("#game_date").val();
-        var game_arena = $("#game_arena").val();
-        var team_name = $("#team_name").val();
-        var team_name2 = $("#team_name2").val();
-        var team_logo = $("#team_logo").val();
-        var team_logo2 = $("#team_logo2").val();
-        var area = $("#area").val();
-        var grade = $("#grade").val();
-        var detail_seat = $("#detail_seat").val();
-        
-        location.href="ticketingCheck?grade="+grade+"&area="+area+"&game_date="+game_date
-                    +"&game_arena=" + game_arena + "&team_name=" + team_name + "&team_name2=" + team_name2
-                    + "&team_logo=" + team_logo + "&team_logo2=" + team_logo2 + "&usePoint_price=" +usePoint_price
-                    + "&usePoint=" + usePoint + "&detail_seat=" + detail_seat;
+        $("input[name='usePoint_price']").val(usePoint_price);
+        $("input[name='usePoint']").val(usePoint);
+        var form = document.TicketingCheck;
+        form.submit();
     })
 })
 

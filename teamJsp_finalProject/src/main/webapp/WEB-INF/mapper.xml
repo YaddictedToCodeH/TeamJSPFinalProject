@@ -677,4 +677,26 @@
 		WHERE id = #{id}
 	</select>
 	
+	
+	<!-- 사용자가 포인트 금액 조정 -->
+	<update id="member_updatePoint" parameterType="mdto">
+		UPDATE member
+		SET mem_point = #{mem_point}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 사용자의 amount 금액 증식 -->
+	<update id="member_updateAmount" parameterType="mdto">
+		UPDATE member
+		SET amount = #{amount}
+		WHERE id = #{id}
+	</update>
+	
+	<!-- 사용자의 grade 변경 -->
+	<update id="member_updateGrade" parameterType="mdto">
+		UPDATE member
+		SET mem_grade = #{mem_grade}
+		WHERE id = #{id}
+	</update>
+	
 </mapper>

@@ -57,6 +57,22 @@ public class MemberOracleDAO implements MemberDAO{
 	public MemberDTO selectMember(String id) {
 		return ss.selectOne("kr.co.finalp.selectMember", id);
 	}
+
+	@Override
+	public void updatePoint(MemberDTO dto) {
+		ss.update("kr.co.finalp.member_updatePoint", dto);
+	}
+
+	@Override
+	public void updateAmount(MemberDTO dto) {
+		ss.update("kr.co.finalp.member_updateAmount", dto);
+	}
+
+	@Override
+	public void updateGrade(MemberDTO dto) {
+		ss.update("kr.co.finalp.member_updateGrade", dto);
+	}
+	
 	
 	
 	

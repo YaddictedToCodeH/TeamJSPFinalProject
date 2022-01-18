@@ -7,15 +7,20 @@
 <jsp:include page="./header.jsp"></jsp:include>
 
 <div id="saleTicket-container">
-	<input type="hidden" id="game_date" value="${game_date }"/>
-		<input type="hidden" id="game_arena" value="${game_arena }"/>
-		<input type="hidden" id="team_name" value="${team_name }"/>
-		<input type="hidden" id="team_name2" value="${team_name2 }"/>
-		<input type="hidden" id="team_logo" value="${team_logo }"/>
-		<input type="hidden" id="team_logo2" value="${team_logo2 }"/>
-		<input type="hidden" id="grade" value="${grade }"/>
-		<input type="hidden" id="area" value="${area }"/>
-		<input type="hidden" id="detail_seat" value= '${arrSeat}' />
+	<form action="ticketingCheck" name="TicketingCheck" method="GET">
+		<input type="hidden" name="game_date" value="${game_date }"/>
+		<input type="hidden" name="game_arena" value="${game_arena }"/>
+		<input type="hidden" name="team_name" value="${team_name }"/>
+		<input type="hidden" name="team_name2" value="${team_name2 }"/>
+		<input type="hidden" name="team_logo" value="${team_logo }"/>
+		<input type="hidden" name="team_logo2" value="${team_logo2 }"/>
+		<input type="hidden" name="grade" value="${grade }"/>
+		<input type="hidden" name="area" value="${area }"/>
+		<input type="hidden" name="detail_seat" value= '${arrSeat}' />
+		<input type="hidden" name="usePoint_price"  />
+		<input type="hidden" name="usePoint" />	
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />					
+	</form>
 	<div id="ticketing-title">
 		<h2>예매하기</h2>
 	</div>

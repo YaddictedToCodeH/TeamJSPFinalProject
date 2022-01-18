@@ -1,5 +1,7 @@
 package kr.co.finalp.controller;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +24,8 @@ public class TicketingCheckController {
 	}
 	
 	@RequestMapping("/member/ticketingCheck")
-	public String ticketingCheck(Model model, Authentication authentication, @RequestParam("grade")String grade,
+	public String ticketingCheck(Model model, Authentication authentication,
+			@RequestParam("grade")String grade,
 			@RequestParam("area")String area,
 			@RequestParam("game_date")String game_date,
 			@RequestParam("game_arena")String game_arena,
@@ -38,6 +41,10 @@ public class TicketingCheckController {
 		String id = userDetails.getUsername();
 		MemberDTO dto = dao.selectMember(id);
 		
+		String detail_seat2 = Arrays.toString(detail_seat);
+		detail_seat2 = detail_seat2.replaceAll("\\[", "");
+		detail_seat2 = detail_seat2.replaceAll("\\]", "");
+		
 		model.addAttribute("dto", dto);
 		model.addAttribute("grade", grade);
 		model.addAttribute("area", area);
@@ -49,7 +56,7 @@ public class TicketingCheckController {
 		model.addAttribute("team_logo2", team_logo2);
 		model.addAttribute("usePoint_price", usePoint_price);
 		model.addAttribute("usePoint", usePoint);
-		model.addAttribute("detail_seat", detail_seat);
+		model.addAttribute("detail_seat", detail_seat2);
 		
 		return "ticketingCheck";
 	}

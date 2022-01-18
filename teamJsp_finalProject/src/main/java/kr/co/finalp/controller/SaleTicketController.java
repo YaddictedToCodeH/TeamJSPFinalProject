@@ -1,5 +1,7 @@
 package kr.co.finalp.controller;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.finalp.dao.MemberDAO;
 import kr.co.finalp.dao.SeatGradeDAO;
-import kr.co.finalp.dto.MemberDTO;
 
 @Controller
 public class SaleTicketController {
@@ -42,9 +43,13 @@ public class SaleTicketController {
 		int mem_point = mdao.getPoint(id);
 		int total_price = dao.getPrice(grade) * arrSeat.length;
 		
+		String detail_seat = Arrays.toString(arrSeat);
+		detail_seat = detail_seat.replaceAll("\\[", "");
+		detail_seat = detail_seat.replaceAll("\\]", "");
+		
 		model.addAttribute("grade", grade);
 		model.addAttribute("area", area);
-		model.addAttribute("arrSeat", arrSeat);
+		model.addAttribute("arrSeat", detail_seat);
 		model.addAttribute("game_date", game_date);
 		model.addAttribute("game_arena", game_arena);
 		model.addAttribute("team_name", team_name);
