@@ -22,7 +22,7 @@ public class Admin_MainController {
 	@Autowired
 	Admin_InquireDAO inquireDao;
 	
-	@RequestMapping("/admin_main")
+	@RequestMapping("/admin/admin_main")
 	public ModelAndView admin_main(Model model) {
 		
 		List<ScheduleDTO> scheduleList = scheduleDao.admin_mainSelectAll();
@@ -38,7 +38,7 @@ public class Admin_MainController {
 		return mav;	
 	}
 	
-	@RequestMapping("admin_banner")
+	@RequestMapping("/admin/admin_banner")
 	public String admin_banner() {
 		return "admin_banner";
 	}

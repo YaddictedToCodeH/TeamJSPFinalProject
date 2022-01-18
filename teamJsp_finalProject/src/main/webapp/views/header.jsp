@@ -6,7 +6,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/header.js"></script>
 
-
 <header id="header">
 	<div class="logo">
 		<a href="main"><img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="로고" class="logoimg"></a>
@@ -17,8 +16,11 @@
 			<c:if test="${id eq null}">
 				<span><a href='<c:url value="/member/main" />'>로그인</a></span> <span><a href="registerTerm">회원가입</a></span>
 			</c:if>
+			<c:if test="${id eq 'admin'}">
+				<span><a href="<c:url value="/admin/admin_main" />">관리자 페이지</a></span>
+			</c:if>
 			<c:if test="${id ne null}">
-				<span><a href="">로그아웃</a></span>
+				<span><a href="mypage">마이페이지</a><a href="logout">로그아웃</a></span>
 			</c:if>
 		</div>
 		<ul class="mainmenu navall">

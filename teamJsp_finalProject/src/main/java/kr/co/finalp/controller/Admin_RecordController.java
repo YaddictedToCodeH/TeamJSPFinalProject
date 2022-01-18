@@ -32,7 +32,7 @@ public class Admin_RecordController {
 	List<TeamRecordDTO> teamRecordlist;
 	ArrayList<String> team_name = new ArrayList<String>();
 	
-	@RequestMapping("/admin_recordingroom")
+	@RequestMapping("/admin/admin_recordingroom")
 	public String recordingroom(Model model) {
 		
 		teamRecordlist = dao.selectAll();
@@ -55,7 +55,7 @@ public class Admin_RecordController {
 		return "admin_recordingroom";
 	}
 	
-	@RequestMapping("/admin_recordingroom2")
+	@RequestMapping("/admin/admin_recordingroom2")
 	public String recordingroom2(Model model, @RequestParam(value="base", required = false)String base) {
 		
 		if(base.equals("득점")) base = "player_pts";
@@ -88,7 +88,7 @@ public class Admin_RecordController {
 		return "admin_recordingroom";
 	}
 	
-	@GetMapping("/admin_recordingroomModify")
+	@GetMapping("/admin/admin_recordingroomModify")
 	public String updatePlayerRecord(@RequestParam("player_code")int player_code, 
 			@RequestParam("player_name")String player_name,Model model) {
 		List<PlayerRecordDTO> prcd = dao.selectList(player_code);
@@ -97,10 +97,10 @@ public class Admin_RecordController {
 		String pn = dao.selectPlayerName(player_code);
 		model.addAttribute("pn", pn);
 			
-		return "/admin_recordingroomModifyForm";
+		return "/admin/admin_recordingroomModifyForm";
 	}
 	
-	@GetMapping("/admin_recordingroomModify2")
+	@GetMapping("/admin/admin_recordingroomModify2")
 	public String updateTeamRecord(@RequestParam("teamno")int teamno, 
 			@RequestParam("team_name")String team_name, Model model) {
 		
@@ -115,14 +115,14 @@ public class Admin_RecordController {
 		return "/admin_recordingroomModifyForm";
 	}
 	
-	@PostMapping("/admin_recordingroomModify")
+	@PostMapping("/admin/admin_recordingroomModify")
 	public String updatePlayerRecord2(@RequestParam("gameno")int gameno, 
 			@ModelAttribute("dto")PlayerRecordDTO dto) {
 		dao.updateOne(dto);
 		return "redirect:/admin_recordingroom";
 	}
 	
-	@PostMapping("/admin_recordingroomModify2")
+	@PostMapping("/admin/admin_recordingroomModify2")
 	public String updateTeamRecord2(@RequestParam("gameno")int gameno,
 			@ModelAttribute("dto")TeamRecordDTO dto) {
 		dao.updateTeam(dto);

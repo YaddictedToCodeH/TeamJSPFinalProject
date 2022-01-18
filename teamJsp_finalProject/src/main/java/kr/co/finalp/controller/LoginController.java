@@ -1,5 +1,8 @@
 package kr.co.finalp.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +22,16 @@ public class LoginController {
 	@RequestMapping("/common/cLogout")
 	public String logout() {
 		return "common/cLogout";
+	}
+	
+	@RequestMapping("/member/logout")
+	public String logout2(HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		
+		session.invalidate();
+		
+		return "redirect:/main";
 	}
 	
 }
