@@ -40,7 +40,7 @@
 				</form>
 			</div>
 			<p class="loginMenu">
-				<a href="">회원가입</a>
+				<a href="registerTerm">회원가입</a>
 				&nbsp; <a href="./findId">ID 찾기</a>
 				&nbsp; <a href="./findPw">비밀번호찾기</a>
 			</p>

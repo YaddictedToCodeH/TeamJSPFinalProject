@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <title>[수원kt]폭발적인 2022! KT 소닉붐</title>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -17,7 +18,6 @@
 		<!-- script 실행시 영상이 담길 div와 교체될 img태그-->
 		<div id="player"></div>
 		<img src="${pageContext.request.contextPath}/resources/images/banner.jpg" id="imgTarget" style="width:1200px;height:500px;display:none;"/> 
-		
 		
 		<div id="container-boby">			
 			<div id="rank-div">
@@ -127,6 +127,7 @@
 
 
 	<jsp:include page="footer.jsp"></jsp:include>
+	
 
 </body>
 </html>

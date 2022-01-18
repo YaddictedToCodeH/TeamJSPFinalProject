@@ -1,7 +1,6 @@
 package kr.co.finalp.controller;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.finalp.dao.RecordDAO;
 import kr.co.finalp.dto.PlayerRecordDTO;
@@ -29,8 +27,8 @@ public class RecordController{
 	List<TeamRecordDTO> teamRecordlist;
 	ArrayList<String> team_name = new ArrayList<String>();
 	
-	@RequestMapping("/recordingroom")
-	public String recordingroom(Model model) {
+	@RequestMapping(value = {"/recordingroom", "/member/recordingroom"})
+	public String recordingroom(Model model, Principal principal) {
 		
 		teamRecordlist = dao.selectAll();
 		List<PlayerRecordDTO> playerRecordlist = dao.selectSort("player_pts");
@@ -49,11 +47,16 @@ public class RecordController{
 		model.addAttribute("playerRecordlist", playerRecordlist);
 		model.addAttribute("player_name" ,player_name);
 		
+		if(principal != null) {
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
+		
 		return "recordingroom";
 	}
 	
-	@RequestMapping("/recordingroom2")
-	public String recordingroom2(Model model, @RequestParam(value="base", required = false)String base) {
+	@RequestMapping(value = {"/recordingroom2", "/member/recordingroom2"})
+	public String recordingroom2(Model model, @RequestParam(value="base", required = false)String base, Principal principal) {
 		
 		if(base.equals("득점")) base = "player_pts";
 		else if(base.equals("평균 출전시간")) base = "player_min";
@@ -81,6 +84,11 @@ public class RecordController{
 		model.addAttribute("team_name", team_name);
 		model.addAttribute("playerRecordlist", playerRecordlist);
 		model.addAttribute("player_name" ,player_name);
+		
+		if(principal != null) {
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
 		
 		return "recordingroom";
 	}

@@ -32,23 +32,37 @@
 	color: #f11a0e;
 }
 
-.game-schedule-list,th, tr, td {
+.game-schedule-list {
 	text-align: center;
-	border: 1px solid black;
 	border-collapse: collapse;
+	font-size: 15px;
+	width: 1000px;
+	margin-left: 100px;
+	position: relative;
 }
-.game-schedule-list {width: 1000px; margin-left: 100px; position: relative;}
-
 
 .game-schedule-list>thead>tr>th {
-	background: black;
+	height: 30px;
+	background-color: rgb(238, 49, 24);
 	color: white;
-	font-size: 17px;
+	font-size: medium;
 }
 
+.game-schedule-list>tbody>tr>th {
+	border-right: 1px solid lightgray;
+	border-left: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	padding-right: 10px;
+}
+.game-schedule-list>tbody>tr>td {
+	border-bottom: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+
+
 tbody>tr>td>span>img {
-	width: 35px;
-	height: 35px;
+	width: 30px;
+	height: 30px;
 	position: relative;
 	top: 10px;
 }
@@ -56,24 +70,28 @@ tbody>tr>td>span>img {
 .away-team {
 	position: absolute;
 	right: 350px;
+	bottom: 20px;
+	font-size: 15px;
 }
 .home-team {
 	position: absolute;
-	left: 350px;
+	bottom: 20px;
+	left: 340px;
+	font-size: 15px;
 }
 
 .end-score {
 	position: absolute;
-	top: 55px;
+	top: 25px;
 	left: 240px;
-	font-size: 19px;
+	font-size: 16px;
 }
 
 .versus {
 	position: absolute;
-	top: 60px;
-	left: 270px;
-	font-size: 19px;
+	top: 25px;
+	left: 260px;
+	font-size: 16px;
 }
 
 .schedule-controller {

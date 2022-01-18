@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-    <link rel="stylesheet" href="./resources/css/player_list.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/player_list.css" />
     
     <jsp:include page="./header.jsp" />
 
@@ -17,18 +17,18 @@
         <div class="player-list">
 
             <div class="player-position-list">
-                <span><a href="./playerList">전체</a></span> <hr>
-                <span><a href="./playerList?player_pos=guard">가드</a></span> <hr>
-                <span><a href="./playerList?player_pos=forward">포워드</a></span> <hr>
-                <span><a href="./playerList?player_pos=center">센터</a></span>
+                <span><a href="${pageContext.request.contextPath}/playerList">전체</a></span> <hr>
+                <span><a href="${pageContext.request.contextPath}/playerList?player_pos=guard">가드</a></span> <hr>
+                <span><a href="${pageContext.request.contextPath}/playerList?player_pos=forward">포워드</a></span> <hr>
+                <span><a href="${pageContext.request.contextPath}/playerList?player_pos=center">센터</a></span>
             </div>
 
             <table class="player-list-table">
             	<c:forEach var="list" varStatus="i" items="${playerList}">
             	<c:if test="${i.count%3 eq 1}"><tr></c:if>
             		<td>
-            			<a href="./playerDetail?player_backno=${list.player_backno}">
-	                        <img src="./resources/images/playerBg.jpg" alt="" class="playerBg">
+            			<a href="${pageContext.request.contextPath}/playerDetail?player_backno=${list.player_backno}">
+	                        <img src="${pageContext.request.contextPath}/resources/images/playerBg.jpg" alt="" class="playerBg">
 	                        <img src="${list.player_img}" alt="" class="playerImg">
 	                        <span class="player-number">No.${list.player_backno}</span>
 	                        <span class="player-position">${list.player_pos}</span>

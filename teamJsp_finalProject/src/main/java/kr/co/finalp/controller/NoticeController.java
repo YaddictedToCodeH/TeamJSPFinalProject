@@ -1,8 +1,7 @@
 package kr.co.finalp.controller;
 
+import java.security.Principal;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.finalp.dao.NoticeDao;
 import kr.co.finalp.dto.NoticeDTO;
 import kr.co.finalp.dto.NoticePageUtil;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 //@RequestMapping("/notice")
@@ -33,10 +31,9 @@ public class NoticeController {
 	}
 	
 	// notice 공지사항 페이지 
-	@RequestMapping("/notice")
+	@RequestMapping(value = {"/notice", "/member/notice"})
 	public ModelAndView notice(Model model,
-			@RequestParam(name="currentPage", defaultValue = "1") int currentPage
-	) {
+			@RequestParam(name="currentPage", defaultValue = "1") int currentPage, Principal principal) {
 		
 		int totalNumber = dao.getTotal();
 		
@@ -49,12 +46,17 @@ public class NoticeController {
 		int startNo = (int) map.get("startNo");
 		int endNo = (int) map.get("endNo");
 		
+		if(principal != null) {
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
+		
 		return new ModelAndView("notice","notice", dao.selectAll(startNo, endNo) );
 	}
 	
 	// 공지사항에서 클릭시 게시물 상세사항 
-	@GetMapping("/noticeDetail")
-	public ModelAndView noticeDetailForm(@RequestParam("noticeno")int noticeno, Model model) {
+	@GetMapping(value = {"/noticeDetail", "/member/noticeDetail"})
+	public ModelAndView noticeDetailForm(@RequestParam("noticeno")int noticeno, Model model, Principal principal) {
 		NoticeDTO dto = dao.selectOne(noticeno);
 		int totalNumber = dao.getTotal();
 		
@@ -64,6 +66,11 @@ public class NoticeController {
 		
 		// 조회수 증가
 		dao.raiseHits(noticeno);
+		
+		if(principal != null) {
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
 		
 		return new ModelAndView("noticeDetail", "dto", dto);
 	}

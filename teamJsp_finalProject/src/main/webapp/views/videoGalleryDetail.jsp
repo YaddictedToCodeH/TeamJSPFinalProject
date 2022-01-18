@@ -44,10 +44,10 @@ $(".btn_like").on("click", function check() {
 					   alert('오류가 발생되었습니다. 잠시후 시도해주시기  바랍니다');
 				   }else if(response == 2){
 					   $('.btn_like').removeClass('btn_like_active');
-					   console.log("지우기:" + response);
+					   alert("좋아요를 취소하셨습니다.");
 				   }else if(response == 1) {
 					    $('.btn_like').addClass('btn_like_active');
-					    console.log("색넣기: " + response);
+					    alert("좋아요 하셨습니다.");
 				   }
 				 	   			   
 			   }
@@ -111,7 +111,7 @@ $(".btn_like").on("click", function check() {
             
 
             <div class="btn_div">
-                <a href="${pageContext.request.contextPath}/videoGallery"><button class="btn_list">목록으로</button></a>
+                <a href="videoGallery"><button class="btn_list">목록으로</button></a>
             </div>
 
         </div>

@@ -58,6 +58,7 @@
             	</table>
 				
 				<form action="fan_board" method="post">
+				<input type="hidden" id="writer" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	                <div class="search">
 	                    <div class="searchsort">
 		                        <select name="search_option" id="search_option">
@@ -84,8 +85,11 @@
 	                    
 	                    <div class="searchinput"><input name="keyword" type="text"></div>
 	                    <button type="submit" class="searchbutton">검색</button>
-	
+	                    
+						<c:if test="${id ne null }">
 	                	<div class="write"><a href="fan_boardWrite">글쓰기</a></div>
+	                	</c:if>
+	                	
 	            	</div>
 				</form>
 

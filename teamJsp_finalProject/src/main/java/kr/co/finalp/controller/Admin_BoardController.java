@@ -31,7 +31,7 @@ public class Admin_BoardController {
 	CommentsDao commentDao;
 	
 
-	@RequestMapping("/admin_board")
+	@RequestMapping("/admin/admin_board")
 	public ModelAndView admin_board(Model model,
 			@RequestParam(name="currentPage", defaultValue ="1" ) int currentPage,
 			@RequestParam(name="currentPage2", defaultValue ="1" ) int currentPage2
@@ -68,7 +68,7 @@ public class Admin_BoardController {
 	
 
 	// 게시물 선택 삭제 
-	@RequestMapping("/admin_boardDelete")
+	@RequestMapping("/admin/admin_boardDelete")
 	public String delete(@RequestParam("fanno")int fanno,
 			HttpServletRequest request) {
 		String [] ajaxMsg = request.getParameterValues("fanno");
@@ -76,7 +76,7 @@ public class Admin_BoardController {
 		for (int i = 0; i < size; i++) {
 			fan_boardDao.deleteOne(Integer.parseInt(ajaxMsg[i]));			
 		}
-		return "redirect:/admin_board";
+		return "redirect:/admin/admin_board";
 	}
 	
 	

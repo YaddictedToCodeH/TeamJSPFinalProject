@@ -30,7 +30,7 @@ public class Admin_InquireController {
 
 
 	
-	@RequestMapping("/admin_inquire")
+	@RequestMapping("/admin/admin_inquire")
 	public ModelAndView mypage(Model model,
 			@RequestParam(name = "currentPage", defaultValue = "1") int currentPage
 			) {
@@ -47,22 +47,22 @@ public class Admin_InquireController {
 		return new ModelAndView("admin_inquire", "list", dao.admin_inquire_selectAll(startNo, endNo));
 	}
 	
-	@GetMapping("/admin_inquireReply")
+	@GetMapping("/admin/admin_inquireReply")
 	public ModelAndView admin_inquireReply(@RequestParam("inqno")int inqno) {
 		InquireDTO dto = dao.admin_inquire_selectOne(inqno);
 		return new ModelAndView("admin_inquireReplyForm", "dto", dto);
 	}
 	
-	@PostMapping("/admin_inquireReply")
+	@PostMapping("/admin/admin_inquireReply")
 	public String update(@ModelAttribute("dto")InquireDTO dto) {
 		dao.admin_inquire_modify(dto);
-		return "redirect:/admin_inquire";
+		return "redirect:/admin/admin_inquire";
 	}
 	
-	@RequestMapping("/admin_inquireDelete")
+	@RequestMapping("/admin/admin_inquireDelete")
 	public String delete(@RequestParam("inqno")int inqno) {
 		dao.admin_inquire_delete(inqno);
-		return "redirect:/admin_inquire";
+		return "redirect:/admin/admin_inquire";
 	}
 	
 }

@@ -49,7 +49,7 @@ public class Fan_BoardController {
 
 
 
-	@RequestMapping("/fan_board")
+	@RequestMapping(value = {"/fan_board", "/member/fan_board"})
 	public ModelAndView fan_board(Model model,
 			@RequestParam(name="currentPage", defaultValue ="1" ) int currentPage,
 			@RequestParam(defaultValue="fan_title") String search_option,  // 기본 검색 옵션값을 제목으로 설정
@@ -76,7 +76,7 @@ public class Fan_BoardController {
 	}
 	
 	// 팬게시판에서 클릭시 게시물 상세사항 
-	@GetMapping("/fan_boardDetail")
+	@GetMapping(value = {"/fan_boardDetail", "/member/fan_boardDetail"})
 	public ModelAndView fan_bodardDetailForm(@RequestParam("fanno")int fanno, Model model, Principal principal) {
 		Fan_BoardDTO dto = dao.selectOne(fanno);
 		List<CommentsDTO> list = dao2.selectAll(fanno);
@@ -115,36 +115,36 @@ public class Fan_BoardController {
 	
 
 	// 작성 클릭시 해당 폼으로 
-	@GetMapping("/fan_boardWrite")
+	@GetMapping("/member/fan_boardWrite")
 	public String fan_boardWrite() {
 		return "fan_boardWriteForm";
 	}
 	
 	// 작성 등록
-	@PostMapping("/fan_boardWrite")
+	@PostMapping("/member/fan_boardWrite")
 	public String insert(@ModelAttribute("dto")Fan_BoardDTO dto) {
 		dao.InsertOne(dto);
-		return "redirect:/fan_board";
+		return "redirect:/member/fan_board";
 	}
 	
 	// 수정하기 클릭시 해당 폼으로 
-	@GetMapping("/fan_boardModify")
+	@GetMapping("/member/fan_boardModify")
 	public ModelAndView fan_boardModify(@RequestParam("fanno") int fanno) {
 		Fan_BoardDTO dto = dao.selectOne(fanno);
 		return new ModelAndView("fan_boardModifyForm", "dto", dto);
 	}
 	
 	// 수정하기 등록
-	@PostMapping("/fan_boardModify")
+	@PostMapping("/member/fan_boardModify")
 	public String update(@ModelAttribute("dto")Fan_BoardDTO dto) {
 		dao.updateOne(dto);
-		return "redirect:/fan_board";
+		return "redirect:/member/fan_board";
 	}
 	
 	// 게시물 삭제
-	@RequestMapping("/fan_boardDelete")
+	@RequestMapping("/member/fan_boardDelete")
 	public String delete(@RequestParam("fanno")int fanno) {
 		dao.deleteOne(fanno);
-		return "redirect:/fan_board";
+		return "redirect:/member/fan_board";
 	}
 }

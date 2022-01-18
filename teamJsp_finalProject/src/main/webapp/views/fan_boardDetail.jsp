@@ -44,8 +44,10 @@ $(function() {
 				   alert('오류가 발생되었습니다. 잠시후 시도해주시기  바랍니다');
 			   }else if(response == 2){
 				   $('.likebtn').removeClass('btn_like_active');
+				   alert("좋아요를 취소하셨습니다.");
 			   }else if(response == 1) {
 				    $('.likebtn').addClass('btn_like_active');
+				    alert("좋아요 하셨습니다.");
 			   }
 			 	   			   
 		   }
@@ -106,8 +108,10 @@ $(function() {
 	
 	            <div class="buttons">
 	                <span class="list"><a href="fan_board">목록</a></span>
+	                <c:if test="${id ne null }">
 	                <span class="modify"><a href="fan_boardModify?fanno=${dto.fanno }">수정</a></span>
 	                <span class="delete"><a href="fan_boardDelete?fanno=${dto.fanno }">삭제</a></span>
+	                </c:if>
 	            </div>
 	            
 	        </div>

@@ -14,6 +14,7 @@
 	
 	<div class="container">
         <form action="fan_boardModify" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="title">
                 <div class="titletext">
                     <h1>팬게시판</h1>

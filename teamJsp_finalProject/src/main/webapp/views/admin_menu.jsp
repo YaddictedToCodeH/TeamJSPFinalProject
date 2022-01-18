@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin_menu.css" />
 
     <div id="menu">
@@ -14,6 +14,7 @@
                 <li><a href="schedule">경기 일정</a></li>
                 <li><a href="admin_recordingroom">기록실 정보</a></li>
                 <li><a href="admin_banner">배너이미지</a></li>
+                <li><a href="<c:url value='/member/main'/>">홈페이지 메인으로</a></li>
             </ul>
         </div>
     </div>

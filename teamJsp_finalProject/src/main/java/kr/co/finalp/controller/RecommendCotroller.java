@@ -27,7 +27,7 @@ public class RecommendCotroller {
 	// @ResponseBody / @RequestBody 확인필수 보내고, 받는다. !
 	
 	@ResponseBody
-	@RequestMapping(value = "/recommend", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/recommend", method = RequestMethod.POST)
 	public int recomControl(@RequestBody RecommendDTO reqDto , Model model, Principal principal) {									
 		String id= principal.getName();
 		int galleryno = reqDto.getGalleryno();
@@ -57,7 +57,7 @@ public class RecommendCotroller {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/recommendFan", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/recommendFan", method = RequestMethod.POST)
 	public int recomControlFan(@RequestBody RecommendDTO reqDto , Model model, Principal principal) {									
 		String id= principal.getName();
 		int fanno = reqDto.getFanno();

@@ -1,5 +1,6 @@
 package kr.co.finalp.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class MainController {
 	GalleryDao galleryDao; // 갤러리 dao
 
 	@RequestMapping(value = {"/main", "/member/main"})
-	public ModelAndView main(Model model) {
+	public ModelAndView main(Model model, Principal principal) {
 		
 		// 팀 순위 
 		List<RankDTO> rankList = rankDao.rankSelectAll();
@@ -51,6 +52,12 @@ public class MainController {
 		List<GalleryDTO> galleryList = galleryDao.mainSelect();
 		model.addAttribute("gallery", galleryList);
 		
+		// id세션 정보가 있다면
+		if(principal != null) {		
+		String id = principal.getName();
+		model.addAttribute("id", id);
+		}
+	
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main");

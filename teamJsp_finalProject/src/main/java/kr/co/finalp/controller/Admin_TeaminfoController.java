@@ -29,7 +29,7 @@ public class Admin_TeaminfoController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping("/admin_teaminfo")
+	@RequestMapping("/admin/admin_teaminfo")
 	public ModelAndView admin_teaminfo(@RequestParam(value="player_pos",required=false)String player_pos) {
 		
 		List<PlayerDTO> list = null;
@@ -43,7 +43,7 @@ public class Admin_TeaminfoController {
 		return new ModelAndView("admin_teaminfo", "playerList", list);
 	}
 	
-	@GetMapping("/admin_teaminfoModify")
+	@GetMapping("/admin/admin_teaminfoModify")
 	public String admin_teaminfoModify(@RequestParam("player_backno")int player_backno, Model model) {
 		
 		PlayerDTO playerDto = dao.selectOne(player_backno);
@@ -54,24 +54,24 @@ public class Admin_TeaminfoController {
 		
 	}
 	
-	@PostMapping("/admin_teaminfoModify")
+	@PostMapping("/admin/admin_teaminfoModify")
 	public String update(@ModelAttribute("dto")PlayerDTO dto) {
 		dao.updateOne(dto);
-		return "redirect:/admin_teaminfo";
+		return "redirect:/admin/admin_teaminfo";
 	}
 	
-	@GetMapping("/admin_teaminfoWrite")
+	@GetMapping("/admin/admin_teaminfoWrite")
 	public String admin_teaminfoWrite() {
 		return "admin_teaminfoWriteForm";
 	}
 	
-	@PostMapping("/admin_teaminfoWrite")
+	@PostMapping("/admin/admin_teaminfoWrite")
 	public String insert(@ModelAttribute("dto")PlayerDTO dto) {
 		dao.InsertOne(dto);
-		return "redirect:/admin_teaminfo";
+		return "redirect:/admin/admin_teaminfo";
 	}
 	
-	@RequestMapping("/admin_teaminfoDelete")
+	@RequestMapping("/admin/admin_teaminfoDelete")
 	public String delete(@RequestParam("player_code")int player_code,
 			HttpServletRequest request) {
 		String [] ajaxMsg = request.getParameterValues("player_code");
@@ -79,7 +79,7 @@ public class Admin_TeaminfoController {
 		for (int i = 0; i < size; i++) {
 			dao.deleteOne(Integer.parseInt(ajaxMsg[i]));
 		}
-		return "redirect:/admin_teaminfo";
+		return "redirect:/admin/admin_teaminfo";
 	}
 	
 }

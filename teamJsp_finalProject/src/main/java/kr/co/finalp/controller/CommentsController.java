@@ -21,23 +21,23 @@ public class CommentsController {
 	public void setDao(CommentsDao dao) {
 		this.dao = dao;
 	}
-	@GetMapping("/commentsWrite")
+	@GetMapping(value = {"/member/commentsWrite"})
 	public String write() {
 		return "commentsWriteForm";
 	}
 	
-	@PostMapping("/commentsWrite")
+	@PostMapping(value = {"/member/commentsWrite"})
 	public String write(@ModelAttribute("dto")CommentsDTO dto){
 		dao.InsertOne(dto);
 		int fanno = dto.getFanno();
-		return "redirect:/fan_boardDetail?fanno="+fanno;
+		return "redirect:/member/fan_boardDetail?fanno="+fanno;
 	}
 	
-	@RequestMapping("/commentsDelete")
+	@RequestMapping("/member/commentsDelete")
 	public String delete(@RequestParam("commentno")int commentno,
 						 @RequestParam("fanno")int fanno
 			) {
 		dao.deleteOne(commentno);
-		return "redirect:/fan_boardDetail?fanno="+fanno; 
+		return "redirect:/member/fan_boardDetail?fanno="+fanno; 
 	}
 }

@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<div id="ajaxWrap">
-	<link rel="stylesheet" href="./resources/css/admin_recordingroom.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin_recordingroom.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="./resources/js/admin_recordingroom.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/admin_recordingroom.js"></script>
     
     
     <jsp:include page="./admin_menu.jsp" />

@@ -1,5 +1,6 @@
 package kr.co.finalp.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class PlayerController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping("/playerList")
-	public ModelAndView playerList(@RequestParam(value="player_pos",required=false)String player_pos) {
+	@RequestMapping(value = {"/playerList" , "member/playerList"})
+	public ModelAndView playerList(@RequestParam(value="player_pos",required=false)String player_pos, Principal principal, Model model) {
 		
 		List<PlayerDTO> list = null;
 		
@@ -35,16 +36,27 @@ public class PlayerController {
 			list = dao.selectPos(player_pos);
 		}
 		
+		if(principal != null) {
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
+		
+		
 		return new ModelAndView("player_list", "playerList", list);
 	}
 	
-	@GetMapping("/playerDetail")
-	public String playerDetail(@RequestParam("player_backno")int player_backno, Model model) {
+	@GetMapping(value = {"/playerDetail" , "member/playerDetail"})
+	public String playerDetail(@RequestParam("player_backno")int player_backno, Model model, Principal principal) {
 		
 		PlayerDTO playerDto = dao.selectOne(player_backno);
 		PlayerRecordDTO sumRecord = dao.selectSumRecord(player_backno);
 		PlayerRecordDTO avgRecord = dao.selectAvgRecord(player_backno);
 		PlayerRecordDTO topRecord = dao.selectTopRecord(player_backno);
+		
+		if(principal != null) {
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
 		
 		model.addAttribute("playerDto", playerDto);
 		model.addAttribute("sumRecordDto", sumRecord);

@@ -97,7 +97,7 @@ public class Admin_RecordController {
 		String pn = dao.selectPlayerName(player_code);
 		model.addAttribute("pn", pn);
 			
-		return "/admin/admin_recordingroomModifyForm";
+		return "admin_recordingroomModifyForm";
 	}
 	
 	@GetMapping("/admin/admin_recordingroomModify2")
@@ -112,21 +112,21 @@ public class Admin_RecordController {
 		
 
 			
-		return "/admin_recordingroomModifyForm";
+		return "admin_recordingroomModifyForm";
 	}
 	
 	@PostMapping("/admin/admin_recordingroomModify")
 	public String updatePlayerRecord2(@RequestParam("gameno")int gameno, 
 			@ModelAttribute("dto")PlayerRecordDTO dto) {
 		dao.updateOne(dto);
-		return "redirect:/admin_recordingroom";
+		return "redirect:/admin/admin_recordingroom";
 	}
 	
 	@PostMapping("/admin/admin_recordingroomModify2")
 	public String updateTeamRecord2(@RequestParam("gameno")int gameno,
 			@ModelAttribute("dto")TeamRecordDTO dto) {
 		dao.updateTeam(dto);
-		return "redirect:/admin_recordingroom";
+		return "redirect:/admin/admin_recordingroom";
 	}
 
 }

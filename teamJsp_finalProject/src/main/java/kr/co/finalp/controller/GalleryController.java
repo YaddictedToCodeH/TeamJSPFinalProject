@@ -34,7 +34,7 @@ public class GalleryController {
 
 	@Autowired
 	RecommendDAO rdao;
-
+		
 	public void setDao(GalleryDao dao) {
 		this.dao = dao;
 	}
@@ -42,7 +42,7 @@ public class GalleryController {
 	@RequestMapping(value = {"/gallery", "/member/gallery"})
 	public ModelAndView photo(@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
 			@RequestParam(name = "galleryCategoryNo", defaultValue = "1") int galleryCategoryNo,
-			@RequestParam(name = "sort_order", defaultValue = "latest_order") String sort_order, Model model) {
+			@RequestParam(name = "sort_order", defaultValue = "latest_order") String sort_order, Model model, Principal principal) {
 
 		GalleryStartEnd galleryStartEnd = new GalleryStartEnd();
 		galleryStartEnd.setGalleryCategoryNo(galleryCategoryNo);
@@ -73,6 +73,11 @@ public class GalleryController {
 		// 화면 출력을 위한 값 저장
 		model.addAttribute("map", map);
 		model.addAttribute("list", list);
+		
+		if(principal != null) {
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("photoGallery"); // 어떤 jsp 를 부를지 정하는 부분.
@@ -81,7 +86,7 @@ public class GalleryController {
 	}
 
 	@RequestMapping(value = {"/photoGalleryDetail", "/member/photoGalleryDetail"})
-	public String photoeDetail(@RequestParam("galleryno") int galleryno, Model model,Principal principal) {
+	public String photoeDetail(@RequestParam("galleryno") int galleryno, Model model, Principal principal) {
 
 		extracted(galleryno, model, principal);
 
@@ -92,7 +97,7 @@ public class GalleryController {
 	@RequestMapping(value = {"/videoGallery", "/member/videoGallery"})
 	public ModelAndView video(@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
 			@RequestParam(name = "galleryCategoryNo", defaultValue = "4") int galleryCategoryNo,
-			@RequestParam(name = "sort_order", defaultValue = "latest_order") String sort_order, Model model) {
+			@RequestParam(name = "sort_order", defaultValue = "latest_order") String sort_order, Model model, Principal principal) {
 
 		GalleryStartEnd galleryStartEnd = new GalleryStartEnd();
 		galleryStartEnd.setGalleryCategoryNo(galleryCategoryNo);
@@ -123,6 +128,11 @@ public class GalleryController {
 		// 화면 출력을 위한 값 저장
 		model.addAttribute("map", map);
 		model.addAttribute("list", list);
+		
+		if(principal != null) {		
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("videoGallery"); // 어떤 jsp 를 부를지 정하는 부분.

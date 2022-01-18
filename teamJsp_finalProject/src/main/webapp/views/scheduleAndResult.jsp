@@ -48,7 +48,7 @@
 	<table class="game-schedule-list">
 		<thead>
 			<tr>
-				<th style="width: 100px;" >날짜</th>
+				<th style="width: 100px;">날짜</th>
 				<th style="width:550px; height:60px;">경기 (어웨이 : 홈) 스코어</th>
 				<th style="width: 150px;">장소</th>
 				<th style="width: 200px;">결과</th>
@@ -62,7 +62,7 @@
 					</th>
 					
 					
-					<td height="80px;" style="position: relative; bottom: 30px;"> 
+					<td height="70px;" style="position: relative;"> 
 							<span class="away-team">${list.team_name2} <img src="${pageContext.request.contextPath}${list.team_logo2}" alt="logoImage" onerror="this.src='/teamJsp_finalProject/resources/images/logo.png';"/></span>
 							<c:if test="${list.game_score ne null}">
 							 	<span class="end-score"><b>${list.game_score}</b></span>			

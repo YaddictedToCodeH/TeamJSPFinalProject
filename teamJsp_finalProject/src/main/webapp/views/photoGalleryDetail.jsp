@@ -43,10 +43,12 @@
 				   console.log(response);
 				   // 성공시 response 1 떨어짐
 				   if(response == 3) {
-					   alert('오류가 발생되었습니다. 잠시후 시도해주시기  바랍니다');
+					   alert('오류가 발생되었습니다. 잠시후 다시 시도해주세요');
 				   }else if(response == 2){
+					   alert("좋아요를 취소하셨습니다.");
 					   $('.btn_like').removeClass('btn_like_active');
 				   }else if(response == 1) {
+					   alert("좋아요 하셨습니다.");
 					    $('.btn_like').addClass('btn_like_active');
 				   }
 				 	   			   
@@ -110,7 +112,7 @@
 
             
             <div class="btn_div">
-                <a href="${pageContext.request.contextPath}/gallery"><button class="btn_list">목록으로</button></a>
+                <a href="gallery"><button class="btn_list">목록으로</button></a>
             </div>
 
         </div>
