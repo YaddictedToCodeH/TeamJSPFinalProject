@@ -8,8 +8,9 @@
 </head>
 <body>
 	<h1>write</h1>
-	<h2>${writer }</h2>
-	<h2>${title }</h2>
-	<h2>${contents }</h2>
+	<h2>${id }</h2>
+	<h2>${inq_title }</h2>
+	<h2>${inq_contents }</h2>
+	
 </body>
 </html>

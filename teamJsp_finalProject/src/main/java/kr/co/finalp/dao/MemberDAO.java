@@ -1,5 +1,7 @@
 package kr.co.finalp.dao;
 
+import java.util.List;
+
 import kr.co.finalp.dto.MemberDTO;
 
 public interface MemberDAO {
@@ -17,5 +19,7 @@ public interface MemberDAO {
 	// 회원가입
 	public void insertMember(MemberDTO dto);
 
-	public MemberDTO imformation_id(String id);
+	public MemberDTO mypage_id(String id);
+	
+	public void modify(MemberDTO dto);
 }

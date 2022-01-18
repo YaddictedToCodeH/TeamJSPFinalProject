@@ -1,5 +1,8 @@
 package kr.co.finalp.dao;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,8 +50,13 @@ public class MemberOracleDAO implements MemberDAO{
 	}
 
 	@Override
-	public MemberDTO imformation_id(String id) {
-		return ss.selectOne("kr.co.finalp.impormation_id",id);
+	public MemberDTO mypage_id(String id) {
+		return ss.selectOne("kr.co.finalp.imformation_id",id);
+	}
+
+	@Override
+	public void modify(MemberDTO dto) {
+		ss.update("kr.co.finalp.modifyMember", dto);
 	}
 
 

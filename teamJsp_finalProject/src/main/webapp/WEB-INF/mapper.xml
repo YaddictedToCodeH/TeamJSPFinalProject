@@ -591,11 +591,6 @@
  		WHERE id = #{id}
  	</select>
  	
- 	  <select id="impormation_id" parameterType="mdto" resultType="String">
- 		SELECT id, pwd, mem_name, mem_birth, gender, mp, mail, mailOk, mem_grade, enabled, mem_point, addrs, detail_addrs, amount
- 		FROM member
- 		WHERE id = #{id}
- 	</select>
  	
  	<!-- 메일 중복확인 -->
  	<select id="mailDoubleCheck" parameterType="String" resultType="String">
@@ -698,7 +693,7 @@
   	
   	
 	<!-- 마이페이지 문의사항 조회 -->
- 	<select id="mypage_selectById" parameterType="se" resultType="idto">
+ 	<select id="mypage_selectById" resultType="idto">
 	SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
 	FROM(SELECT ROWNUM rn, inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
     	FROM(SELECT inqno,id,inq_title, TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
@@ -727,7 +722,18 @@
   		SELECT COUNT(*)
   		FROM inquire
   	</select>
-
+  	
+  	<update id="modifyMember" parameterType="mdto">
+  		UPDATE member
+  		SET pwd = #{pwd}, mail = #{mail}
+  		WHERE id = #{id}
+  	</update>
+  	
+  	<select id="imformation_id" parameterType="String" resultType="mdto">
+  		SELECT id,pwd,mem_name,mem_birth,gender,mp,mail,mem_point,addrs
+  		FROM member 
+  		WHERE id = #{id}
+  	</select>
  	
  	<!-- ticketing 홈경기 -->
  	<select id="selectHomeGames" resultType="schedto">
