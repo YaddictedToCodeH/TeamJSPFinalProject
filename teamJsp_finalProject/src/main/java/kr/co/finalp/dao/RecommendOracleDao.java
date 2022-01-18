@@ -21,10 +21,18 @@ public class RecommendOracleDao implements RecommendDAO {
 		return ss.insert("kr.co.finalp.insert_like", dto);
 
 	}
+	@Override
+	public int insertLikeFan(RecommendDTO dto) {
+		return ss.insert("kr.co.finalp.insert_like_fan", dto);
+	}
 
 	@Override
 	public int updateLike(RecommendDTO dto) {
 		return ss.update("kr.co.finalp.update_like", dto);
+	}
+	@Override
+	public int updateLikeFan(RecommendDTO dto) {
+		return ss.update("kr.co.finalp.update_like_fan", dto);
 	}
 
 	// 추천 등록 여부 체크
@@ -32,12 +40,19 @@ public class RecommendOracleDao implements RecommendDAO {
 	public RecommendDTO selectRecomOne(RecommendDTO dto) {
 		return ss.selectOne("kr.co.finalp.selectRecomOne", dto);
 	}
+	@Override
+	public RecommendDTO selectFanRecomOne(RecommendDTO dto) {
+		return ss.selectOne("kr.co.finalp.selectFanRecomOne", dto);
+	}
 
 	@Override
 	public int deleteLike(int recom) {
 		return ss.delete("kr.co.finalp.delete_like", recom);
 
 	}
+
+
+
 
 	
 

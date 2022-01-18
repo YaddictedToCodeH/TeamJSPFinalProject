@@ -67,7 +67,8 @@
 	<div id="container">
 	
 		<jsp:include page="header.jsp"></jsp:include>
-				
+		
+		<!-- security post방식 사용시 필요 -->		
 		<form action="return false;">
 			<input type="hidden" name="_csrf_header" value="${_csrf.headerName}" />
 			<input type="hidden" name="_csrf" value="${_csrf.token}" />

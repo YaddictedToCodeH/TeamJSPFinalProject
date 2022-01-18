@@ -1,5 +1,6 @@
 package kr.co.finalp.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.finalp.dao.CommentsDao;
 import kr.co.finalp.dao.Fan_BoardDao;
+import kr.co.finalp.dao.RecommendDAO;
 import kr.co.finalp.dto.CommentsDTO;
 import kr.co.finalp.dto.Fan_BoardDTO;
 import kr.co.finalp.dto.Fan_BoardPageUtil;
+import kr.co.finalp.dto.RecommendDTO;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -29,6 +32,10 @@ public class Fan_BoardController {
 	
 	@Autowired
 	CommentsDao dao2;
+	
+	// 좋아요Dao
+	@Autowired
+	RecommendDAO rdao;
 
 	public void setDao(Fan_BoardDao dao) {
 		this.dao = dao;
@@ -70,7 +77,7 @@ public class Fan_BoardController {
 	
 	// 팬게시판에서 클릭시 게시물 상세사항 
 	@GetMapping("/fan_boardDetail")
-	public ModelAndView fan_bodardDetailForm(@RequestParam("fanno")int fanno, Model model) {
+	public ModelAndView fan_bodardDetailForm(@RequestParam("fanno")int fanno, Model model, Principal principal) {
 		Fan_BoardDTO dto = dao.selectOne(fanno);
 		List<CommentsDTO> list = dao2.selectAll(fanno);
 
@@ -80,6 +87,25 @@ public class Fan_BoardController {
 
 		// 조회수 증가
 		dao.raiseHits(fanno);
+		
+		
+		// 좋아요 수
+		int countLike = dao.countLike(fanno);
+		model.addAttribute("count", countLike);
+		
+		// id세션 정보가 있다면
+		if(principal != null) {		
+		String id = principal.getName();
+		
+		model.addAttribute("id", id);
+		RecommendDTO rdto = new RecommendDTO();
+		rdto.setId(id);
+		rdto.setFanno(fanno);
+		
+		RecommendDTO recom = rdao.selectFanRecomOne(rdto);
+		
+		model.addAttribute("recom", recom);
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("fan_boardDetail");

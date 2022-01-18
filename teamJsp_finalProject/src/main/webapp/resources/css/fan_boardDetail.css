@@ -61,6 +61,16 @@
         border-radius: 40px;
         border: 1px solid black;
     }
+    
+    .btn_like_active {
+		color: white;
+		background-color:red;
+		cursor: pointer;
+	}
+	.likebtn:hover{
+		border: 1px solid red;
+		cursor: pointer;
+	}
 
     .buttons{
         float: right;

@@ -65,4 +65,9 @@ public class Fan_BoardOracleDao implements Fan_BoardDao {
 		return ss.selectList("kr.co.finalp.admin_board_selectAll", se);
 	}
 
+	@Override
+	public int countLike(int fanno) {
+		return ss.selectOne("kr.co.finalp.countFan_like", fanno);
+	}
+
 }
