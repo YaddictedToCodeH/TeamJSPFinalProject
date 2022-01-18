@@ -28,7 +28,7 @@
                 <span class="prev"><a href="/teamJsp_finalProject/noticeDetail?noticeno=${dto.noticeno-1 }">이전글</a></span>
              </c:if>
               
-                <span class="home"><a href="/teamJsp_finalProject/notice">목록</a></span>
+                <span class="home"><a href="notice">목록</a></span>
              
              <c:if test="${map.next}">
                 <span class="next"><a href="/teamJsp_finalProject/noticeDetail?noticeno=${dto.noticeno+1 }">다음글</a></span>

@@ -19,10 +19,6 @@ public class LoginController {
 		}
 	}
 	
-	@RequestMapping("/common/cLogout")
-	public String logout() {
-		return "common/cLogout";
-	}
 	
 	@RequestMapping("/member/logout")
 	public String logout2(HttpServletRequest req) {
