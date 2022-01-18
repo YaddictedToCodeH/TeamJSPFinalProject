@@ -50,7 +50,7 @@
 				<li><a href="recordingroom">기록실</a></li>
 			</ul>
 			<ul>
-				<li><a href="">예매하기</a></li>
+				<li><a href="<c:url value="/member/ticketing" />">예매하기</a></li>
 				<li><a href="ticketPrice">티켓가격</a></li>
 				<li><a href="ticketNotice">예매 안내사항</a></li>
 			</ul>

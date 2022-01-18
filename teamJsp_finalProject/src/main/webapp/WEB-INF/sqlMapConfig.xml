@@ -33,7 +33,9 @@
 	 	<typeAlias type="kr.co.finalp.dto.RankPlayerAllDTO" alias="rankAlldto"/>
   		<typeAlias type="kr.co.finalp.dto.RecommendDTO" alias="recomdto"/>
   		
-  		
+  		<typeAlias type="kr.co.finalp.dto.SeatDTO" alias="seatDto"/>
+  		<typeAlias type="kr.co.finalp.dto.SeatAreaDTO" alias="seataDTO"/>
+  		<typeAlias type="kr.co.finalp.dto.SeatGradeDTO" alias="seatgDTO"/>
   	</typeAliases>
   </configuration>
 

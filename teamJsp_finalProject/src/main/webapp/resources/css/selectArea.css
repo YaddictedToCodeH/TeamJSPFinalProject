@@ -1,0 +1,273 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+#selectArea-container {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+#ticketing-title {
+	width: 100%;
+	line-height: 80px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#ticketing-step {
+	width: 100%;
+	line-height: 50px;
+	text-align: center;
+	font-weight: 900;
+	color: gray;
+}
+
+#ticketing-step>span {
+	margin: 50px;
+	padding: 5px 30px;
+	font-size: 20px;
+	font-weight: 400;
+	border-radius: 10px;
+	background-color: #eee;
+}
+
+#ticketing-step>span.active {
+	background-color: rgb(241, 44, 18);
+	color: white;
+}
+
+#selectArea-map {
+	width: 100%;
+	padding-top: 50px;
+	text-align: center;
+}
+
+#selectArea-map>p {
+	font-size: 18px;
+	font-weight: 500;
+	color: #555;
+}
+
+#selectArea-map>img {
+	margin-top: 10px;
+	width: 600px;
+}
+
+#selectArea-btnGroup {
+	width: 100%;
+}
+
+.btnGroup-table {
+	margin: 40px;
+	margin-left: 390px;
+	width: 500px;
+	color: #444;
+}
+
+.btnGroup-table tr {
+	height: 35px;
+}
+
+.colorBox {
+	width: 15px;
+	height: 15px;
+	background-color: gray;
+}
+
+.areaBtn {
+	margin: 0 10px;
+	width: 150px;
+	height: 30px;
+	background-color: #eee;
+	border: none;
+	border-radius: 10px;
+	color: gray;
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+.areaBtn:hover {
+	background-color: rgb(241, 44, 18);
+	color: white;
+}
+
+.areaBtn:active {
+	opacity: .3;
+}
+
+#MySelect {
+	display: flex;
+	justify-content: center;
+	font-weight: 500;
+}
+
+#MySelect>span {
+	margin-right: 50px;
+	font-size: 17px;
+}
+
+.MySelect-list {
+	width: 450px;
+}
+
+.MySelect-list>table {
+	width: 100%;
+}
+
+.MySelect-list>table td {
+	padding-bottom: 10px;
+	font-size: 15px;
+}
+
+.nextStep {
+	display: block;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 50px;
+	width: 200px;
+	line-height: 35px;
+	border: none;
+	text-align: center;
+	font-weight: bolder;
+	border-radius: 5px;
+	background-color: rgb(241, 44, 18);
+	color: white;
+}
+
+.nextStep:active {
+	opacity: .3;
+}
+
+/* 여기서부터 모달 css */
+#popup-modal-overlay {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .3);
+	backdrop-filter: blur(3px);
+}
+
+body.wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#popup-modal-container {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 450px;
+	background-color: whitesmoke;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+#popup-modal-title {
+	width: 100%;
+	line-height: 30px;
+	background-color: rgb(241, 44, 18);
+	text-align: center;
+	font-weight: 500;
+	color: white;
+}
+
+#modal-bottom {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 25px;
+	background-color: rgb(241, 44, 18);
+}
+
+#popup-modal-body {
+	margin-top: 20px;
+}
+
+.modal-areaName {
+	margin: 0 20px;
+	font-weight: 500;
+}
+
+.modal-myPick {
+	margin: 0 20px;
+	font-weight: 500;
+}
+
+.modal-seatList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 10px auto;
+	margin-bottom: 25px;
+	width: 85%;
+	height: 110px;
+	background-color: white;
+}
+
+.modal-myPickList {
+	margin: 10px auto;
+	margin-bottom: 25px;
+	width: 85%;
+	height: 110px;
+	background-color: white;
+	overflow-y: scroll;
+}
+
+.modal-myPickList>p {
+	font-size: 15px;
+	margin: 10px;
+}
+
+.modal-seatOk {
+	margin: 0 50%;
+	transform: translate(-50%, 0);
+	width: 110px;
+	height: 25px;
+	background-color: rgb(21, 29, 97);
+	border-radius: 8px;
+	border: none;
+	font-weight: 700;
+	color: white;
+	cursor: pointer;
+}
+
+.modal-seatOk:hover {
+	background-color: rgb(241, 44, 18);
+}
+
+.modal-seatOk:active {
+	opacity: .4;
+}
+
+.zone {
+	margin: auto;
+}
+
+.seat {
+	margin: 1px;
+}
+
+.rightMargin {
+	margin-right: 20px;
+}
+
+.ico-close {
+	color: white;
+	float: right;
+	font-size: 25px;
+	margin: 3px 10px 0 0;
+	cursor: pointer;
+}

@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+#saleTicket-container {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+#ticketing-title {
+	width: 100%;
+	line-height: 80px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#ticketing-step {
+	width: 100%;
+	line-height: 50px;
+	text-align: center;
+	font-weight: 900;
+	color: gray;
+}
+
+#ticketing-step>span {
+	margin: 50px;
+	padding: 5px 30px;
+	font-size: 20px;
+	font-weight: 400;
+	border-radius: 10px;
+	background-color: #eee;
+}
+
+#ticketing-step>span.active {
+	background-color: rgb(241, 44, 18);
+	color: white;
+}
+
+.divTitle {
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+.apply-div, .payment-div {
+	margin: auto;
+	width: 800px;
+}
+
+.apply-table, .payment-table {
+	width: 100%;
+	margin-top: 10px;
+	/* text-align: center; */
+	background-color: whitesmoke;
+	border-radius: 5px;
+}
+
+.payment-table {
+	padding-bottom: 15px;
+}
+
+#saleTicket-apply {
+	width: 100%;
+	padding-top: 50px;
+}
+
+.apply-table td {
+	padding: 20px 20px 0 20px;
+}
+
+.apply-table td.holdPoint {
+	padding: 0;
+	text-align: right;
+	padding-bottom: 20px;
+}
+
+.apply-table td.holdPoint span {
+	margin-right: 90px;
+}
+
+.apply-table .saleOption {
+	width: 250px;
+	height: 30px;
+	text-align: right;
+	font-size: 20px;
+	margin-left: 65px;
+}
+
+#saleTicket-apply .apply-btn {
+	margin: 0 50%;
+	transform: translate(-50%, 0);
+	width: 150px;
+	height: 30px;
+	background-color: rgb(21, 29, 97);
+	border-radius: 8px;
+	border: none;
+	font-weight: 700;
+	color: white;
+	cursor: pointer;
+}
+
+#saleTicket-apply .apply-btn:active {
+	background-color: rgb(241, 44, 18);
+	opacity: .9;
+}
+
+#saleTicket-payment {
+	width: 100%;
+	padding: 50px 0;
+}
+
+.payment-table td {
+	padding: 20px;
+	text-align: center;
+}
+
+.payment-table td>span, .apply-table td>span {
+	font-size: 15px;
+	font-weight: 600;
+	color: #444;
+}
+
+.nextStep {
+	display: block;
+	margin: auto;
+	margin-bottom: 50px;
+	width: 200px;
+	line-height: 35px;
+	border: none;
+	text-align: center;
+	font-weight: bolder;
+	border-radius: 5px;
+	background-color: rgb(241, 44, 18);
+	color: white;
+}
+
+.nextStep:active {
+	opacity: .3;
+}

@@ -59,7 +59,12 @@
 					</td>
 					<td>${list.game_arena}</td>
 					<c:if test="${nowDate > list.game_date2 }">
-						<td><input type="button" value="예매하기" class="ticketOk"></td>															
+						<td>
+							<a href="<c:url value="/member/selectArea?game_date=${list.game_date}&game_arena=${list.game_arena}
+													&team_name=${list.team_name}&team_name2=${list.team_name2}&team_logo=${list.team_logo}
+													&team_logo2=${list.team_logo2}" />">
+							<input type="button" value="예매하기" class="ticketOk"></a>
+						</td>															
 					</c:if>
 					<c:if test="${nowDate <= list.game_date2 }">
 						<td>${list.game_date2 } 오픈</td>															
