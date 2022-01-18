@@ -67,7 +67,7 @@
         <div id="payment-status"><span>KT 수원 프로농구단 예매를 이용해주셔서 감사합니다.</span></div>
 
         <div id="paymentOk-btnList">
-            <input type="button" value="홈으로 이동" class="paymentOk-btn">
+            <a href="main"><input type="button" value="홈으로 이동" class="paymentOk-btn"></a>
             <input type="button" value="예매내역확인" class="paymentOk-btn">
         </div>
 

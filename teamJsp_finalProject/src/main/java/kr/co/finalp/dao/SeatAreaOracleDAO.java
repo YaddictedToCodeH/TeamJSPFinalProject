@@ -24,4 +24,10 @@ public class SeatAreaOracleDAO implements SeatAreaDAO {
 		return ss.selectList("kr.co.finalp.selectArea", seat_grade);
 	}
 
+
+	@Override
+	public int selectOneArea(String seat_area) {
+		return ss.selectOne("kr.co.finalp.selectSeatano", seat_area);
+	}
+
 }

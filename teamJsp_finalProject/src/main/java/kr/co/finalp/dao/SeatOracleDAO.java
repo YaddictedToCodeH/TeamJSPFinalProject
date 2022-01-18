@@ -23,4 +23,14 @@ public class SeatOracleDAO implements SeatDAO {
 		return ss.selectList("kr.co.finalp.selectSeat", seat_area);
 	}
 
+	@Override
+	public int selectOneSeat(SeatDTO dto) {
+		return ss.selectOne("kr.co.finalp.selectSeatno", dto);
+	}
+
+	@Override
+	public void updateSeat_status(int seatno) {
+		ss.update("kr.co.finalp.updateSeat_status", seatno);
+	}
+
 }

@@ -829,7 +829,7 @@
 		FROM (select ROWNUM rNUM, to_char(game_date, 'MM.DD(dy) HH:MI') game_date, teamno, teamno2, game_arena, to_char(game_date-2, 'MM.DD HH:MI') game_date2
 		FROM games
 		WHERE teamno = 1
-		AND game_score IS NULL
+		AND game_date <![CDATA[>]]> SYSDATE
 		ORDER BY game_date) g, team t, team t2
 		WHERE t.teamno = g.teamno
 		AND t2.teamno = g.teamno2
@@ -849,8 +849,16 @@
 		AND ROWNUM <![CDATA[<=]]> 5
 		ORDER BY g.rnum
  	</select>
-
-
+	
+	
+	<!-- game_date로 게임번호 가져오기 -->
+	<select id="selectOneGameno" parameterType="String" resultType="int">
+		SELECT gameno
+		FROM games
+		WHERE teamno = 1 AND to_char(game_date, 'MM.DD(dy) HH:MI') = #{game_date}
+	</select>
+	
+	
 	<!-- 좌석 구역 가져오기 -->
 	<select id="selectArea" parameterType="String" resultType="seataDTO">
 		SELECT seatano, seatgno, seat_area
@@ -860,6 +868,7 @@
                 		WHERE seat_grade = #{seat_grade})
 	</select>
 	
+	<!-- seat_area 로 seatDTO list가져오기 -->
 	<select id="selectSeat" parameterType="String" resultType="seatDTO">
 		SELECT seatno, seatano, detail_seat, seat_status
 		FROM seat
@@ -867,6 +876,27 @@
                 		FROM seatarea
                 		WHERE seat_area = #{seat_area})
 	</select>
+	
+	<!-- seat_area 로 seatano 가져오기 -->
+	<select id="selectSeatano" parameterType="String" resultType="int">
+		SELECT seatano
+		FROM seatarea
+		WHERE seat_area = #{seat_area}
+	</select>
+	
+	<!-- seatano, detail_seat 으로 seatno 가져오기 -->
+	<select id="selectSeatno" parameterType="seatDTO" resultType="int">
+		SELECT seatno
+		FROM seat
+		WHERE seatano = #{seatano} AND detail_seat = #{detail_seat}
+	</select>
+	
+	<!-- 좌석 seat_status update -->
+	<update id="updateSeat_status" parameterType="int">
+		UPDATE seat
+		SET seat_status = 1
+		WHERE seatno = #{seatno}
+	</update>
 	
 	<!-- 좌석 가격 가져오기 -->
 	<select id="getPrice" parameterType="String" resultType="int">
@@ -910,6 +940,13 @@
 		SET mem_grade = #{mem_grade}
 		WHERE id = #{id}
 	</update>
+	
+	
+	<!-- 예매 테이블 정보 입력 -->
+	<insert id="insertReservation" parameterType="reservationDTO">
+		INSERT INTO reservation
+		VALUES(RESERVATION_RESVNO_SEQ.nextval, #{seatno}, #{id}, #{gameno}, #{resv_number})
+	</insert>
 	
 </mapper>
 
