@@ -69,6 +69,11 @@ public class ScheduleOracleDao implements ScheduleDAO{
 		return ss.selectOne("kr.co.finalp.scheduleSelectOne", gameno);
 	}
 	
+	@Override
+	public List<ScheduleDTO> admin_mainSelectAll() {
+		return ss.selectList("kr.co.finalp.admin_main_schedule_list");
+	}
+	
 	
 
 }

@@ -14,7 +14,7 @@ public interface ScheduleDAO {
 	public List<ScheduleDTO> selectHomeGames();
 	// 수원 kt 소닉붐 원정경기 예정 5개
 	public List<ScheduleDTO> selectAwayGames();
-	
+
 	public ScheduleDTO selectOne(int gameno);
 	
 	//월별 갯수
@@ -25,4 +25,7 @@ public interface ScheduleDAO {
 	public void updateSchedule(ScheduleDTO dto);
 	// 관리자 스케줄 삭제
 	public void deleteSchedule(int gameno);
+	
+	// admin_main
+	public List<ScheduleDTO> admin_mainSelectAll();
 }

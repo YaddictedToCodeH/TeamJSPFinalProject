@@ -76,6 +76,7 @@
 
         <div class="player_detail">
             <form action="admin_teaminfoModify" method="post">
+             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="player_detail-info">
                 <img src="${playerDto.player_img}" alt="" class="player_img" id="pimg">
                 <span class="player-code"><input type="hidden" name="player_code" id="" value="${playerDto.player_code}"></span>

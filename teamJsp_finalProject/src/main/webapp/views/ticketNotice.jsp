@@ -6,131 +6,7 @@
 <meta charset="UTF-8">
 <title>티켓 예매 안내사항</title>
 </head>
-<style>
-    *{
-        margin: 0;
-		padding: 0;
-		text-decoration: none;
-		margin: 0px auto; 
-    }
-
-    .container{
-    	margin : 0 auto;
-        width: 1100px;
-        display: flex;
-        flex-direction: column;
-        margin-top: 100px;
-        align-items: center;
-    }
-
-    .title{
-        margin-bottom: 50px;
-    }
-
-    .payment{
-        width: 650px;
-    }
-
-    .paymenttitle{
-        padding: 10px;
-        border: 1px solid black;
-    }
-
-    .paymenttext{
-        margin-top: 15px;
-        border: 1px solid;
-        padding: 10px;
-    }
-
-    .pps{
-        font-size: small;
-        color: gray;
-    }
-
-    .cancel{
-        margin-top: 50px;
-        width: 650px;
-    }
-
-    .canceltitle{
-        padding: 10px;
-        border: 1px solid black;
-    }
-
-    .canceltext{
-        margin-top: 15px;
-        border: 1px solid;
-        padding: 10px;
-    }
-
-    .payment > .paymenttext > p:nth-child(1){
-        margin-bottom: 10px;
-    }
-
-    .cps{
-        font-size: small;
-        color: gray;
-    }
-
-    .common{
-        margin-top: 50px;
-        width: 650px;
-    }
-
-    .commontext{
-        margin-top: 15px;
-        border: 1px solid;
-        padding: 10px;
-    }
-
-    .commontitle{
-        padding: 10px;
-        border: 1px solid black;
-    }
-
-    .commontext>table>tbody>tr>td{
-        padding-left: 15px;
-    }
-
-    .commontext>table{
-        margin-bottom: 10px;
-    }
-
-    .ps{
-        color: gray;
-        font-size: small;
-        margin-left: 15px;
-    }
-
-    .cs{
-        margin-top: 50px;
-        margin-bottom: 50px;
-        width: 650px;
-    }
-
-    .cstext{
-        margin-top: 15px;
-        border: 1px solid black;
-        padding: 10px;
-    }
-
-    div.cstext > table > tbody > tr:nth-child(1)r{
-        width:590px;
-    }
-
-    .cstitle{
-        padding: 10px;
-        border: 1px solid black;
-    }
-
-    .csps{
-        font-size: small;
-        color: gray;
-        margin-top: 10px;
-        
-    }
-    
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ticketNotice.css" />
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 
@@ -139,7 +15,7 @@
         <div class="title"><h1>예매사항 안내</h1></div>
 
         <div class="payment">
-            <div class="paymenttitle">결제수단안내</div>
+            <div class="paymenttitle"><img src="${pageContext.request.contextPath}/resources/images/blacklogo_sm.png" alt="" class="ktlogo">결제수단안내</div>
             <div class="paymenttext">
                 <p>web  신용카드, 계좌이체, 간편결제</p>
                 <p class="pps">-무통장 입금은 경기일 3일전부터 결제수단이 사라지니 4일전까지만 이용 가능</p>
@@ -148,7 +24,7 @@
         </div>
 
         <div class="cancel">
-            <div class="canceltitle">부분취소 안내</div>
+            <div class="canceltitle"><img src="${pageContext.request.contextPath}/resources/images/blacklogo_sm.png" alt="" class="ktlogo">부분취소 안내</div>
             <div class="canceltext">
                 <p>신용카드 단일결제 시 부분 최소 가능</p><br>
                 <p class="cps">-단, 포인트 및 쿠폰 사용시 부분취소 불가</p>
@@ -156,7 +32,7 @@
         </div>
 
         <div class="common">
-            <div class="commontitle">예매 관련 사안</div>
+            <div class="commontitle"><img src="${pageContext.request.contextPath}/resources/images/blacklogo_sm.png" alt="" class="ktlogo">예매 관련 사안</div>
                  <div class="commontext">
                         <table>
                             <tr>
@@ -186,7 +62,7 @@
         </div>
 
         <div class="cs">
-            <div class="cstitle">고객센터</div>
+            <div class="cstitle"><img src="${pageContext.request.contextPath}/resources/images/blacklogo_sm.png" alt="" class="ktlogo">고객센터</div>
              <div class="cstext">
                     <p>티켓 예매 및 취소  1588-7890 (운영시간: 10:00~18:00)</p>
                     <p>기타 문의 전화  1588-4567 (운영시간: 10:00~18:00)</p>

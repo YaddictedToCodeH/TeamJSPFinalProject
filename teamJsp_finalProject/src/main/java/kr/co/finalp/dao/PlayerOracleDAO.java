@@ -66,6 +66,11 @@ public class PlayerOracleDAO implements PlayerDAO{
 		
 	}
 
+	@Override
+	public List<PlayerRecordDTO> admin_selectList(int player_code) {
+		return ss.selectList("kr.co.finalp.player_selectList", player_code);
+	}
+
 
 
 }

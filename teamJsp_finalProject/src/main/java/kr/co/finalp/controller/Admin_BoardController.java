@@ -69,7 +69,7 @@ public class Admin_BoardController {
 
 	// 게시물 선택 삭제 
 	@RequestMapping("/admin_boardDelete")
-	String delete(@RequestParam("fanno")int fanno,
+	public String delete(@RequestParam("fanno")int fanno,
 			HttpServletRequest request) {
 		String [] ajaxMsg = request.getParameterValues("fanno");
 		int size = ajaxMsg.length;

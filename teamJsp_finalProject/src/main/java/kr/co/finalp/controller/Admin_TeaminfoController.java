@@ -2,6 +2,8 @@ package kr.co.finalp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,8 +72,13 @@ public class Admin_TeaminfoController {
 	}
 	
 	@RequestMapping("/admin_teaminfoDelete")
-	public String delete(@RequestParam("player_code")int playercode) {
-		dao.deleteOne(playercode);
+	public String delete(@RequestParam("player_code")int player_code,
+			HttpServletRequest request) {
+		String [] ajaxMsg = request.getParameterValues("player_code");
+		int size = ajaxMsg.length;
+		for (int i = 0; i < size; i++) {
+			dao.deleteOne(Integer.parseInt(ajaxMsg[i]));
+		}
 		return "redirect:/admin_teaminfo";
 	}
 	

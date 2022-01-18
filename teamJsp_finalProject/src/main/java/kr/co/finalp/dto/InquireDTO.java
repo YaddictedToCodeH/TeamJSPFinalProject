@@ -8,11 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InquireDTO {
-    int inqno;
-	String id;
-	String inq_title;
-	String inq_date;
-	String inq_contents;
-	int inq_status;
-	String inq_ans;
+
+	private int inqno;
+	private String id;
+	private String inq_title;
+	private String inq_date;
+	private String inq_contents;
+	private int inq_status;
+	private String inq_ans;
+
 }

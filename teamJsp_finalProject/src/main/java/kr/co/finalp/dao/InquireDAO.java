@@ -3,7 +3,6 @@ package kr.co.finalp.dao;
 import java.util.List;
 
 import kr.co.finalp.dto.InquireDTO;
-import kr.co.finalp.dto.MemberDTO;
 
 public interface InquireDAO {
 	public List<InquireDTO> inquire_selectAll(int startNo, int endNo, String id);

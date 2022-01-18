@@ -429,6 +429,28 @@
   		SELECT COUNT(*) total
   		FROM comments
   	</select>
+  	
+  	<!-- 어드민 메인 문의게시판  -->
+  	<select id="admin_main_inquire_list" resultType="idto">
+  		SELECT TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date, inq_title, inq_status
+		FROM inquire
+		WHERE ROWNUM &lt;=5
+		ORDER BY inqno desc
+  	</select>
+  	
+  	<!-- 어드민 메인 경기일정 -->
+  	<select id="admin_main_schedule_list" resultType="schedto">
+		SELECT to_char(c1.game_date, 'yy-mm-dd')game_date, c1.game_arena, c2.team_logo,c2.team_name, c3.team_name,c3.team_logo team_logo2
+		FROM games c1
+		LEFT JOIN team c2
+		ON(c1.teamno = c2.teamno)
+		LEFT JOIN team c3
+		ON(c3.teamno = c1.teamno2)
+		WHERE (c2.teamno = 1 or c3.teamno = 1)
+		AND c1.game_date BETWEEN '22-01-17' AND '22-03-01'
+		AND ROWNUM &lt;=1
+		ORDER BY c1.gameno asc
+  	</select>
  	
  
  	<!-- 어드민 팬게시판 전체 -->
@@ -487,7 +509,7 @@
  	</update>
  	
  	<!-- 개인선수디테일 추가  -->
- 	<insert id="player_addOne" parameterType="pdto">
+ 	<insert id="player_insertOne" parameterType="pdto">
  		INSERT INTO player
  		VALUES ( #{player_code}, #{teamno}, #{player_backno}, #{player_pos}, #{player_name}, #{player_height}, #{player_weight} , 
  					#{player_school}, #{player_img}, #{player_sns}, #{player_birth} )
@@ -531,6 +553,48 @@
 							 WHERE player_backno = #{player_backno})
  	</select>
  	
+ 	 	
+ 	<!-- 선수코드로 개인선수기록 정보 가져오기 -->
+ 	<select id="playerRecord_selectOne" parameterType="int" resultType="prdto">
+ 		SELECT * FROM playerrecord
+ 		WHERE player_code = #{player_code}
+ 	</select>
+ 	
+<!--  	 <select id="admin_playerRecord_selectOne" parameterType="int" resultType="prdto">
+ 		SELECT pr.player_code, pr.gameno, p.player_name pr.player_pts, pr.player_min, pr.player_fg, 
+ 			   pr.player_three, pr.player_ft, pr.player_reb, pr.player_ast, pr.player_stl, pr.player_bs, pr.player_to
+		FROM playerrecord pr , player p
+		WHERE pr.player_code = (SELECT player_code FROM player WHERE player_backno = 10)
+ 	</select> -->
+ 	
+ 	<update id="playerRecord_updateOne" parameterType="prdto">
+ 		UPDATE playerrecord
+ 		SET player_pts = #{player_pts}, player_min = #{player_min} ,  player_fg = #{player_fg}, 
+ 			player_three = #{player_three}, player_ft = #{player_ft}, player_reb =#{player_reb},
+ 			player_ast = #{player_ast}, player_stl = #{player_stl}, player_bs = #{player_bs}, player_to = #{player_to}
+ 		WHERE player_code = #{player_code}
+ 		AND gameno = #{gameno}
+ 	</update>
+ 	
+ 	
+ 	
+ 	
+ 	<!-- 팀기록   -->
+ 	<select id="teamRecord_selectOne" parameterType="int" resultType="trdto">
+ 		SELECT * FROM teamrecord
+ 		WHERE teamno = #{teamno}
+ 	</select>
+ 	
+ 	<update id="teamRecord_updateOne" parameterType="trdto">
+ 		UPDATE teamrecord
+ 		SET teamno = #{teamno}, winteam = #{winteam},loseteam = #{loseteam},
+ 			team_pts = #{team_pts}, team_reb = #{team_reb}, team_ast = #{team_ast}, 
+ 			team_stl = #{team_stl}, team_bs = #{team_bs}, team_to = #{team_to}   
+ 		WHERE team_recordno = #{team_recordno}
+ 		AND gameno = #{gameno}
+ 	</update>
+ 	
+ 	
  	<!-- 팀기록실 -->
  	<select id="teamRecord_selectAll" resultType="trdto">
  		SELECT teamno, sum(winteam) winteam, sum(loseteam) loseteam, sum(team_pts) team_pts, sum(team_reb) team_reb,
@@ -562,6 +626,7 @@
  		WHERE player_code = #{player_code}
  	</select>
  	
+
  	
  	<!-- 이름과 이메일을 대조해서 회원조회 -->
  	<select id="findId" parameterType="mdto" resultType="String">
@@ -693,32 +758,44 @@
   	
   	
 	<!-- 마이페이지 문의사항 조회 -->
- 	<select id="mypage_selectById" resultType="idto">
+ 	<select id="admin_inquire_selectAll" parameterType="se" resultType="idto">
 	SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
 	FROM(SELECT ROWNUM rn, inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
     	FROM(SELECT inqno,id,inq_title, TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
-       		 FROM inquire 
-       		 WHERE id = #{id}
+       		 FROM inquire
         	 ORDER BY inqno desc)
     	WHERE ROWNUM &lt; #{endNo})
 	WHERE rn &gt; #{startNo}
 	</select>
+
 	
   
+
   	<insert id="mypage_insertOne" parameterType="idto">
   		INSERT INTO inquire 
   		VALUES(INQUIRE_INO_SEQ.nextval, #{id}, #{inq_title}, sysdate, #{inq_contents},0,null)
+	</insert>
+	
+  	<insert id="admin_inquire_insertOne" parameterType="idto">
+  		INSERT INTO inquire
+  		VALUES(inquire_inqno_seq.nextval, #{id}, #{inq_title}, inq_date, #{inq_contents}, 0, null)
   	</insert>
   	
  	<!-- 마이페이지 문의사항 자세히보기-->
   	<select id="mypage_selectOne" parameterType="int" resultType="idto">
   		SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
+	</select>
+	
+  	<select id="admin_inquire_selectOne" parameterType="int" resultType="idto">
+  		SELECT *
   		FROM inquire
   		WHERE inqno = #{inqno}
   	</select>
   	
  	<!-- 마이페이지 문의사항 가져오기-->
-  	<select id="mypage_getTotal" resultType="int">
+  	<select id="mypage_getTotal" resultType="int"></select>
+
+  	<select id="admin_inquire_getTotal" resultType="int">
   		SELECT COUNT(*)
   		FROM inquire
   	</select>
@@ -735,6 +812,17 @@
   		WHERE id = #{id}
   	</select>
  	
+  	<update id="admin_inquire_modify" parameterType="idto">
+  		UPDATE inquire
+  		SET inq_status= #{inq_status, jdbcType=INTEGER} , inq_ans = #{inq_ans,jdbcType=VARCHAR}
+ 		WHERE inqno = #{inqno, jdbcType=INTEGER}
+  	</update>
+  	
+  	<delete id="admin_inquire_delete" parameterType="int">
+  		DELETE inquire
+  		WHERE inqno = #{inqno}
+  	</delete>
+  	
  	<!-- ticketing 홈경기 -->
  	<select id="selectHomeGames" resultType="schedto">
  		SELECT g.game_date game_date, t.team_logo team_logo, t.team_name team_name, t2.team_name team_name2, t2.team_logo team_logo2, g.game_arena game_arena, g.game_date2 game_date2

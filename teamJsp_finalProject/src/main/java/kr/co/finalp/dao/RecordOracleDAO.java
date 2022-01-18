@@ -40,5 +40,27 @@ public class RecordOracleDAO implements RecordDAO {
 		return ss.selectOne("kr.co.finalp.teamRecord_selectPlayerName", player_code);
 	}
 
+	@Override
+	public List<PlayerRecordDTO> selectList(int player_code) {
+		return ss.selectList("kr.co.finalp.playerRecord_selectOne",player_code);
+	}
+
+	@Override
+	public void updateOne(PlayerRecordDTO dto) {
+		ss.update("kr.co.finalp.playerRecord_updateOne", dto);		
+	}
+
+	@Override
+	public List<TeamRecordDTO> selectList2(int teamno) {
+		return ss.selectList("kr.co.finalp.teamRecord_selectOne",teamno);
+	}
+
+	@Override
+	public void updateTeam(TeamRecordDTO dto) {
+		ss.update("kr.co.finalp.teamRecord_updateOne", dto);
+		
+	}
+
+
 
 }

@@ -76,6 +76,7 @@
 
         <div class="player_detail">
             <form action="admin_teaminfoWrite" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             <div class="player_detail-info">
                 <span class="teamno"><input type="hidden" name="teamno" id="" value="1"></span>
                 <table class="player_detail-info-table">

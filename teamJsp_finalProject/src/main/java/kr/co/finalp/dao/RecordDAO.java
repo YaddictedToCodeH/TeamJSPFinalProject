@@ -12,5 +12,11 @@ public interface RecordDAO {
 	
 	public List<PlayerRecordDTO> selectSort(String base);
 	public String selectPlayerName(int player_code);
-
+	
+	// admin_recording
+	public List<PlayerRecordDTO> selectList(int player_code);
+	public void updateOne(PlayerRecordDTO dto);
+	
+	public List<TeamRecordDTO> selectList2(int teamno);
+	public void updateTeam(TeamRecordDTO dto);
 }
