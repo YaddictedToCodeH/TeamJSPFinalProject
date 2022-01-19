@@ -1,31 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.select_div {
+.point_div {
 	border: solid 1px black;
 	width: 1200px;
-	height: 1100px;
+	height: 1000px;
 	background-color: #D3D3D3;
 	margin: 0 auto;
 	text-align: center;
 }
 
 table {
+	position: relative;
+	top:100px;
 	width: 1200px;
-	height: 900px;
+	height: 480px;
 	margin: 0 auto;
-	border-spacing: 72px;
-	border-collapse: separate;
+	border-spacing: 80px;
 	font-weight: bolder;
 }
 
@@ -55,7 +51,7 @@ a {
 	height: 60px;
 }
 
-.imformation_class{
+.point_class{
 	width: 970px;
 	height: 100px;
 	background: white;
@@ -68,41 +64,23 @@ a {
 </style>
 </head>
 <body>
-	<div class="select_div">
-		<div class="imformation_class">
+	<div class="point_div">
+		<div class="point_class">
 			<h1>
-				<img class="minilogo" src="../resources/images/kt-emblem-img.png" />개인정보
+				<img class="minilogo" src="../resources/images/kt-emblem-img.png" />좌석정보
 			</h1>
 		</div>
 		<table>
 			<tr>
 				<th>아이디</th>
 				<td>${dto.id }</td>
-				<th>비번</th>
-				<td>${dto.pwd }</td>
+				<th>좌석번호</th>
+				<td>${dto.seatno }</td>
 			</tr>
 
-			<tr>
-				<th>이름</th>
-				<td>${dto.mem_name }</td>
-				<th>생년월일</th>
-				<td>${dto.mem_birth}</td>
-			</tr>
 
 			<tr>
-				<th>전화번호</th>
-				<td>${dto.mp }</td>
-				<th>메일</th>
-				<td>${dto.mail }</td>
-
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td>${dto.addrs }</td>
-			</tr>
-			<tr>
-				<td colspan="3"><a href="mypage" style="text-decoration: none">목록으로가기</a></td>
-				<td colspan="1"><a href="modifyForm?id=${dto.id}" style="text-decoration: none">개인정보 수정하러 가기</a></td>
+				<td colspan="4"><a href="mypage" style="text-decoration: none">목록으로가기</a></td>
 			</tr>
 		</table>
 	</div>

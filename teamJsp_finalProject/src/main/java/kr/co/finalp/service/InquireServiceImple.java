@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import kr.co.finalp.dao.InquireDAO;
 import kr.co.finalp.dao.MemberDAO;
+import kr.co.finalp.dao.ReservationDAO;
 import kr.co.finalp.dto.InquireDTO;
 import kr.co.finalp.dto.MemberDTO;
+import kr.co.finalp.dto.ReservationDTO;
 
 @Service
 @Repository
@@ -21,6 +23,10 @@ public class InquireServiceImple implements InquireService{
 	
 	@Autowired
 	MemberDAO member_dao;
+	
+	@Autowired
+	ReservationDAO reservation_dao;
+	
 	
 	public void setDao(InquireDAO dao) {
 		this.inqire_dao = dao;
@@ -59,6 +65,12 @@ public class InquireServiceImple implements InquireService{
 	@Override
 	public void mypage_modifyOne(MemberDTO dto) {
 		member_dao.modify(dto);
+	}
+
+	@Override
+	public ReservationDTO mypage_ticket(String id) {
+		ReservationDTO dto = reservation_dao.mypage_ticket(id);
+		return dto;
 	}
 
 

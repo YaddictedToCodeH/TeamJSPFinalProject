@@ -29,7 +29,7 @@ public class ViewController {
 	public String ticketPrice() {
 		return "ticketPrice";
 	}
-	@RequestMapping("ci")
+	@RequestMapping(value={"ci","/member/ci"})
 	public String ci() {
 		return "ci";
 	}
@@ -37,11 +37,11 @@ public class ViewController {
 	public String store() {
 		return "store";
 	}
-	@RequestMapping("introduce")
+	@RequestMapping(value={"introduce","/member/introduce"})
 	public String introduce() {
 		return "introduce";
 	}
-	@RequestMapping("map")
+	@RequestMapping(value={"map","/member/map"})
 	public String map() {
 		return "map";
 	}
