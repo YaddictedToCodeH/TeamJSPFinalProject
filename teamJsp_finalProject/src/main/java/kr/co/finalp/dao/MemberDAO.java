@@ -35,5 +35,7 @@ public interface MemberDAO {
 	// grade관리
 	public void updateGrade(MemberDTO dto);
 	
+	// admin_main 회원수 조회
+	public int getTotal();
 
 }

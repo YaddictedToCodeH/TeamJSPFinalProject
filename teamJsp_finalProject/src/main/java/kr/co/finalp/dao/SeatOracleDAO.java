@@ -23,6 +23,7 @@ public class SeatOracleDAO implements SeatDAO {
 		return ss.selectList("kr.co.finalp.selectSeat", seat_area);
 	}
 
+
 	@Override
 	public int selectOneSeat(SeatDTO dto) {
 		return ss.selectOne("kr.co.finalp.selectSeatno", dto);
@@ -31,6 +32,16 @@ public class SeatOracleDAO implements SeatDAO {
 	@Override
 	public void updateSeat_status(int seatno) {
 		ss.update("kr.co.finalp.updateSeat_status", seatno);
+	}
+
+	@Override
+	public int reservedgetTotal() {
+		return ss.selectOne("kr.co.finalp.reservedSeat_total");
+	}
+
+	@Override
+	public int reservedseatGrade(String seat_grade) {
+		return ss.selectOne("kr.co.finalp.reservedSeat_grade",seat_grade);
 	}
 
 }

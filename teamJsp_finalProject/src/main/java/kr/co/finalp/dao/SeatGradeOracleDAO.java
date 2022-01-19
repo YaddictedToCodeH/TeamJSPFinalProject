@@ -19,4 +19,9 @@ public class SeatGradeOracleDAO implements SeatGradeDAO {
 		return ss.selectOne("kr.co.finalp.getPrice",seat_grade);
 	}
 
+	@Override
+	public String getGrade(int seat_price) {
+		return ss.selectOne("kr.co.finalp.getGrade",seat_price);
+	}
+
 }

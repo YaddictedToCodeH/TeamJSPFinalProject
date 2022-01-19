@@ -71,5 +71,11 @@ public class Admin_InquireOracleDAO implements Admin_InquireDAO{
 	public List<InquireDTO> admin_inquire_selectAll() {
 		return ss.selectList("kr.co.finalp.admin_main_inquire_list");
 	}
+
+
+	@Override
+	public int admin_inquire_noReplyTotal() {
+		return ss.selectOne("kr.co.finalp.admin_main_noreply_total");
+	}
 	
 }

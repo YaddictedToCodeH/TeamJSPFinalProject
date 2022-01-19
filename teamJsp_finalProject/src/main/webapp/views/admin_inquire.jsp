@@ -50,7 +50,7 @@
     }
 
     .board > tr, td{
-        padding: 20px;
+        padding: 30px;
     }
 
     .pagebutton{

@@ -822,6 +822,12 @@
   		FROM inquire
   	</select>
   	
+  	<select id="admin_main_noreply_total" resultType="int">
+  		SELECT COUNT(*) total
+		FROM inquire
+		WHERE inq_status=0
+  	</select>
+  	
   	<update id="modifyMember" parameterType="mdto">
   		UPDATE member
   		SET pwd = #{pwd}, mail = #{mail}
@@ -927,6 +933,13 @@
 		WHERE seat_grade = #{seat_grade}
 	</select>
 	
+	<!-- 좌석 등급 가져오기 -->
+	<select id="getGrade" parameterType="int" resultType="String">
+		SELECT seat_grade
+		FROM seatgrade
+		WHERE seat_price = #{seat_price}
+	</select>
+	
 	<!-- 사용자 포인트 가져오기 -->
 	<select id="getPoint" parameterType="String" resultType="int">
 		SELECT mem_point
@@ -963,12 +976,77 @@
 		WHERE id = #{id}
 	</update>
 	
+
 	
 	<!-- 예매 테이블 정보 입력 -->
 	<insert id="insertReservation" parameterType="reservationDTO">
 		INSERT INTO reservation
 		VALUES(RESERVATION_RESVNO_SEQ.nextval, #{seatno}, #{id}, #{gameno}, #{resv_number})
 	</insert>
+
+	<!-- admin_main 회원수  -->
+	<select id="admin_getMemberTotal" resultType="int">
+		select count(*) total
+		from member
+	</select>
+	
+	<select id="reservedSeat_total" resultType="int">
+		SELECT count(*)total
+			FROM(
+			select
+			s.seat_status
+			, ar.seat_area
+			, sg.seat_grade
+			, sg.seat_price
+			from reservation r
+			left join seat s
+			ON (r.seatno = s.seatno)
+			left join seatarea ar
+			ON (s.seatano = ar.seatano)
+			left join seatgrade sg
+			ON (ar.seatgno = sg.seatgno)
+			WHERE s.seat_status = 1)
+	</select>
+	
+	<select id="reservedSeat_grade" parameterType="String" resultType="int">
+		SELECT count(*)total
+			FROM(
+			select
+			s.seat_status
+			, ar.seat_area
+			, sg.seat_grade
+			, sg.seat_price
+			from reservation r
+			left join seat s
+			ON (r.seatno = s.seatno)
+			left join seatarea ar
+			ON (s.seatano = ar.seatano)
+			left join seatgrade sg
+			ON (ar.seatgno = sg.seatgno)
+			WHERE s.seat_status = 1
+			AND seat_grade = #{seat_grade})
+	</select>
+	
+	<!--전체 방문자 수 증가 -->
+	<insert id="setVisitTotalCount">
+		INSERT INTO visit
+		(V_DATE) VALUES(sysdate)
+	</insert>
+	
+	<!-- 전체 방문자 수 조회  -->
+	<select id="getVisitTotalCount" resultType="int">
+		SELECT count(*)
+		FROM visit
+	</select>
+	
+	<!-- 오늘의 방문자 수 조회 -->
+	<select id="getVisitTodayCount" resultType="int">
+		SELECT count(*)
+		FROM visit
+		WHERE substr(to_char(v_date), 1, 9) = to_date(sysdate, 'yy/MM/dd')
+	</select>
+	
+
 	
 </mapper>
 

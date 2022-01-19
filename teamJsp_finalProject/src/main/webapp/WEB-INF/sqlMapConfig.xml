@@ -30,6 +30,7 @@
 	 	<typeAlias type="kr.co.finalp.dto.MemberDTO" alias="mdto"/>
 	 	<typeAlias type="kr.co.finalp.dto.AuthoritiesDTO" alias="madto"/>
 	 	
+ 	
 	 	<typeAlias type="kr.co.finalp.dto.RankPlayerAllDTO" alias="rankAlldto"/>
   		<typeAlias type="kr.co.finalp.dto.RecommendDTO" alias="recomdto"/>
   		
