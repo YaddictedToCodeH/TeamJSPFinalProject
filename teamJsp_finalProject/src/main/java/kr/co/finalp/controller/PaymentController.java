@@ -55,7 +55,7 @@ public class PaymentController {
 		this.rdao = rdao;
 	}
 
-	@RequestMapping("/payment")
+	@RequestMapping("/member/payment")
 	public String payment(Model model,Authentication authentication,
 			@RequestParam(value = "usePoint_price", required = false)String usePoint_price,
 			@RequestParam(value = "detail_seat", required = false)String detail_seat,

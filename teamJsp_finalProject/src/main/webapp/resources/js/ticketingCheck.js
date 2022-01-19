@@ -23,7 +23,7 @@ $(function(){
             dataType: "json",
             success: function (data) {
 				window.open(data.next_redirect_pc_url); // 새창 열기
-                location.href = "../payment?usePoint_price=" + usePoint_price + "&detail_seat=" + detail_seat
+                location.href = "./payment?usePoint_price=" + usePoint_price + "&detail_seat=" + detail_seat
                 + "&area=" + area + "&game_date=" + game_date + "&game_arena=" + game_arena
                 + "&team_name=" + team_name + "&team_name2=" + team_name2 + "&team_logo=" + team_logo + "&team_logo2=" + team_logo2 
                 + "&usePoint=" + usePoint + "&grade=" + grade;
