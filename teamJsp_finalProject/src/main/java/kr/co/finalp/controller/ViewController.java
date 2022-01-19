@@ -54,6 +54,7 @@ public class ViewController {
 		return "ticketPrice";
 	}
 
+
 	@RequestMapping(value = { "ci", "/member/ci" })
 	public String ci(Principal principal, Model model) {
 		if (principal != null) {
@@ -71,6 +72,7 @@ public class ViewController {
 		}
 		return "store";
 	}
+
 
 	@RequestMapping(value = { "introduce", "/member/introduce" })
 	public String introduce(Principal principal, Model model) {

@@ -21,6 +21,7 @@ import kr.co.finalp.dao.MemberDAO;
 import kr.co.finalp.dao.MyPage_PageUtil;
 import kr.co.finalp.dto.InquireDTO;
 import kr.co.finalp.dto.MemberDTO;
+import kr.co.finalp.dto.ReservationDTO;
 import kr.co.finalp.service.InquireService;
 
 @Controller
@@ -92,6 +93,15 @@ public class MypageController {
 		String id = user.getUsername();
 		MemberDTO dto =service.mypage_impormation(id);
 		return new ModelAndView("point", "dto", dto);
+	}
+
+	@GetMapping("/mypage_ticket")
+	public ModelAndView mypage_ticketForm() {
+		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = (User)obj;
+		String id = user.getUsername();
+		ReservationDTO dto =service.mypage_ticket(id);
+		return new ModelAndView("mypage_ticket", "dto", dto);
 	}
 	
 	@GetMapping("/modifyForm")

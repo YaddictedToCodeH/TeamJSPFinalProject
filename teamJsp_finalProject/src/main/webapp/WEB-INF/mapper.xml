@@ -768,7 +768,18 @@
 	WHERE rn &gt; #{startNo}
 	</select>
 
-	
+	<!-- 마이페이지 문의사항 조회 -->
+ 	<select id="mypage_selectById" resultType="idto">
+	SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
+	FROM(SELECT ROWNUM rn, inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
+    	FROM(SELECT inqno,id,inq_title, TO_CHAR(inq_date, 'YYYY/MM/DD') inq_date,inq_contents,inq_status,inq_ans
+       		 FROM inquire
+       		 WHERE id = #{id}
+        	 ORDER BY inqno desc)
+    	WHERE ROWNUM &lt; #{endNo})
+	WHERE rn &gt; #{startNo}
+	</select>
+
   
 
   	<insert id="mypage_insertOne" parameterType="idto">
@@ -784,6 +795,8 @@
  	<!-- 마이페이지 문의사항 자세히보기-->
   	<select id="mypage_selectOne" parameterType="int" resultType="idto">
   		SELECT inqno,id,inq_title,inq_date,inq_contents,inq_status,inq_ans
+  		FROM inquire
+  		WHERE inqno = #{inqno}
 	</select>
 	
   	<select id="admin_inquire_selectOne" parameterType="int" resultType="idto">
@@ -791,9 +804,18 @@
   		FROM inquire
   		WHERE inqno = #{inqno}
   	</select>
+
+  	<select id="mypage_ticket" parameterType="String" resultType="reservationDTO">
+  		SELECT resvno,seatno,id,gameno,resv_number
+  		FROM reservation 
+  		WHERE id = #{id}
+  	</select>
   	
  	<!-- 마이페이지 문의사항 가져오기-->
-  	<select id="mypage_getTotal" resultType="int"></select>
+  	<select id="mypage_getTotal" resultType="int">
+  	  	SELECT COUNT(*)
+  		FROM inquire
+  	</select>
 
   	<select id="admin_inquire_getTotal" resultType="int">
   		SELECT COUNT(*)

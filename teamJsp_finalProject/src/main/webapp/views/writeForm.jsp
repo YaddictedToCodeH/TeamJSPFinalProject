@@ -49,18 +49,39 @@
 }
 
 .button_class {
-	margin: 25px 0px 25px 0px;
+	margin: 25px 50px 25px 50px;
 	width: 480px;
 	height: 80px;
 	border-radius: 15px;
 	text-align: center;
 	font-size: 30px;
 	border: none;
+	font-weight: bolder;
 }
 h1 {
 	position: relative;
 	right: 450px;
+	color: #DE1313;
+	font-weight: bolder;
 	
+}
+h2 {
+	color: #DE1313;	
+	font-weight: bolder;
+}
+.text_class button{
+	margin: 25px 80px 25px 80px;
+	width: 280px;
+	height: 80px;
+	border-radius: 15px;
+	text-align: center;
+	font-size: 30px;
+	border: none;
+	font-weight: bolder;
+}
+a{
+	text-decoration: none;
+	color: black;
 }
 </style>
 <body>
@@ -73,25 +94,26 @@ h1 {
 			</div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="text_class">
-					<label for="id">작성자</label>
+					<h1>작성자</h1>
 					<input type="text" id="id" name="id" class="form_input" value='<sec:authentication property="name"/>' readonly="readonly" />
 				</div>
 					<br> 
 				
 				<div class="text_class">
-					<label for="inq_title">제목</label>
+					<h1>제목</h1>
 					<input type="text" id="inq_title" name="inq_title" class="form_input" placeholder="제목"> 
 				</div>
 				
 					<br> 
 				
 				<div class="text_class">
-					<label for="inq_contents">내용</label>
+					<h1>내용</h1>
 					<textarea id="inq_contents" name="inq_contents" class="form_input" rows="3"></textarea>
 				</div>
 
 				<div class="text_class">
 					<input type="submit" class="button_class" value="등록" />
+					<button><a href="mypage?id=${dto.id}" class="button_class">돌아가기</a></button>
 				</div>
 		</form>
 	</div>
