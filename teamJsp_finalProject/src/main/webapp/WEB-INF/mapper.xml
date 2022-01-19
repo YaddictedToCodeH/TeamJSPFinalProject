@@ -153,7 +153,7 @@
     	    	AND EXTRACT(MONTH from c1.game_date) = #{select_month}
         	</when>
         </choose>
-        ORDER BY c1.gameno asc
+        ORDER BY game_date asc
   	</select>
   	
   	<!-- 관리자 경기일정 페이징 -->
@@ -685,8 +685,8 @@
 		LEFT JOIN team c3
 		ON(c3.teamno = c1.teamno2)
 		WHERE (c2.teamno = 1 or c3.teamno = 1)
-		AND c1.game_date BETWEEN '22/01/05' AND '22/01/25'
-		ORDER BY c1.gameno asc
+		AND c1.game_date BETWEEN sysdate-10 AND sysdate+10
+		ORDER BY game_date asc
   	</select>
   	
   	<!-- main용 공지사항 list -->
