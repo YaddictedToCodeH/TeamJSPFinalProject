@@ -29,7 +29,7 @@
                 
                 <div class="inputwriter">
                         <label for="writerlabel">작성자</label>
-                        <input type="text" name="id" id="id">
+                        <input type="text" name="id" id="id" value=${id}>
                 </div>
             </div>
             

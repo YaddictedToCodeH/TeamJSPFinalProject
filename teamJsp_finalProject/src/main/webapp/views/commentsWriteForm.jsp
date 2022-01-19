@@ -11,7 +11,7 @@
 <body>
 	<form action="commentsWrite" method="post">
 	<input type="hidden" id="writer" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	          		<input type="hidden" name="id" value="${dto.id }" />
+	          		<input type="hidden" name="id" value="${id}" />
 	            	<input type="hidden" name="fanno" value="${dto.fanno }" />
 		   <div class="writecomment">댓글작성</div>
 		   <div class="writebox">
