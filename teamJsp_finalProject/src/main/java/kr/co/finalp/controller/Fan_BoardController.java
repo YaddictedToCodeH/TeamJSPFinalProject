@@ -54,8 +54,15 @@ public class Fan_BoardController {
 			@RequestParam(name="currentPage", defaultValue ="1" ) int currentPage,
 			@RequestParam(defaultValue="fan_title") String search_option,  // 기본 검색 옵션값을 제목으로 설정
 			@RequestParam(defaultValue="") String keyword, // 키워드의 기본값은 ""
-			@RequestParam(defaultValue="latest") String sort_option
+			@RequestParam(defaultValue="latest") String sort_option,
+			Principal principal
 	) {
+		
+		if(principal != null) {		
+			String id = principal.getName();
+			
+			model.addAttribute("id", id);
+			}
 		
 		int totalNumber = dao.getTotal();
 		
@@ -116,20 +123,34 @@ public class Fan_BoardController {
 
 	// 작성 클릭시 해당 폼으로 
 	@GetMapping("/member/fan_boardWrite")
-	public String fan_boardWrite() {
-		return "fan_boardWriteForm";
+	public ModelAndView fan_boardWrite(Principal principal, String id) {
+		if(principal != null) {		
+			id = principal.getName();
+			}
+		return new ModelAndView ("fan_boardWriteForm", "id", id);
 	}
 	
 	// 작성 등록
 	@PostMapping("/member/fan_boardWrite")
-	public String insert(@ModelAttribute("dto")Fan_BoardDTO dto) {
+	public String insert(@ModelAttribute("dto")Fan_BoardDTO dto, Principal principal) {	
+		
+		if(principal != null) {		
+			String id = principal.getName();
+			Fan_BoardDTO fdto = new Fan_BoardDTO();
+			fdto.setId(id);		
+		}
 		dao.InsertOne(dto);
+		
 		return "redirect:/member/fan_board";
 	}
 	
 	// 수정하기 클릭시 해당 폼으로 
 	@GetMapping("/member/fan_boardModify")
-	public ModelAndView fan_boardModify(@RequestParam("fanno") int fanno) {
+	public ModelAndView fan_boardModify(@RequestParam("fanno") int fanno, Model model, Principal principal) {
+		if(principal != null) {		
+			String id = principal.getName();
+			model.addAttribute("id", id);
+		}
 		Fan_BoardDTO dto = dao.selectOne(fanno);
 		return new ModelAndView("fan_boardModifyForm", "dto", dto);
 	}
