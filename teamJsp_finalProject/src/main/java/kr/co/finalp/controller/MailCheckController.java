@@ -52,7 +52,7 @@ public class MailCheckController {
 	
 	@RequestMapping(value = "/changePw", method = RequestMethod.GET)
 	@ResponseBody
-	public String changePw(@RequestParam("mail") String sm_email) throws Exception{
+	public String changePw(@RequestParam("sm_email") String sm_email) throws Exception{
 		int serti = (int)((Math.random()* (99999 - 10000 + 1)) + 10000);
 	    String from = "teamJspFinal@gmail.com";//보내는 이 메일주소
 	    String to = sm_email;
