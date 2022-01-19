@@ -214,7 +214,7 @@ ul.tabs1 li.current {
 		</div>
 		<ul class="tabs1">
 			<li data-tab="tab-1"><h1><sec:authentication property="name"/>님의 문의 내역</h1></li>
-			<li data-tab="tab-2"><h1>포인트</h1></li>
+			<li data-tab="tab-2"><h1>포인트<br>${point}</h1></li>
 			<li data-tab="tab-3"><h1>개인 정보 관리</h1></li>
 			<li data-tab="tab-4"><h1>티켓 예매 내역</h1></li>
 			<li data-tab="tab-5"><h1>돌아가기</h1></li>

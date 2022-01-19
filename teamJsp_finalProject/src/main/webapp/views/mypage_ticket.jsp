@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
 .point_div {
 	border: solid 1px black;
 	width: 1200px;
-	height: 1000px;
+	height: 1200px;
 	background-color: #D3D3D3;
 	margin: 0 auto;
 	text-align: center;
@@ -17,7 +18,6 @@
 
 table {
 	position: relative;
-	top:100px;
 	width: 1200px;
 	height: 480px;
 	margin: 0 auto;
@@ -29,7 +29,8 @@ td {
 	background: white;
 	border: solid 4px black;
 	border-radius: 15px;
-	margin: 25px 25px;
+	padding: 20px;
+	margin: 15px 15px;
 	width: 140px;
 }
 
@@ -37,7 +38,8 @@ th {
 	background: #DE1313;
 	border: solid 4px black;
 	border-radius: 15px;
-	margin: 25px 25px;
+	margin: 20px 20px;
+	padding: 30px;
 	width: 80px;
 }
 
@@ -72,13 +74,17 @@ a {
 		</div>
 		<table>
 			<tr>
+				<th>예매번호</th>
 				<th>아이디</th>
-				<td>${dto.id }</td>
 				<th>좌석번호</th>
-				<td>${dto.seatno }</td>
 			</tr>
-
-
+			<c:forEach items="${list}" var="dto">
+			<tr>
+				<td>${dto.resv_number }</td>
+				<td>${dto.id}</td>
+				<td>${dto.seatno}</td>
+			</tr>
+			</c:forEach>
 			<tr>
 				<td colspan="4"><a href="mypage" style="text-decoration: none">목록으로가기</a></td>
 			</tr>

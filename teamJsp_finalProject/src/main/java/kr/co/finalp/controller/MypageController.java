@@ -1,5 +1,6 @@
 package kr.co.finalp.controller;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -44,14 +45,17 @@ public class MypageController {
 		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = (User)obj;
 		String id = user.getUsername();
-		//System.out.println("obj : " + obj); 
+		//System.out.println("obj : " + obj);
+		
+		int point = dao.getPoint(id);
+		
 		int totalNumber =service.mypage_getTotal();
 		int countPerPage = 30;
 		
 		Map<String, Object> map = MyPage_PageUtil.getPageDate(totalNumber, countPerPage, currentPage);
 		
 		model.addAttribute("map", map);
-		
+		model.addAttribute("point", point);
 		int startNo = (int) map.get("startNo");
 		int endNo = (int) map.get("endNo");
 		
@@ -100,8 +104,8 @@ public class MypageController {
 		Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = (User)obj;
 		String id = user.getUsername();
-		ReservationDTO dto =service.mypage_ticket(id);
-		return new ModelAndView("mypage_ticket", "dto", dto);
+		List<ReservationDTO> list =service.mypage_ticket(id);
+		return new ModelAndView("mypage_ticket", "list", list);
 	}
 	
 	@GetMapping("/modifyForm")

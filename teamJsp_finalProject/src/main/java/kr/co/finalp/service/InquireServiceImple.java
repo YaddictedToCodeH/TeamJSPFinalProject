@@ -68,9 +68,9 @@ public class InquireServiceImple implements InquireService{
 	}
 
 	@Override
-	public ReservationDTO mypage_ticket(String id) {
-		ReservationDTO dto = reservation_dao.mypage_ticket(id);
-		return dto;
+	public List<ReservationDTO> mypage_ticket(String id) {
+		List<ReservationDTO> list = reservation_dao.mypage_ticket(id);
+		return list;
 	}
 
 
