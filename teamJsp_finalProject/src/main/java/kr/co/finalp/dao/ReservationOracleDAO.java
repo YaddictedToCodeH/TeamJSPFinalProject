@@ -1,5 +1,7 @@
 package kr.co.finalp.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,8 +24,8 @@ public class ReservationOracleDAO implements ReservationDAO{
 	}
 
 	@Override
-	public ReservationDTO mypage_ticket(String id) {
-		return ss.selectOne("kr.co.finalp.mypage_ticket",id);
+	public List<ReservationDTO> mypage_ticket(String id) {
+		return ss.selectList("kr.co.finalp.mypage_ticket",id);
 	}
 	
 }

@@ -92,36 +92,36 @@ a{
 <body>
 	<div class="modify_container">
 		<form action="modify" method="post">
+				<input type="hidden" id="writer" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<div class="modify_text">
 					<h2>
 						<img class="minilogo" src="../resources/images/kt-emblem-img.png" />문의사항
 					</h2>
 				</div>
 			<table class="modify_table">
-				<input type="hidden" id="writer" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<tr class="text_class">
 					<th>아이디</th>
-					<td><input type="text" name="id" id="" value="${dto.id }" class="form_input" readonly/> </td>
+					<td><input type="text" name="id" id="" value="${dto.id }" class="form_input" disabled="disabled"/> </td>
 					<th>비번</th>
 					<td><input type="password" name="pwd" id="" value="${dto.pwd }" class="form_input"/></td>
 				</tr>
 			
 				<tr class="text_class">
 					<th>이름</th>
-					<td><input type="text" name="mem_name" id="" value="${dto.mem_name }" class="form_input" readonly/></td>
+					<td><input type="text" name="mem_name" id="" value="${dto.mem_name }" class="form_input" disabled/></td>
 					<th>생년월일</th>
-					<td><input type="text" name="mem_birth" id="" value="${dto.mem_birth }" class="form_input" readonly/></td>
+					<td><input type="text" name="mem_birth" id="" value="${dto.mem_birth }" class="form_input" disabled/></td>
 				</tr>
 			
 				<tr class="text_class">
 					<th>전화번호</th>
-					<td><input type="text" name="mp" id="" value="${dto.mp } " class="form_input" readonly/></td>
+					<td><input type="text" name="mp" id="" value="${dto.mp } " class="form_input" disabled/></td>
 					<th>메일</th>
 					<td><input type="text" name="mail" id="" value="${dto.mail }" class="form_input"/></td>
 				</tr>
 				<tr class="text_class">
 					<th>주소</th>
-					<td><input type="text" name="addrs" id="" value="${dto.addrs }" class="form_input" readonly/></td>
+					<td><input type="text" name="addrs" id="" value="${dto.addrs }" class="form_input" disabled/></td>
 				</tr>
 				<tr class="text_class">
 					<td colspan="2">

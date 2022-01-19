@@ -777,7 +777,7 @@
        		 WHERE id = #{id}
         	 ORDER BY inqno desc)
     	WHERE ROWNUM &lt; #{endNo})
-	WHERE rn &gt; #{startNo}
+	WHERE rn <![CDATA[>=]]> #{startNo}
 	</select>
 
   

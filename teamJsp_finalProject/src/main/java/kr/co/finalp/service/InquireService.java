@@ -13,7 +13,7 @@ public interface InquireService {
 	public InquireDTO mypage_readOne(int inqno);
 	public int mypage_getTotal();
 	public MemberDTO mypage_impormation(String id);
-	public ReservationDTO mypage_ticket(String id);
+	public List<ReservationDTO> mypage_ticket(String id);
 	public void mypage_modifyOne(MemberDTO dto);
 
 }

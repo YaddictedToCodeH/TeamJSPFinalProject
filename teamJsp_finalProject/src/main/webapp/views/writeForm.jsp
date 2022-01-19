@@ -86,7 +86,7 @@ a{
 </style>
 <body>
 	<div class="write_container">
-		<form action="mypage" method="post">	
+		<form action="write" method="post">	
 			<div class="write_text">
 				<h2>
 					<img class="minilogo" src="../resources/images/kt-emblem-img.png" />문의사항
