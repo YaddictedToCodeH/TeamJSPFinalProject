@@ -54,7 +54,8 @@ public class Fan_BoardController {
 			@RequestParam(name="currentPage", defaultValue ="1" ) int currentPage,
 			@RequestParam(defaultValue="fan_title") String search_option,  // 기본 검색 옵션값을 제목으로 설정
 			@RequestParam(defaultValue="") String keyword, // 키워드의 기본값은 ""
-			@RequestParam(defaultValue="latest") String sort_option
+			@RequestParam(defaultValue="latest") String sort_option,
+			Principal principal
 	) {
 		
 		int totalNumber = dao.getTotal();
@@ -71,6 +72,11 @@ public class Fan_BoardController {
 		map.put("search_option", search_option); // 검색옵션
 		map.put("keyword", keyword); // 검색키워드
 		map.put("sort_option", sort_option);
+		
+		if(principal != null) {		
+		String id = principal.getName();		
+		model.addAttribute("id", id);
+		}
 		
 		return new ModelAndView("fan_board", "fan_board", dao.selectAll(startNo, endNo, search_option, keyword, sort_option));
 	}
