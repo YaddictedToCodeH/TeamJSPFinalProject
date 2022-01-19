@@ -36,6 +36,9 @@
   		<typeAlias type="kr.co.finalp.dto.SeatDTO" alias="seatDto"/>
   		<typeAlias type="kr.co.finalp.dto.SeatAreaDTO" alias="seataDTO"/>
   		<typeAlias type="kr.co.finalp.dto.SeatGradeDTO" alias="seatgDTO"/>
+
+  		<typeAlias type="kr.co.finalp.dto.GamesDTO" alias="gamesDTO"/>
+  		
   		<typeAlias type="kr.co.finalp.dto.ReservationDTO" alias="reservationDTO"/>
   	</typeAliases>
   </configuration>

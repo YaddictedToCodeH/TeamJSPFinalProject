@@ -8,8 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.finalp.dao.GamesDAO;
 import kr.co.finalp.dao.MemberDAO;
+import kr.co.finalp.dao.ReservationDAO;
+import kr.co.finalp.dao.SeatAreaDAO;
+import kr.co.finalp.dao.SeatDAO;
 import kr.co.finalp.dto.MemberDTO;
+import kr.co.finalp.dto.ReservationDTO;
+import kr.co.finalp.dto.SeatDTO;
 
 @Controller
 public class PaymentController {
@@ -17,8 +23,36 @@ public class PaymentController {
 	@Autowired
 	MemberDAO dao;
 	
+	@Autowired
+	SeatAreaDAO sadao;
+	
+	@Autowired
+	SeatDAO sdao;
+	
+	@Autowired
+	GamesDAO gdao;
+	
+	@Autowired
+	ReservationDAO rdao;
+	
 	public void setDao(MemberDAO dao) {
 		this.dao = dao;
+	}
+	
+	public void setSadao(SeatAreaDAO sadao) {
+		this.sadao = sadao;
+	}
+
+	public void setSdao(SeatDAO sdao) {
+		this.sdao = sdao;
+	}
+
+	public void setGdao(GamesDAO gdao) {
+		this.gdao = gdao;
+	}
+
+	public void setRdao(ReservationDAO rdao) {
+		this.rdao = rdao;
 	}
 
 	@RequestMapping("/payment")
@@ -33,20 +67,8 @@ public class PaymentController {
 			@RequestParam(value = "team_logo", required = false)String team_logo,
 			@RequestParam(value = "team_logo2", required = false)String team_logo2,
 			@RequestParam(value = "usePoint", required = false)String usePoint,
-			@RequestParam(value = "grade", required = false)String grade,
-			@RequestParam(value = "pg_token", required = false)String pg_token) {
+			@RequestParam(value = "grade", required = false)String grade) {
 		
-		System.out.println(pg_token);
-		System.out.println(usePoint_price);
-		System.out.println(detail_seat);
-		System.out.println(area);
-		System.out.println(game_date);
-		System.out.println(game_arena);
-		System.out.println(team_name);
-		System.out.println(team_name2);
-		System.out.println(team_logo);
-		System.out.println(team_logo2);
-		System.out.println(usePoint);
 		int resv_number = (int)((Math.random()* (999999999 - 100000000 + 1)) + 10000000);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal(); 
 		String id = userDetails.getUsername();
@@ -88,8 +110,33 @@ public class PaymentController {
 		}
 		
 		
-		// 예매 테이블 코드
+		// 좌석 번호 가져오기
+		// seatano 가져오기
+		int seatano = sadao.selectOneArea(area);
 		
+		// seatno 가져오기
+		SeatDTO sdto = new SeatDTO();
+		sdto.setSeatano(seatano);
+		String[] arr = detail_seat.split(", ");
+		int[] seatno = new int[4];
+		for(int i = 0; i < arr.length; i++) {
+			if(arr[i] != null) {
+				sdto.setDetail_seat(arr[i]);
+				seatno[i] = sdao.selectOneSeat(sdto);				
+			}
+		}
+		
+		// 경기 날짜로 경기번호 가져오기
+		int gameno = gdao.selectGameno(game_date);
+		
+		// 예매 테이블 코드
+		for(int i = 0; i < seatno.length; i++) {
+			if(seatno[i] != 0) {
+				sdao.updateSeat_status(seatno[i]);
+				ReservationDTO rdto = new ReservationDTO(0, seatno[i], id, gameno, resv_number);
+				rdao.insertReservation(rdto);
+			}
+		}
 		
 		model.addAttribute("mp", dto.getMp());
 		model.addAttribute("game_date", game_date);

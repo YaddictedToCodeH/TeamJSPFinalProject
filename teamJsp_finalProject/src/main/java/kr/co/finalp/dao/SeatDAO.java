@@ -6,4 +6,6 @@ import kr.co.finalp.dto.SeatDTO;
 
 public interface SeatDAO {
 	public List<SeatDTO> selectSeat(String seat_area);
+	public int selectOneSeat(SeatDTO dto);
+	public void updateSeat_status(int seatno);
 }
