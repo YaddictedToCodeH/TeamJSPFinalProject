@@ -68,6 +68,10 @@
       color: white;
     }
     
+    #rate > div > table > tbody > tr > th:nth-child(1){
+    	width:80px;
+    }
+    
     #inquire{
       display: flex;
       flex-direction: column;
@@ -88,61 +92,67 @@
       border: 1px solid black;
       padding: 5px;
     }
+    
+
 
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 
 window.onload = function() {
+	console.log(${sessionScope.todayCount});
+	
+	var price_total = "${price_total}";
+	
+	var x1Values = ["21년11월", "21년12월", "22년01월", "22년02월"];
+	var y1Values = [8975000, price_total, 9667000, 0];
+	var barColors = ["gray", "black", "red", "aquamarine"];
 
-var x1Values = ["21년11월", "21년12월", "22년01월", "22년02월"];
-var y1Values = [1000000, 5000000, 4000000, 300000];
-var barColors = ["gray", "black","red","aquamarine"];
+	new Chart("myChart", {
+	  type: "bar",
+	  data: {
+	    labels: x1Values,
+	    datasets: [{
+	      backgroundColor: barColors,
+	      data: y1Values
+	    }]
+	  },
+	  options: {
+	    legend: {display: false},
+	    title: {
+	      display: true,
+	      text: "월간 매출 현황"
+	    }
+	  }
+	});
 
-new Chart("myChart", {
-  type: "bar",
-  data: {
-    labels: x1Values,
-    datasets: [{
-      backgroundColor: barColors,
-      data: y1Values
-    }]
-  },
-  options: {
-    legend: {display: false},
-    title: {
-      display: true,
-      text: "월간 매출 현황"
-    }
-  }
-});
-
-
-
-var x2Values = ["신규회원수", "방문자수", "예매건수", "취소건수"];
-var y2Values = [55, 49, 44, 24, 15];
-var barColors = ["gray", "black","red","aquamarine"];
-
-new Chart("myChart2", {
-  type: "horizontalBar",
-  data: {
-    labels: x2Values,
-    datasets: [{
-      backgroundColor: barColors,
-      data: y2Values
-    }]
-  },
-  options: {
-    legend: {display: false},
-    title: {
-      display: true,
-      text: "관리 지표"
-    }
-  }
-});
+	var members = "${members}";
+	var reservedseat = "${reservedseat}"
+	var noreply = "${noreply}";
 
 
+	var x2Values = ["신규회원수", "방문자수", "예매건수", "문의사항 미답변"];
+	var y2Values = [members, 0, reservedseat, noreply];
+	var barColors = ["gray", "black","red", "aquamarine" ];
 
+	new Chart("myChart2", {
+	  type: "horizontalBar",
+	  data: {
+	    labels: x2Values,
+	    datasets: [{
+	      backgroundColor: barColors,
+	      data: y2Values
+	    }]
+	  },
+	  options: {
+	    legend: {display: false},
+	    title: {
+	      display: true,
+	      text: "관리 지표"
+	    }
+	  }
+	});
 
 }
 </script>
@@ -173,10 +183,10 @@ new Chart("myChart2", {
                     <div class="ratediv">
                       <table class="ratetb">
                         <tr>
-                          <th>회원수 1600명</th>
-                          <th>당일 티켓 판매량 250매</th>
-                          <th>사이트 입장 건수 721회</th>
-                          <th>문의사항 미답변 12건</th>
+                          <th>회원 ${members}명</th>
+                          <th>사이트 방문자수 ${sessionScope.todayCount}회</th>
+                          <th>당일 티켓 판매량 ${reservedseat}매</th>
+                          <th>문의사항 미답변 ${noreply}건</th>
                         </tr>
                       </table>
                     </div>

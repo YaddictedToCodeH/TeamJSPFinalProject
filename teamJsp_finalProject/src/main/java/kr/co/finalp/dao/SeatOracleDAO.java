@@ -23,4 +23,15 @@ public class SeatOracleDAO implements SeatDAO {
 		return ss.selectList("kr.co.finalp.selectSeat", seat_area);
 	}
 
+
+	@Override
+	public int reservedgetTotal() {
+		return ss.selectOne("kr.co.finalp.reservedSeat_total");
+	}
+
+	@Override
+	public int reservedseatGrade(String seat_grade) {
+		return ss.selectOne("kr.co.finalp.reservedSeat_grade",seat_grade);
+	}
+
 }

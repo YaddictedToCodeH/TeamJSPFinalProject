@@ -84,6 +84,11 @@ public class MemberOracleDAO implements MemberDAO{
 	public void updateGrade(MemberDTO dto) {
 		ss.update("kr.co.finalp.member_updateGrade", dto);
 	}
+
+	@Override
+	public int getTotal() {
+		return ss.selectOne("kr.co.finalp.admin_getMemberTotal");
+	}
 	
 	
 	
